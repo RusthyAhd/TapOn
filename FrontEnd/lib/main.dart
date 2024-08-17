@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Enter%20phone%20numper%20page.dart';
 import 'package:tap_on/constants.dart';
+import 'package:tap_on/laungh%20page.dart';
 
 //
 
@@ -18,8 +19,8 @@ class InitialScreen extends StatefulWidget {
 class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home:Enternumber (),
+    return MaterialApp(
+      home:TapOnApp (),
       title: appName,
       debugShowCheckedModeBanner: false,
     ); 
