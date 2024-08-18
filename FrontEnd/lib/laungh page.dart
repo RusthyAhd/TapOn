@@ -7,17 +7,17 @@ class TapOnApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xFFFFCC66), // Set your background color
+        backgroundColor: Colors.orange, // Set your background color
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Circle Avatar with image
               CircleAvatar(
-                radius: 120,
-                backgroundColor: null ,
+                radius: 180,
+                backgroundColor: const Color.fromARGB(255, 252, 250, 250),
                 child: Image.asset(
-                  'assets/images/TapOn logo.jpeg', // Place your logo here
+                  'assets/images/logo.png', // Place your logo here
                   fit: BoxFit.contain,
                 ),
               ),
@@ -50,7 +50,7 @@ class TapOnApp extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber, // Button color
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  textStyle: TextStyle(fontSize: 16),
+                  textStyle: TextStyle(fontSize: 16, color: Colors.blue);
                 ),
                 child: Text('GET STARTED'),
               ),
