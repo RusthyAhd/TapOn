@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/Enter%20verification%20page.dart';
 import 'package:tap_on/constants.dart';
 
 class Enternumber extends StatelessWidget{
@@ -64,6 +65,7 @@ class Enternumber extends StatelessWidget{
                   SizedBox(height: 25,),
                   ElevatedButton(
                     onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder:(context) => VerificationScreen()));
                       // Add your onPressed logic here
                     },
                     style: ElevatedButton.styleFrom(
