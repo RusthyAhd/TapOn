@@ -5,8 +5,9 @@ import 'package:tap_on/Enter phone numper page.dart';
 class TapOnApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp( debugShowCheckedModeBanner: false,
       home: Scaffold(
+
         backgroundColor: Colors.orange, // Set your background color
         body: Center(
           child: Column(
@@ -50,7 +51,7 @@ class TapOnApp extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber, // Button color
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  textStyle: TextStyle(fontSize: 16, color: Colors.blue);
+                  textStyle: TextStyle(fontSize: 16, color: Colors.blue)
                 ),
                 child: Text('GET STARTED'),
               ),
