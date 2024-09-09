@@ -6,14 +6,15 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TapOn rishaf'),
+        title: Text('TapOn'),
         backgroundColor: Colors.amber[700],
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () { 
-               Navigator.push(context, MaterialPageRoute(builder:(context) => NotificationPage()));
-                      // Add your onPressed logic here
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NotificationPage()));
+              // Add your onPressed logic here
               // Notification action
             },
           ),
@@ -24,7 +25,8 @@ class HomePage extends StatelessWidget {
           SizedBox(height: 20),
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.jpg'), // Replace with profile image
+              backgroundImage: AssetImage(
+                  'assets/images/profile.JPG'), // Replace with profile image
             ),
             title: Text('Rishaf'),
             trailing: Icon(Icons.settings),
@@ -46,7 +48,8 @@ class HomePage extends StatelessWidget {
               mainAxisSpacing: 10,
               children: [
                 ServiceCard(icon: Icons.plumbing, label: 'Plumber'),
-                ServiceCard(icon: Icons.electrical_services, label: 'Electrician'),
+                ServiceCard(
+                    icon: Icons.electrical_services, label: 'Electrician'),
                 ServiceCard(icon: Icons.construction, label: 'Carpenter'),
                 ServiceCard(icon: Icons.format_paint, label: 'Painter'),
                 ServiceCard(icon: Icons.grass, label: 'Gardener'),
@@ -72,7 +75,7 @@ class HomePage extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
-                image: AssetImage('assets/plumber_featured.jpg'), // Replace with your featured image
+                image: AssetImage('assets/images/plumber_featured.jpg'),
                 fit: BoxFit.cover,
               ),
             ),

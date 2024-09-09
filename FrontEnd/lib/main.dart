@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Enter%20phone%20numper%20page.dart';
 import 'package:tap_on/constants.dart';
 import 'package:tap_on/laungh%20page.dart';
-import 'package:tap_on/Notification.dart';
 
 //
 
