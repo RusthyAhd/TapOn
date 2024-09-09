@@ -64,7 +64,7 @@ class VerificationScreen extends StatelessWidget {
                 SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {  Navigator.push(context,
-                   MaterialPageRoute(builder:(context) => HomeScreen()));
+                   MaterialPageRoute(builder:(context) => HomePage()));
                     // Confirm code logic
                   },
                   style: ElevatedButton.styleFrom(

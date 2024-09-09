@@ -1,119 +1,135 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/Notification.dart';
 
-class TapOnApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("TapOn"),
-        backgroundColor: Colors.yellow[700],
+        title: Text('TapOn'),
+        backgroundColor: Colors.amber[700],
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: Icon(Icons.notifications_none),
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () { 
+               Navigator.push(context, MaterialPageRoute(builder:(context) => NotificationPage()));
+                      // Add your onPressed logic here
+              // Notification action
+            },
           ),
         ],
       ),
       body: Column(
         children: [
+          SizedBox(height: 20),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundImage: AssetImage('assets/profile.jpg'), // Replace with profile image
+            ),
+            title: Text('Rishaf'),
+            trailing: Icon(Icons.settings),
+          ),
+          SizedBox(height: 20),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'Choose your service',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(height: 10),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 3,
+              padding: const EdgeInsets.all(10.0),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
               children: [
-                const SizedBox(height: 20),
-                const Text(
-                  "Choose your service",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const Text(
-                  "You can always change this later.",
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-                const SizedBox(height: 10),
-                GridView.count(
-                  crossAxisCount: 3,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  children: [
-                    ServiceIcon(title: "plumbing", icon: Icons.plumbing),
-                    ServiceIcon(title: "electrical", icon: Icons.electrical_services),
-                    ServiceIcon(title: "carpentry", icon: Icons.handyman),
-                    ServiceIcon(title: "painting", icon: Icons.format_paint),
-                    ServiceIcon(title: "gardening", icon: Icons.grass),
-                    ServiceIcon(title: "appliance", icon: Icons.kitchen),
-                    
-                    ServiceIcon(title: "phone repair", icon: Icons.phone_iphone),
-                    ServiceIcon(title: "Saloon", icon: Icons.face),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(onPressed: () {}, child: const Text("BACK")),
-                    TextButton(onPressed: () {}, child: const Text("NEXT")),
-                  ],
-                ),
+                ServiceCard(icon: Icons.plumbing, label: 'Plumber'),
+                ServiceCard(icon: Icons.electrical_services, label: 'Electrician'),
+                ServiceCard(icon: Icons.construction, label: 'Carpenter'),
+                ServiceCard(icon: Icons.format_paint, label: 'Painter'),
+                ServiceCard(icon: Icons.grass, label: 'Gardener'),
+                ServiceCard(icon: Icons.kitchen, label: 'Fridge Repair'),
+                ServiceCard(icon: Icons.build, label: 'Biling'),
+                ServiceCard(icon: Icons.phone_android, label: 'Phone Repair'),
+                ServiceCard(icon: Icons.content_cut, label: 'Barber'),
               ],
             ),
           ),
-          Expanded(
-            child: ListView(
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(8.0),
-                  child: Image.network(
-                    "https://www.example.com/plumber_image.jpg",
-                    height: 200,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ],
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              'Featured Services',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(height: 10),
+          Container(
+            height: 180,
+            margin: EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              image: DecorationImage(
+                image: AssetImage('assets/plumber_featured.jpg'), // Replace with your featured image
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.build), label: 'Tasks'),
-          BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline), label: 'Supply'),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Notification'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'User',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.store),
+            label: 'Shop Owner',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.engineering),
+            label: 'Service Provider',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
         ],
-        currentIndex: 0,
-        selectedItemColor: Colors.black,
+        selectedItemColor: Colors.amber[700],
         unselectedItemColor: Colors.grey,
       ),
     );
   }
 }
 
-class ServiceIcon extends StatelessWidget {
-  final String title;
+class ServiceCard extends StatelessWidget {
   final IconData icon;
+  final String label;
 
-  const ServiceIcon({required this.title, required this.icon});
+  ServiceCard({required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, size: 40, color: Colors.grey[700]),
-        const SizedBox(height: 5),
-        Text(title, style: TextStyle(fontSize: 12)),
-      ],
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: InkWell(
+        onTap: () {
+          // Handle card tap
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 40, color: Colors.blue),
+            SizedBox(height: 10),
+            Text(label, textAlign: TextAlign.center),
+          ],
+        ),
+      ),
     );
   }
-} 
-
+}
