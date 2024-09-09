@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/Home%20page.dart';
 
 class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.yellow[700],
           title: Text("Notification Page"),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
+            },
           ),
-          actions: [
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                "See All",
-                style: TextStyle(color: Colors.black),
-              ),
-            ),
-          ],
         ),
         body: ListView(
           padding: EdgeInsets.all(16.0),
