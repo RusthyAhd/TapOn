@@ -6,7 +6,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TapOn'),
+        title: Text('TapOn rishaf'),
         backgroundColor: Colors.amber[700],
         actions: [
           IconButton(
