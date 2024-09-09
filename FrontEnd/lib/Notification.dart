@@ -11,7 +11,10 @@ class NotificationPage extends StatelessWidget {
           title: Text("Notification Page"),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+               Navigator.push(context, 
+   MaterialPageRoute(builder:(context) => HomePage()));
+            },
           ),
           actions: [
             TextButton(

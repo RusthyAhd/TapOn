@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/Enter%20phone%20numper%20page.dart';
 import 'package:tap_on/Notification.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,13 +9,20 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('TapOn'),
         backgroundColor: Colors.amber[700],
+leading: IconButton(
+    icon: Icon(Icons.arrow_back),
+    onPressed: () { 
+   Navigator.push(context, 
+   MaterialPageRoute(builder:(context) => Enternumber()));
+    },
+  ),
+
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NotificationPage()));
-              // Add your onPressed logic here
+            onPressed: () { 
+               Navigator.push(context, MaterialPageRoute(builder:(context) => NotificationPage()));
+                      // Add your onPressed logic here
               // Notification action
             },
           ),
@@ -25,8 +33,7 @@ class HomePage extends StatelessWidget {
           SizedBox(height: 20),
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage(
-                  'assets/images/profile.JPG'), // Replace with profile image
+              backgroundImage: AssetImage('assets/profile.jpg'), // Replace with profile image
             ),
             title: Text('Rishaf'),
             trailing: Icon(Icons.settings),
@@ -75,7 +82,7 @@ class HomePage extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
-                image: AssetImage('assets/images/plumber_featured.jpg'),
+                image: AssetImage('assets/plumber_featured.jpg'), // Replace with your featured image
                 fit: BoxFit.cover,
               ),
             ),

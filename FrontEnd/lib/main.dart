@@ -19,9 +19,9 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:TapOnApp (),
+      home: TapOnApp(),
       title: appName,
       debugShowCheckedModeBanner: false,
-    ); 
+    );
   }
 }
