@@ -28,10 +28,10 @@ The app is designed for iOS and Android devices and assumes stable internet conn
 **Aim:** To simplify and streamline the process of finding service providers and accessing tools, improving productivity and efficiency for users.
 
 **Objectives:**
-1. Increase accessibility to essential services and tools.
-2. Save time in finding workers and procuring tools.
-3. Empower users to address their needs independently.
-4. Use user feedback to iteratively improve the app.
+1. To increase accessibility to essential services and tools.
+2. To save time in finding workers and procuring tools.
+3. To empower users to address their needs independently.
+4. To use user feedback to iteratively improve the app.
 
 ## Project Boundaries
 
