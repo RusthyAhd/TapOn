@@ -7,6 +7,7 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.yellow[700],
@@ -14,8 +15,8 @@ class NotificationPage extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-               Navigator.push(context, 
-   MaterialPageRoute(builder:(context) => HomePage()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
           actions: [
