@@ -3,6 +3,8 @@ import 'package:tap_on/Enter phone numper page.dart';
 
 
 class TapOnApp extends StatelessWidget {
+  const TapOnApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp( debugShowCheckedModeBanner: false,
@@ -22,8 +24,8 @@ class TapOnApp extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
-              SizedBox(height: 40), // Space between image and text
-              Text(
+              const SizedBox(height: 40), // Space between image and text
+              const Text(
                 'Discover new interests.',
                 style: TextStyle(
                   fontSize: 22,
@@ -31,8 +33,8 @@ class TapOnApp extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 'Empower your team with our application',
                 style: TextStyle(
                   fontSize: 16,
@@ -40,20 +42,20 @@ class TapOnApp extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
-                   MaterialPageRoute(builder: (context) => Enternumber()));
+                   MaterialPageRoute(builder: (context) => const Enternumber()));
                   
                   // Add your onPressed action here
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber, // Button color
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  textStyle: TextStyle(fontSize: 16, color: Colors.blue)
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  textStyle: const TextStyle(fontSize: 16, color: Colors.blue)
                 ),
-                child: Text('GET STARTED'),
+                child: const Text('GET STARTED'),
               ),
             ],
           ),

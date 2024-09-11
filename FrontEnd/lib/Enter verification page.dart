@@ -4,15 +4,17 @@ import 'package:tap_on/Home%20page.dart';
 
 
 class VerificationScreen extends StatelessWidget {
+  const VerificationScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFC342),
+      backgroundColor: const Color(0xFFFFC342),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Enter SMS Code',
               style: TextStyle(
                 fontSize: 24,
@@ -20,17 +22,17 @@ class VerificationScreen extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(4, (index) {
                 return Container(
                   width: 50,
                   height: 50,
-                  margin: EdgeInsets.symmetric(horizontal: 8),
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
                   child: TextField(
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -45,23 +47,23 @@ class VerificationScreen extends StatelessWidget {
                 );
               }),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: () { Navigator.push(context,
-                   MaterialPageRoute(builder:(context) => Enternumber()));
+                   MaterialPageRoute(builder:(context) => const Enternumber()));
                     // Resend code logic
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.black,
-                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                   ),
-                  child: Text('Resend Code'),
+                  child: const Text('Resend Code'),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {  Navigator.push(context,
                    MaterialPageRoute(builder:(context) => HomePage()));
@@ -70,14 +72,14 @@ class VerificationScreen extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     foregroundColor: Colors.white,
-                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                   ),
-                  child: Text('Confirm'),
+                  child: const Text('Confirm'),
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'You should receive the code shortly',
               style: TextStyle(color: Colors.black),
             ),

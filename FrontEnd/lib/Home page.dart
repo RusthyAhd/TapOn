@@ -3,23 +3,25 @@ import 'package:tap_on/Enter%20phone%20numper%20page.dart';
 import 'package:tap_on/Notification.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TapOn'),
+        title: const Text('TapOn'),
         backgroundColor: Colors.amber[700],
 leading: IconButton(
-    icon: Icon(Icons.arrow_back),
+    icon: const Icon(Icons.arrow_back),
     onPressed: () { 
    Navigator.push(context, 
-   MaterialPageRoute(builder:(context) => Enternumber()));
+   MaterialPageRoute(builder:(context) => const Enternumber()));
     },
   ),
 
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () { 
                Navigator.push(context, MaterialPageRoute(builder:(context) => NotificationPage()));
                       // Add your onPressed logic here
@@ -30,23 +32,23 @@ leading: IconButton(
       ),
       body: Column(
         children: [
-          SizedBox(height: 20),
-          ListTile(
+          const SizedBox(height: 20),
+          const ListTile(
             leading: CircleAvatar(
               backgroundImage: AssetImage('assets/profile.jpg'), // Replace with profile image
             ),
             title: Text('Rishaf'),
             trailing: Icon(Icons.settings),
           ),
-          SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          const SizedBox(height: 20),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
               'Choose your service',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
             child: GridView.count(
               crossAxisCount: 3,
@@ -67,21 +69,21 @@ leading: IconButton(
               ],
             ),
           ),
-          SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          const SizedBox(height: 10),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(
               'Featured Services',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
             height: 180,
-            margin: EdgeInsets.symmetric(horizontal: 16),
+            margin: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              image: DecorationImage(
+              image: const DecorationImage(
                 image: AssetImage('assets/plumber_featured.jpg'), // Replace with your featured image
                 fit: BoxFit.cover,
               ),
@@ -90,7 +92,7 @@ leading: IconButton(
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'User',
@@ -119,7 +121,7 @@ class ServiceCard extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  ServiceCard({required this.icon, required this.label});
+  const ServiceCard({super.key, required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +137,7 @@ class ServiceCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, size: 40, color: Colors.blue),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(label, textAlign: TextAlign.center),
           ],
         ),
