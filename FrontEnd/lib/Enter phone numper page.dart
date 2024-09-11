@@ -53,8 +53,8 @@ class Enternumber extends StatelessWidget{
                     slogan,
                     style: TextStyle(color: Colors.grey),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 50.0),
                     child: TextField(
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.phone),
@@ -62,7 +62,7 @@ class Enternumber extends StatelessWidget{
                       ),
                     ),
                   ),
-                  SizedBox(height: 25,),
+                  const SizedBox(height: 25,),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder:(context) => VerificationScreen()));

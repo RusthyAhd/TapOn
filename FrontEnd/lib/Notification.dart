@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:tap_on/Home%20page.dart';
 
 class NotificationPage extends StatelessWidget {
+  const NotificationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.yellow[700],
-          title: Text("Notification Page"),
+          title: const Text("Notification Page"),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
                Navigator.push(context, 
    MaterialPageRoute(builder:(context) => HomePage()));
@@ -19,7 +21,7 @@ class NotificationPage extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 "See All",
                 style: TextStyle(color: Colors.black),
               ),
@@ -27,7 +29,7 @@ class NotificationPage extends StatelessWidget {
           ],
         ),
         body: ListView(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           children: [
             NotificationTile(
               title: "Meeting reminder",
@@ -56,13 +58,13 @@ class NotificationTile extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  NotificationTile({required this.title, required this.subtitle});
+  const NotificationTile({super.key, required this.title, required this.subtitle});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.notifications, color: Colors.black),
-      title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
+      leading: const Icon(Icons.notifications, color: Colors.black),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Text(subtitle),
     );
   }
