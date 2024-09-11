@@ -9,8 +9,7 @@ class TapOnApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor:
-            const Color.fromARGB(255, 255, 0, 0), // background color change
+        backgroundColor: Colors.amber[700], // background color change
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +45,6 @@ class TapOnApp extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
-
                       MaterialPageRoute(builder: (context) => Enternumber()));
 
                   // Add your onPressed action here
@@ -56,7 +54,6 @@ class TapOnApp extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     textStyle: TextStyle(fontSize: 16, color: Colors.blue)),
                 child: Text('GET STARTED'),
-
               ),
             ],
           ),

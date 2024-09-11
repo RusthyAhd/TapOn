@@ -13,20 +13,20 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('TapOn'),
         backgroundColor: Colors.amber[700],
-leading: IconButton(
-    icon: const Icon(Icons.arrow_back),
-    onPressed: () { 
-   Navigator.push(context, 
-   MaterialPageRoute(builder:(context) => const Enternumber()));
-    },
-  ),
-
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const Enternumber()));
+          },
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications),
-            onPressed: () { 
-               Navigator.push(context, MaterialPageRoute(builder:(context) => NotificationPage()));
-                      // Add your onPressed logic here
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NotificationPage()));
+              // Add your onPressed logic here
               // Notification action
             },
           ),
@@ -37,38 +37,42 @@ leading: IconButton(
           const SizedBox(height: 20),
           ListTile(
             leading: const CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.jpg'), // Replace with profile image
+              backgroundImage: AssetImage(
+                  'assets/profile.jpg'), // Replace with profile image
             ),
             title: TextButton(
-        onPressed: () {
-          Navigator.push(context, 
-          MaterialPageRoute(builder:(context) => EditProfileScreen()));
-        },
-        child: const Text(
-          'Rishaf',
-          style: TextStyle(
-            fontSize: 16, 
-            color: Colors.black, // You can customize text color
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EditProfileScreen()));
+              },
+              child: const Text(
+                'Rishaf',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black, // You can customize text color
+                ),
+              ),
+            ),
+            trailing: IconButton(
+              icon: const Icon(Icons.support_agent), // Settings icon
+              onPressed: () {
+                // Define your action here
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          ChatPage()), // Replace with your screen
+                );
+              },
+            ),
           ),
-        ),
-      ),
-          trailing: IconButton(
-        icon: const Icon(Icons.support_agent), // Settings icon
-        onPressed: () {
-          // Define your action here
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ChatPage()), // Replace with your screen
-          );
-        },
-      ),
-          ),
-
           const SizedBox(height: 20),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
-              'Choose your service',
+              'Choose Your Service',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
@@ -93,24 +97,35 @@ leading: IconButton(
               ],
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
-              'Featured Services',
+              'Rent Tools',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 10),
-          Container(
-            height: 180,
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              image: const DecorationImage(
-                image: AssetImage('assets/plumber_featured.jpg'), // Replace with your featured image
-                fit: BoxFit.cover,
-              ),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 3,
+              padding: const EdgeInsets.all(10.0),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              children: [
+                ServiceCard(icon: Icons.plumbing, label: 'Plumbing Tools'),
+                ServiceCard(
+                    icon: Icons.electrical_services, label: 'Electrical Tools'),
+                ServiceCard(
+                    icon: Icons.construction, label: 'Carpenting Tools'),
+                ServiceCard(icon: Icons.format_paint, label: 'Painting Tools'),
+                ServiceCard(icon: Icons.grass, label: 'Gardening Tools'),
+                ServiceCard(icon: Icons.kitchen, label: 'Repairing Tools'),
+                ServiceCard(icon: Icons.build, label: 'Building Tools'),
+                ServiceCard(
+                    icon: Icons.phone_android, label: 'Phone Accessories'),
+                ServiceCard(icon: Icons.content_cut, label: 'Mechanical Tools'),
+              ],
             ),
           ),
         ],
@@ -127,11 +142,7 @@ leading: IconButton(
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.engineering),
-            label: 'Service Provider',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: 'Provider',
           ),
         ],
         selectedItemColor: Colors.amber[700],
