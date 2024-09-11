@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Enter%20phone%20numper%20page.dart';
 import 'package:tap_on/Notification.dart';
+import 'package:tap_on/chatbot';
+import 'package:tap_on/edit%20profile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,25 +11,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-// Add your onPressed logic here
+        title: const Text('TapOn'),
+        backgroundColor: Colors.amber[700],
+leading: IconButton(
+    icon: const Icon(Icons.arrow_back),
+    onPressed: () { 
+   Navigator.push(context, 
+   MaterialPageRoute(builder:(context) => const Enternumber()));
+    },
+  ),
 
-        title: Text('TapOn'),
-        backgroundColor: const Color.fromARGB(255, 255, 0, 0),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Enternumber()));
-          },
-        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NotificationPage()));
-              // Add your onPressed logic here
-
+            icon: const Icon(Icons.notifications),
+            onPressed: () { 
+               Navigator.push(context, MaterialPageRoute(builder:(context) => NotificationPage()));
+                      // Add your onPressed logic here
               // Notification action
             },
           ),
@@ -36,17 +35,38 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(height: 20),
-          const ListTile(
-            leading: CircleAvatar(
-              backgroundImage: AssetImage(
-                  'assets/profile.jpg'), // Replace with profile image
+          ListTile(
+            leading: const CircleAvatar(
+              backgroundImage: AssetImage('assets/profile.jpg'), // Replace with profile image
             ),
-            title: Text('Rishaf'),
-            trailing: Icon(Icons.settings),
+            title: TextButton(
+        onPressed: () {
+          Navigator.push(context, 
+          MaterialPageRoute(builder:(context) => EditProfileScreen()));
+        },
+        child: const Text(
+          'Rishaf',
+          style: TextStyle(
+            fontSize: 16, 
+            color: Colors.black, // You can customize text color
           ),
+        ),
+      ),
+          trailing: IconButton(
+        icon: const Icon(Icons.support_agent), // Settings icon
+        onPressed: () {
+          // Define your action here
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChatPage()), // Replace with your screen
+          );
+        },
+      ),
+          ),
+
           const SizedBox(height: 20),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
               'Choose your service',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -87,10 +107,8 @@ class HomePage extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-
               image: const DecorationImage(
                 image: AssetImage('assets/plumber_featured.jpg'), // Replace with your featured image
-
                 fit: BoxFit.cover,
               ),
             ),
