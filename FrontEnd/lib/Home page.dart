@@ -8,21 +8,21 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('TapOn'),
-        backgroundColor: Colors.amber[700],
-leading: IconButton(
-    icon: Icon(Icons.arrow_back),
-    onPressed: () { 
-   Navigator.push(context, 
-   MaterialPageRoute(builder:(context) => Enternumber()));
-    },
-  ),
-
+        backgroundColor: const Color.fromARGB(255, 255, 0, 0),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Enternumber()));
+          },
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () { 
-               Navigator.push(context, MaterialPageRoute(builder:(context) => NotificationPage()));
-                      // Add your onPressed logic here
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NotificationPage()));
+              // Add your onPressed logic here
               // Notification action
             },
           ),
@@ -33,7 +33,8 @@ leading: IconButton(
           SizedBox(height: 20),
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.jpg'), // Replace with profile image
+              backgroundImage: AssetImage(
+                  'assets/profile.jpg'), // Replace with profile image
             ),
             title: Text('Rishaf'),
             trailing: Icon(Icons.settings),
@@ -82,7 +83,8 @@ leading: IconButton(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
-                image: AssetImage('assets/plumber_featured.jpg'), // Replace with your featured image
+                image: AssetImage(
+                    'assets/plumber_featured.jpg'), // Replace with your featured image
                 fit: BoxFit.cover,
               ),
             ),
