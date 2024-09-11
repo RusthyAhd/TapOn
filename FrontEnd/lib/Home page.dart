@@ -9,22 +9,25 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TapOn'),
-        backgroundColor: Colors.amber[700],
-leading: IconButton(
-    icon: const Icon(Icons.arrow_back),
-    onPressed: () { 
-   Navigator.push(context, 
-   MaterialPageRoute(builder:(context) => const Enternumber()));
-    },
-  ),
+// Add your onPressed logic here
 
+        title: Text('TapOn'),
+        backgroundColor: const Color.fromARGB(255, 255, 0, 0),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Enternumber()));
+          },
+        ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () { 
-               Navigator.push(context, MaterialPageRoute(builder:(context) => NotificationPage()));
-                      // Add your onPressed logic here
+            icon: Icon(Icons.notifications),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NotificationPage()));
+              // Add your onPressed logic here
+
               // Notification action
             },
           ),
@@ -35,7 +38,8 @@ leading: IconButton(
           const SizedBox(height: 20),
           const ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage('assets/profile.jpg'), // Replace with profile image
+              backgroundImage: AssetImage(
+                  'assets/profile.jpg'), // Replace with profile image
             ),
             title: Text('Rishaf'),
             trailing: Icon(Icons.settings),
@@ -83,8 +87,10 @@ leading: IconButton(
             margin: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
+
               image: const DecorationImage(
                 image: AssetImage('assets/plumber_featured.jpg'), // Replace with your featured image
+
                 fit: BoxFit.cover,
               ),
             ),
