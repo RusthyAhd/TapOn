@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Enter phone numper page.dart';
 
-
 class TapOnApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-
-        backgroundColor: Colors.orange, // Set your background color
+        backgroundColor:
+            const Color.fromARGB(255, 255, 0, 0), // background color change
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -44,15 +44,14 @@ class TapOnApp extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
-                   MaterialPageRoute(builder: (context) => Enternumber()));
-                  
+                      MaterialPageRoute(builder: (context) => Enternumber()));
+
                   // Add your onPressed action here
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber, // Button color
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  textStyle: TextStyle(fontSize: 16, color: Colors.blue)
-                ),
+                    backgroundColor: Colors.amber, // Button color
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    textStyle: TextStyle(fontSize: 16, color: Colors.blue)),
                 child: Text('GET STARTED'),
               ),
             ],
