@@ -3,7 +3,11 @@ import 'package:tap_on/Enter%20phone%20numper%20page.dart';
 import 'package:tap_on/Notification.dart';
 import 'package:tap_on/chatbot';
 import 'package:tap_on/edit%20profile.dart';
+
+import 'package:tap_on/shopowner%20register.dart';
+
 import 'package:tap_on/location.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -289,23 +293,52 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'User',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.store),
-            label: 'Shop Owner',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.engineering),
-            label: 'Provider',
-          ),
-        ],
-        selectedItemColor: Colors.amber[700],
-        unselectedItemColor: Colors.grey,
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            TextButton(
+              onPressed: () {
+                // Handle User button press
+              },
+              child: Row(
+                children: [
+                  Icon(Icons.person),
+                  SizedBox(width: 8),
+                  Text('User'),
+                ],
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ShopOwnerRegistration()));
+                // Handle Shop Owner button press
+              },
+              child: Row(
+                children: [
+                  Icon(Icons.store),
+                  SizedBox(width: 8),
+                  Text('Shop Owner'),
+                ],
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                // Handle Provider button press
+              },
+              child: Row(
+                children: [
+                  Icon(Icons.engineering),
+                  SizedBox(width: 8),
+                  Text('Provider'),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
