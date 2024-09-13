@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.notifications),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NotificationPage()));
+                  MaterialPageRoute(builder: (context) => const NotificationPage()));
               // Add your onPressed logic here
               // Notification action
             },
@@ -301,7 +301,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 // Handle User button press
               },
-              child: Row(
+              child: const Row(
                 children: [
                   Icon(Icons.person),
                   SizedBox(width: 8),
@@ -317,7 +317,7 @@ class HomePage extends StatelessWidget {
                         builder: (context) => ShopOwnerRegistration()));
                 // Handle Shop Owner button press
               },
-              child: Row(
+              child: const Row(
                 children: [
                   Icon(Icons.store),
                   SizedBox(width: 8),
@@ -329,7 +329,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 // Handle Provider button press
               },
-              child: Row(
+              child: const Row(
                 children: [
                   Icon(Icons.engineering),
                   SizedBox(width: 8),
