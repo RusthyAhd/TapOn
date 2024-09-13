@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:tap_on/showprovider.dart';
 
 class LocationPage extends StatefulWidget {
   @override
@@ -10,8 +11,7 @@ class _LocationPageState extends State<LocationPage> {
   final TextEditingController _locationController = TextEditingController();
   late GoogleMapController mapController;
 
-  final LatLng _center =
-      const LatLng(8.569, 81.234); // Default to a city like Kinniya
+  final LatLng _center = const LatLng(8.569, 81.234); // Default to Kinniya
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -64,6 +64,26 @@ class _LocationPageState extends State<LocationPage> {
                     position: _center,
                   ),
                 },
+              ),
+            ),
+            SizedBox(height: 10),
+            // Continue Button at the Bottom
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NearbyServiceProvidersPage()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.amber, // Button color
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+              ),
+              child: Text(
+                'Continue',
+                style: TextStyle(fontSize: 18),
               ),
             ),
           ],
