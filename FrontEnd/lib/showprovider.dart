@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/location.dart';
 import 'package:tap_on/service%20details.dart';
 
 class NearbyServiceProvidersPage extends StatelessWidget {
@@ -32,6 +33,16 @@ class NearbyServiceProvidersPage extends StatelessWidget {
       backgroundColor: Colors.yellow[700],
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LocationPage()),
+            );
+            // Action when the button is pressed
+          },
+        ),
         title: Text('Nearby Service Providers',
             style: TextStyle(color: Colors.black)),
         centerTitle: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/showprovider.dart';
 
 class LocationPage extends StatefulWidget {
@@ -21,6 +22,13 @@ class _LocationPageState extends State<LocationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
+          },
+        ),
         title: Text('Location'),
         backgroundColor: Colors.amber,
       ),

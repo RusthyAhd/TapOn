@@ -8,7 +8,6 @@ import 'package:tap_on/shopowner%20register.dart';
 
 import 'package:tap_on/location.dart';
 
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -29,8 +28,10 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.notifications),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const NotificationPage()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NotificationPage()));
               // Add your onPressed logic here
               // Notification action
             },
@@ -78,7 +79,10 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
               'Choose Your Service',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: 10),
@@ -360,6 +364,7 @@ class ServiceCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
+        color: const Color.fromARGB(255, 250, 184, 78),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
