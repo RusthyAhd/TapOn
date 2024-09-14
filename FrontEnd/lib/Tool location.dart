@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:tap_on/showprovider.dart';
+import 'package:tap_on/Home%20page.dart';
+import 'package:tap_on/showToolshop.dart';
 
-class LocationPage extends StatefulWidget {
+
+class TLocationPage extends StatefulWidget {
   @override
   _LocationPageState createState() => _LocationPageState();
 }
 
-class _LocationPageState extends State<LocationPage> {
+class _LocationPageState extends State<TLocationPage> {
   final TextEditingController _locationController = TextEditingController();
   late GoogleMapController mapController;
 
@@ -23,7 +25,15 @@ class _LocationPageState extends State<LocationPage> {
       appBar: AppBar(
         title: Text('Location'),
         backgroundColor: Colors.amber,
+         leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
+            },
       ),
+      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -70,10 +80,10 @@ class _LocationPageState extends State<LocationPage> {
             // Continue Button at the Bottom
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
+                  Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => NearbyServiceProvidersPage()),
+                      builder: (context) => NearbyToolRantPage()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -89,6 +99,7 @@ class _LocationPageState extends State<LocationPage> {
           ],
         ),
       ),
-    );
+      );
+  
   }
 }
