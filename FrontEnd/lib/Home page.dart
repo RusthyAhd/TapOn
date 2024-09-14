@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Enter%20phone%20numper%20page.dart';
 import 'package:tap_on/Notification.dart';
+import 'package:tap_on/Tool%20location.dart';
 import 'package:tap_on/chatbot';
 import 'package:tap_on/edit%20profile.dart';
 
@@ -74,7 +75,7 @@ class HomePage extends StatelessWidget {
               },
             ),
           ),
-          const SizedBox(height: 20),
+
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
@@ -208,7 +209,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
+                      MaterialPageRoute(builder: (context) => TLocationPage()),
                     );
                   },
                 ),
@@ -218,7 +219,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
+                      MaterialPageRoute(builder: (context) => TLocationPage()),
                     );
                   },
                 ),
@@ -228,7 +229,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
+                      MaterialPageRoute(builder: (context) => TLocationPage()),
                     );
                   },
                 ),
@@ -238,7 +239,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
+                      MaterialPageRoute(builder: (context) => TLocationPage()),
                     );
                   },
                 ),
@@ -248,7 +249,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
+                      MaterialPageRoute(builder: (context) => TLocationPage()),
                     );
                   },
                 ),
@@ -258,7 +259,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
+                      MaterialPageRoute(builder: (context) => TLocationPage()),
                     );
                   },
                 ),
@@ -268,7 +269,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
+                      MaterialPageRoute(builder: (context) => TLocationPage()),
                     );
                   },
                 ),
@@ -278,7 +279,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
+                      MaterialPageRoute(builder: (context) => TLocationPage()),
                     );
                   },
                 ),
@@ -288,7 +289,7 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
+                      MaterialPageRoute(builder: (context) => TLocationPage()),
                     );
                   },
                 ),

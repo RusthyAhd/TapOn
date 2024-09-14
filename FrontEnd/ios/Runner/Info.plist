@@ -45,5 +45,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>io.flutter.embedded_views_preview</key>
+<true/>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>This app needs access to your location for Google Maps functionality.</string>
+
 </dict>
 </plist>
