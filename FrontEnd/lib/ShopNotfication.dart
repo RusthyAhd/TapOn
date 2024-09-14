@@ -38,8 +38,8 @@ class Shopnotfication extends StatelessWidget {
               subtitle: "Today at 2:00 PM",
             ),
             NotificationTile(
-              title: "Your Service Accepted",
-              subtitle: "Track order status",
+              title: "You have feedback",
+              subtitle: "Your equipments are good",
             ),
             NotificationTile(
               title: "Your item confirmed",

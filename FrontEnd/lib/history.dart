@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/constants.dart';
 
 class OrdersPage extends StatelessWidget {
   @override
@@ -6,15 +7,8 @@ class OrdersPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('History'),
-        backgroundColor: Colors.teal,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-              // Handle cart action
-            },
-          ),
-        ],
+        backgroundColor:  Colors.yellow[700],
+
       ),
       body: Column(
         children: [
@@ -66,43 +60,34 @@ class OrdersPage extends StatelessWidget {
             child: ListView(
               children: [
                 orderItem(
-                  status: 'COMPLETED',
+                  status: 'RENTED',
                   subStatus: '2ND ORDER',
                   orderId: '162267901',
                   date: '12 Sept 2024, 9:31 am',
                   itemCount: 4,
-                  total: 'LKR 1,208.00',
+                  itemname:'Hammer',
                   statusColor: Colors.green,
                 ),
                 orderItem(
-                  status: 'COMPLETED',
+                  status: 'RENTED',
                   subStatus: 'NEW CUSTOMER',
                   orderId: '162250430',
                   date: '11 Sept 2024, 12:15 pm',
                   itemCount: 1,
-                  total: 'LKR 298.00',
+                  itemname:'Hammer',
                   statusColor: Colors.green,
                 ),
                 orderItem(
                   status: 'CANCELLED',
                   subStatus: 'NEW CUSTOMER | PASSENGER',
-                  reason: 'Order takes a long time to process',
+                  reason: 'Change my mind',
                   orderId: '162246651',
                   date: '11 Sept 2024, 8:36 am',
                   itemCount: 2,
-                  total: 'LKR 429.00',
+                  itemname:'Hammer',
                   statusColor: Colors.red,
                 ),
-                orderItem(
-                  status: 'CANCELLED',
-                  subStatus: 'NEW CUSTOMER | PASSENGER',
-                  reason: 'Changed my mind',
-                  orderId: '162246639',
-                  date: '11 Sept 2024, 8:35 am',
-                  itemCount: 2,
-                  total: 'LKR 429.00',
-                  statusColor: Colors.red,
-                ),
+                
               ],
             ),
           ),
@@ -118,7 +103,7 @@ class OrdersPage extends StatelessWidget {
     required String orderId,
     required String date,
     required int itemCount,
-    required String total,
+    required String itemname,
     required Color statusColor,
   }) {
     return Card(
@@ -163,9 +148,7 @@ class OrdersPage extends StatelessWidget {
                 style: TextStyle(color: Colors.red),
               ),
             ],
-            SizedBox(height: 8),
-            Text('$itemCount Items'),
-            Text(total, style: TextStyle(fontWeight: FontWeight.bold)),
+            
           ],
         ),
       ),

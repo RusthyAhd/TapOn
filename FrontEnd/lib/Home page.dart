@@ -83,7 +83,9 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Expanded(
-            child: GridView.count(
+            child:Container(
+              color:  const Color.fromARGB(255, 207, 233, 221),
+               child: GridView.count(
               crossAxisCount: 3,
               padding: const EdgeInsets.all(10.0),
               crossAxisSpacing: 10,
@@ -181,6 +183,7 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
+            ),
           ),
           const SizedBox(height: 20),
           const Padding(
@@ -192,6 +195,8 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Expanded(
+            child:Container( 
+               color: const Color.fromARGB(255, 207, 233, 221),
             child: GridView.count(
               crossAxisCount: 3,
               padding: const EdgeInsets.all(10.0),
@@ -200,7 +205,7 @@ class HomePage extends StatelessWidget {
               children: [
                 ServiceCard(
                   icon: Icons.plumbing,
-                  label: 'Plumbing Tools',
+                  label: 'Plumbing Tools modayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -289,6 +294,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ],
+            ),
             ),
           ),
         ],

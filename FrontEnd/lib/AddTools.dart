@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 class AddToolPage extends StatefulWidget {
   const AddToolPage({super.key});
@@ -12,17 +12,35 @@ class _AddToolPageState extends State<AddToolPage> {
   final _formKey = GlobalKey<FormState>();
   String? selectedCategory;
   bool isNew = true;
-  DateTimeRange? selectedDateRange;
-  TimeOfDay? selectedTimeSlot;
-  // Function to pick a time slot
-  Future<void> _selectTime(BuildContext context) async {
+  TimeOfDay? startTime;
+  TimeOfDay? endTime;
+  // Weekdays selection
+  final List<String> weekdays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ];
+  List<String> selectedWeekdays = [];
+
+  // Function to pick a time
+  Future<void> _selectTime(BuildContext context, bool isStart) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
-      initialTime: selectedTimeSlot ?? TimeOfDay.now(),
+      initialTime: isStart
+          ? (startTime ?? TimeOfDay.now())
+          : (endTime ?? TimeOfDay.now()),
     );
-    if (picked != null && picked != selectedTimeSlot) {
+    if (picked != null) {
       setState(() {
-        selectedTimeSlot = picked;
+        if (isStart) {
+          startTime = picked;
+        } else {
+          endTime = picked;
+        }
       });
     }
   }
@@ -212,38 +230,40 @@ class _AddToolPageState extends State<AddToolPage> {
                   },
                   child: const Text('Add Images'),
                 ),
-
-                // Available Dates
-                ListTile(
-                  title: Text(
-                    selectedDateRange == null
-                        ? 'Set date range tool is available'
-                        : 'Available from: ${DateFormat.yMMMd().format(selectedDateRange!.start)} to ${DateFormat.yMMMd().format(selectedDateRange!.end)}',
-                  ),
-                  trailing: const Icon(Icons.calendar_today),
-                  onTap: () async {
-                    final picked = await showDateRangePicker(
-                      context: context,
-                      firstDate: DateTime.now(),
-                      lastDate: DateTime(2101),
+                // Available Weekdays
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text('Available Weekdays'),
+                ),
+                Wrap(
+                  spacing: 8.0,
+                  children: weekdays.map((day) {
+                    return FilterChip(
+                      label: Text(day),
+                      selected: selectedWeekdays.contains(day),
+                      onSelected: (isSelected) {
+                        setState(() {
+                          isSelected
+                              ? selectedWeekdays.add(day)
+                              : selectedWeekdays.remove(day);
+                        });
+                      },
                     );
-                    if (picked != null) {
-                      setState(() {
-                        selectedDateRange = picked;
-                      });
-                    }
-                  },
+                  }).toList(),
                 ),
 
-// Time Slot
+// Time Range
                 ListTile(
                   title: Text(
-                    selectedTimeSlot == null
-                        ? 'Set available time slot'
-                        : 'Selected Time Slot: ${selectedTimeSlot!.format(context)}',
+                    startTime == null || endTime == null
+                        ? 'Set available time range'
+                        : 'Selected Time Range: ${startTime!.format(context)} - ${endTime!.format(context)}',
                   ),
                   trailing: const Icon(Icons.access_time),
-                  onTap: () => _selectTime(context),
+                  onTap: () async {
+                    await _selectTime(context, true); // Select start time
+                    await _selectTime(context, false); // Select end time
+                  },
                 ),
 
                 // Add Tool Button

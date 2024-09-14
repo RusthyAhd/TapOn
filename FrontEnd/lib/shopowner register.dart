@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/ShopOwnerDashboard.dart';
 
-class ShopOwnerRegistration extends StatelessWidget {
+class ShopOwnerRegistration extends StatefulWidget {
   const ShopOwnerRegistration({super.key});
+
+ @override
+  _ShopOwnerRegistrationState createState() => _ShopOwnerRegistrationState();
+}
+
+class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
+  bool isAgreed = false; // Track if the user has agreed to the terms
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +76,7 @@ class ShopOwnerRegistration extends StatelessWidget {
               const SizedBox(height: 10),
               const TextField(
                 decoration: InputDecoration(
-                  labelText: 'More Options',
+                  labelText: 'Description',
                   hintText: 'Enter additional information',
                 ),
               ),
@@ -93,26 +100,38 @@ class ShopOwnerRegistration extends StatelessWidget {
                   const Text('Do You Agree?',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   const SizedBox(width: 5),
-                  ElevatedButton(onPressed: () {}, child: const Text('YES')),
-                  const SizedBox(width: 5),
-                  ElevatedButton(onPressed: () {}, child: const Text('NO')),
+                  Checkbox(
+                    value: isAgreed,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isAgreed = value ?? false;
+                      });
+                    },
+                  ),
                 ],
               ),
+
               const SizedBox(height: 15),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AddToolsPage()));
-                  },
+                  onPressed: isAgreed
+                      ? () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AddToolsPage(),
+                            ),
+                          );
+                        }
+                      : null, // Disable if not agreed
                   child: Text('Continue'),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,
-                    backgroundColor:
-                        Colors.yellow[700], // Text (foreground) color
+                    backgroundColor: Colors.yellow[700], // Button color
                   ),
                 ),
               ),
+
             ],
           ),
         ),
