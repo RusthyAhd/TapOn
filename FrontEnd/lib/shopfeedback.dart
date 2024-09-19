@@ -70,14 +70,7 @@ class ReviewsPage extends StatelessWidget {
             ),
 
             // Write a review button
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Action for writing a review
-                },
-                child: Text('Write a Review'),
-              ),
-            ),
+            
           ],
         ),
       ),

@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:tap_on/AddTools.dart';
 import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/ShopNotfication.dart';
+import 'package:tap_on/ShopOrderhistory.dart';
 import 'package:tap_on/ShopProfile.dart';
-import 'package:tap_on/feedback.dart';
-import 'package:tap_on/history.dart';
+import 'package:tap_on/shopfeedback.dart';
+
 import 'package:tap_on/menumanager.dart';
 
-class AddToolsPage extends StatelessWidget {
+class ShopdashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +75,7 @@ class AddToolsPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            OrdersPage())); 
+                            ShopOrderhistoryPage())); 
                 // Handle Orders button press
               },
             ),
@@ -88,7 +89,7 @@ class AddToolsPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            AddToolPage())); // Handle Menu Manager button press
+                            AddItemPage())); // Handle Menu Manager button press
               },
             ),
 
@@ -151,12 +152,13 @@ ListTile(
             ),
 
 
-
+                      
+const SizedBox(height: 25,),
             // Log Out button
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Back to Home'),
-              onTap: () {
+            ElevatedButton(
+              
+              
+              onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -165,6 +167,14 @@ ListTile(
 
                 // Handle Log Out button press
               },
+               style: ElevatedButton.styleFrom(
+    foregroundColor: const Color.fromARGB(255, 8, 0, 0), backgroundColor: const Color.fromARGB(255, 219, 135, 9),
+    minimumSize: Size(70, 50), 
+    
+               ),
+              
+              child: Text('Back to Home'),
+              
             ),
           ],
         ),
@@ -176,7 +186,7 @@ ListTile(
           child: ListView(
             children: [
               orderItem(
-                  status: 'RENTED',
+                  
                   subStatus: '2ND ORDER',
                   orderId: '162267901',
                   date: '12 Sept 2024, 9:31 am',
@@ -200,7 +210,7 @@ ListTile(
   }
   
   orderItem({
-    required String status, 
+    
     required String subStatus, 
     required String orderId,
      required String date, 
@@ -226,16 +236,35 @@ ListTile(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Status: $status ($subStatus)',
+                'Status: ($subStatus)',
                 style: TextStyle(
                   color: statusColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 16,
-              )
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Handle the "Accept" button press
+                    },
+                    child: const Text('Accept'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green, // Button color
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Handle the "Reject" button press
+                    },
+                    child: const Text('Reject'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red, // Button color
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ],

@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:tap_on/AddTools.dart';
+import 'package:tap_on/AddService.dart';
 
-class MenuScreen extends StatefulWidget {
+
+class ManageService extends StatefulWidget {
   @override
-  _MenuScreenState createState() => _MenuScreenState();
+  _ManageServiceState createState() => _ManageServiceState();
 }
 
-class _MenuScreenState extends State<MenuScreen> {
+class _ManageServiceState extends State<ManageService> {
   final List<Map<String, dynamic>> menuItems = [
     {
-      'id': 5878694,
-      'name': 'Hammer',
-      'quantity': 01,
+      'id': 5878697,
+      'name': 'Home Maintanance',
       'price': 249.00,
       'available': true,
-      'image': 'assets/hammmer.png'
+      'image': 'assets/service1.png'
     },
     {
-      'id': 5878695,
-      'name': 'brush ',
-      'quantity': 04,
+      'id': 5878697,
+      'name': 'Gardening',
       'price': 595.00,
       'available': false,
-      'image': 'assets/rotti.png'
+      'image': 'assets/service2.png'
     },
   ];
 
   // Controllers for the form fields
   TextEditingController nameController = TextEditingController();
-  TextEditingController quantityController = TextEditingController();
   TextEditingController priceController = TextEditingController();
 
   bool available = true;
@@ -42,7 +39,7 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
-        title: Text('Menu Management'),
+        title: Text('Service Management'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -56,7 +53,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => AddItemPage()),
+                        MaterialPageRoute(builder: (context) => AddServicePage()),
                       );
                       // Add Item action
                     },
@@ -87,7 +84,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         ),
                         title: Text(item['name']),
                         subtitle: Text(
-                            'Quantity: ${item['quantity']}\nLKR ${item['price']}'),
+                            'Price:LKR ${item['price']}'),
                         trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -140,7 +137,6 @@ class _MenuScreenState extends State<MenuScreen> {
     // Pre-fill form fields with existing values
     nameController.text = item['name'];
     priceController.text = item['price'].toString();
-    quantityController.text = item['quantity'].toString();
     available = item['available'];
 
     showDialog(
@@ -161,11 +157,6 @@ class _MenuScreenState extends State<MenuScreen> {
                     controller: priceController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(labelText: 'Price'),
-                  ),
-                  TextField(
-                    controller: quantityController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(labelText: 'Quantity'),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -201,8 +192,6 @@ class _MenuScreenState extends State<MenuScreen> {
 
                   menuItems[index]['price'] =
                       double.tryParse(priceController.text) ?? 0.0;
-                  menuItems[index]['quantity'] =
-                      int.tryParse(quantityController.text) ?? 0;
                   menuItems[index]['available'] = available;
                 });
                 Navigator.of(context).pop();
