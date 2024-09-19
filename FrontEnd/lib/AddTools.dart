@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import 'package:tap_on/ShopOwnerDashboard.dart';
 
-class AddToolPage extends StatefulWidget {
-  const AddToolPage({super.key});
+
+class AddItemPage extends StatefulWidget {
+  const AddItemPage({super.key});
 
   @override
-  _AddToolPageState createState() => _AddToolPageState();
+  _AddItemPageState createState() => _AddItemPageState();
 }
 
-class _AddToolPageState extends State<AddToolPage> {
+class _AddItemPageState extends State<AddItemPage> {
   final _formKey = GlobalKey<FormState>();
   String? selectedCategory;
   bool isNew = true;
   TimeOfDay? startTime;
   TimeOfDay? endTime;
+
+
   // Weekdays selection
-  final List<String> weekdays = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday'
-  ];
+  final List<String> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   List<String> selectedWeekdays = [];
 
-  // Function to pick a time
+// Function to pick a time
   Future<void> _selectTime(BuildContext context, bool isStart) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
@@ -45,133 +41,60 @@ class _AddToolPageState extends State<AddToolPage> {
     }
   }
 
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow[700],
-        title: const Text('Add Tool for Rent'),
+        title: Text("Add Item"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            
+            Navigator.pop(context);
+          },
+        ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                // Tool Name
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Tool Name'),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Name *',
+                  border: OutlineInputBorder(),
                 ),
-
-                // Description
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Description',
-                    hintText: 'Briefly describe tool features and condition',
-                  ),
-                  maxLines: 2,
+              ),
+              SizedBox(height: 16),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                  border: OutlineInputBorder(),
                 ),
-
-                // Category
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text('Category'),
+                maxLength: 280,
+                maxLines: 3,
+              ),
+              SizedBox(height: 16),
+              SwitchListTile(
+                title: Text("Enable Reference ID"),
+                value: false,
+                onChanged: (bool value) {},
+              ),
+              SizedBox(height: 8),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Ref ID',
+                  border: OutlineInputBorder(),
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Wrap(
-                    spacing: 8.0, // Horizontal space between items
-                    runSpacing:
-                        4.0, // Vertical space between lines (if wrapping occurs)
-
-                    children: [
-                      ChoiceChip(
-                        label: const Text('Plumbing'),
-                        selected: selectedCategory == 'Plumbing',
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedCategory = 'Plumbing';
-                          });
-                        },
-                      ),
-                      ChoiceChip(
-                        label: const Text('Electrical'),
-                        selected: selectedCategory == 'Electrical',
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedCategory = 'Electrical';
-                          });
-                        },
-                      ),
-                      ChoiceChip(
-                        label: const Text('Carpentry Tools'),
-                        selected: selectedCategory == 'Carpentry Tools',
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedCategory = 'Carpentry Tools';
-                          });
-                        },
-                      ),
-                      ChoiceChip(
-                        label: const Text('Painting tool'),
-                        selected: selectedCategory == 'Painting tool',
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedCategory = 'Painting tool';
-                          });
-                        },
-                      ),
-                      ChoiceChip(
-                        label: const Text('Gardening tool'),
-                        selected: selectedCategory == 'Gardening tool',
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedCategory = 'Gardening tool';
-                          });
-                        },
-                      ),
-                      ChoiceChip(
-                        label: const Text('Repairing tool'),
-                        selected: selectedCategory == 'Repairing tool',
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedCategory = 'Repairing tool';
-                          });
-                        },
-                      ),
-                      ChoiceChip(
-                        label: const Text('Building tool'),
-                        selected: selectedCategory == 'Building tool',
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedCategory = 'Building tool';
-                          });
-                        },
-                      ),
-                      ChoiceChip(
-                        label: const Text('Phone accessories'),
-                        selected: selectedCategory == 'Phone accessories',
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedCategory = 'Phone accessories';
-                          });
-                        },
-                      ),
-                      ChoiceChip(
-                        label: const Text('Mechanical tool'),
-                        selected: selectedCategory == 'Mechanical tool',
-                        onSelected: (selected) {
-                          setState(() {
-                            selectedCategory = 'Mechanical tool';
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-
-                // Condition
+              ),
+              SizedBox(height: 16),
+                              // Condition
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('Condition'),
@@ -202,35 +125,193 @@ class _AddToolPageState extends State<AddToolPage> {
                   ],
                 ),
 
-                // Rental Price
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Rental Price'),
-                  keyboardType: TextInputType.number,
-                ),
 
-                // Available Quantity
-                TextFormField(
-                  decoration:
-                      const InputDecoration(labelText: 'Available Quantity'),
-                  keyboardType: TextInputType.number,
+const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text('Category'),
                 ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Wrap(
+                    spacing: 8.0, // Horizontal space between items
+                    runSpacing:
+                        4.0, // Vertical space between lines (if wrapping occurs)
 
-                // Contact Information
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Contact Information',
-                    hintText: 'Enter phone number or email',
+                    children: [
+                      ChoiceChip(
+                        label: const Text('Plumbing'),
+                        selected: selectedCategory == 'Plumbing',
+                        onSelected: (selected) {
+                          setState(() {
+                            selectedCategory = 'Plumbing';
+                          });
+                        },
+                      ),
+ChoiceChip(
+                        label: const Text('Electrical'),
+                        selected: selectedCategory == 'Electrical',
+                        onSelected: (selected) {
+                          setState(() {
+                            selectedCategory = 'Electrical';
+                          });
+                        },
+                      ),
+                      ChoiceChip(
+                        label: const Text('Carpentry Tools'),
+                        selected: selectedCategory == 'Carpentry Tools',
+                        onSelected: (selected) {
+                          setState(() {
+                            selectedCategory = 'Carpentry Tools';
+                          });
+                        },
+                      ),
+                      ChoiceChip(
+                        label: const Text('Painting tool'),
+                        selected: selectedCategory == 'Painting tool',
+                        onSelected: (selected) {
+                          setState(() {
+                            selectedCategory = 'Painting tool';
+                          });
+                        },
+                      ),
+ ChoiceChip(
+                        label: const Text('Gardening tool'),
+                        selected: selectedCategory == 'Gardening tool',
+                        onSelected: (selected) {
+                          setState(() {
+                            selectedCategory = 'Gardening tool';
+                          });
+                        },
+                      ),
+                      ChoiceChip(
+                        label: const Text('Repairing tool'),
+                        selected: selectedCategory == 'Repairing tool',
+                        onSelected: (selected) {
+                          setState(() {
+                            selectedCategory = 'Repairing tool';
+                          });
+                        },
+                      ),
+                      ChoiceChip(
+                        label: const Text('Building tool'),
+                        selected: selectedCategory == 'Building tool',
+                        onSelected: (selected) {
+                          setState(() {
+                            selectedCategory = 'Building tool';
+                          });
+                        },
+                      ),
+ChoiceChip(
+                        label: const Text('Phone accessories'),
+                        selected: selectedCategory == 'Phone accessories',
+                        onSelected: (selected) {
+                          setState(() {
+                            selectedCategory = 'Phone accessories';
+                          });
+                        },
+                      ),
+                      ChoiceChip(
+                        label: const Text('Mechanical tool'),
+                        selected: selectedCategory == 'Mechanical tool',
+                        onSelected: (selected) {
+                          setState(() {
+                            selectedCategory = 'Mechanical tool';
+                          });
+                        },
+                      ),
+
+
+ ],
                   ),
                 ),
 
-                // Add Images
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle image upload
-                  },
-                  child: const Text('Add Images'),
+
+
+
+
+
+
+
+
+
+              SizedBox(height: 16),
+              Text("Item Image"),
+              GestureDetector(
+                onTap: () {
+                  // Functionality to upload image
+                },
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.grey[300],
+                  child: Icon(Icons.camera_alt),
                 ),
-                // Available Weekdays
+              ),
+              SizedBox(height: 16),
+              SwitchListTile(
+                title: Text("Purchase Limit"),
+                value: false,
+                onChanged: (bool value) {},
+              ),
+              SizedBox(height: 8),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Limit(available quantity)',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 16),
+              Text("Item Price"),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Price',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 16),
+            
+                
+             
+              SizedBox(height: 16),
+              Text("Availability"),
+              Column(
+                children: [
+                  RadioListTile(
+                    title: Text("Available"),
+                    value: 1,
+                    groupValue: 1,
+                    onChanged: (int? value) {},
+                  ),
+                  RadioListTile(
+                    title: Text("Sold out for today"),
+                    value: 2,
+                    groupValue: 1,
+                    onChanged: (int? value) {},
+                  ),
+                  RadioListTile(
+                    title: Text("Unavailable"),
+                    value: 3,
+                    groupValue: 1,
+                    onChanged: (int? value) {},
+                  ),
+                ],
+              ),
+             
+              SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  // Add discounts functionality
+                },
+                child: Text("+ Add Tool Discounts"),
+              ),
+              SizedBox(height: 16),
+
+
+
+              Text("Selling Dates"),
+              
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0),
                   child: Text('Available Weekdays'),
@@ -252,6 +333,10 @@ class _AddToolPageState extends State<AddToolPage> {
                   }).toList(),
                 ),
 
+             SizedBox(height: 16),
+              Text("Selling Hours"), 
+
+
 // Time Range
                 ListTile(
                   title: Text(
@@ -265,25 +350,27 @@ class _AddToolPageState extends State<AddToolPage> {
                     await _selectTime(context, false); // Select end time
                   },
                 ),
-
-                // Add Tool Button
-                const SizedBox(height: 16),
-                ElevatedButton(
+              Center(
+                child: ElevatedButton(
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Handle form submission
-                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ShopdashboardPage()),
+                    );
                   },
+                  child: Text('Add'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                  ),
-                  child: Text('Add Tool'),
+                      minimumSize: Size(double.infinity, 50),
+                      backgroundColor: (Colors.yellow[700]) // Full width button
+                      ),
                 ),
-              ],
-            ),
+              ),
+
+            ],
           ),
         ),
       ),
     );
   }
 }
+

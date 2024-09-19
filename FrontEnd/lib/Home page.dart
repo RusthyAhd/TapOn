@@ -4,6 +4,7 @@ import 'package:tap_on/Notification.dart';
 import 'package:tap_on/Tool%20location.dart';
 import 'package:tap_on/chatbot';
 import 'package:tap_on/edit%20profile.dart';
+import 'package:tap_on/providerRegistration.dart';
 
 import 'package:tap_on/shopowner%20register.dart';
 
@@ -89,7 +90,7 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 10),
           Expanded(
             child:Container(
-              color:  const Color.fromARGB(255, 207, 233, 221),
+              color:  const Color.fromARGB(255, 233, 231, 207),
                child: GridView.count(
               crossAxisCount: 3,
               padding: const EdgeInsets.all(10.0),
@@ -178,7 +179,7 @@ class HomePage extends StatelessWidget {
                 ),
                 ServiceCard(
                   icon: Icons.content_cut,
-                  label: 'Barber',
+                  label: 'beauty professional',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -201,7 +202,7 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 10),
           Expanded(
             child:Container( 
-               color: const Color.fromARGB(255, 207, 233, 221),
+               color: const Color.fromARGB(255, 233, 231, 207),
             child: GridView.count(
               crossAxisCount: 3,
               padding: const EdgeInsets.all(10.0),
@@ -210,7 +211,7 @@ class HomePage extends StatelessWidget {
               children: [
                 ServiceCard(
                   icon: Icons.plumbing,
-                  label: 'Plumbing Tools modayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                  label: 'Plumbing Tools',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -337,7 +338,11 @@ class HomePage extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () {
+              onPressed: () {Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ServiceProviderRegistrationForm()));
+                
                 // Handle Provider button press
               },
               child: const Row(

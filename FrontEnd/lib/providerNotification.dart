@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/ShopOwnerDashboard.dart';
+import 'package:tap_on/Home%20page.dart';
+import 'package:tap_on/providerDashboard.dart';
 
-class Shopnotfication extends StatelessWidget {
-  const Shopnotfication({super.key});
+class ProviderNotificationPage extends StatelessWidget {
+  const ProviderNotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,29 +17,29 @@ class Shopnotfication extends StatelessWidget {
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => ShopdashboardPage()));
+                  context, MaterialPageRoute(builder: (context) => Providerdashboard()));
             },
           ),
-          
+
         ),
         body: ListView(
           padding: const EdgeInsets.all(16.0),
           children: [
             NotificationTile(
               title: "Meeting reminder",
-              subtitle: "TYou have prebooking order today at 2:00 PM",
+              subtitle: "Today at 2:00 PM",
             ),
             NotificationTile(
-              title: "You have feedback",
-              subtitle: "Your equipments are good",
-            ),
-            NotificationTile(
-              title: "Your item confirmed",
+              title: "Your Service Accepted",
               subtitle: "Track order status",
+            ),
+            NotificationTile(
+              title: "Your Service Added Succesfully",
+              subtitle: "Track service status",
             ),
             NotificationTile(
               title: "Up to 50% off",
-              subtitle: "Track order status",
+              subtitle: "Track service status",
             ),
           ],
         ),

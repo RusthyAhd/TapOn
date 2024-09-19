@@ -74,12 +74,17 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 10),
-              const TextField(
-                decoration: InputDecoration(
-                  labelText: 'Description',
-                  hintText: 'Enter additional information',
+                         ExpansionTile(
+              title: Text('More Options'),
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Description',
+                    hintText: 'Describe your landmark',
+                  ),
                 ),
-              ),
+              ],
+            ),
               const SizedBox(height: 20),
               const Text('Terms and Conditions',
                   style: TextStyle(fontWeight: FontWeight.bold)),
@@ -119,7 +124,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => AddToolsPage(),
+                              builder: (context) =>ShopdashboardPage(),
                             ),
                           );
                         }

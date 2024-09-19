@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/constants.dart';
 
-class OrdersPage extends StatelessWidget {
+class ShopOrderhistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -19,15 +19,7 @@ class NotificationPage extends StatelessWidget {
                   context, MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
-          actions: [
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                "See All",
-                style: TextStyle(color: Colors.black),
-              ),
-            ),
-          ],
+
         ),
         body: ListView(
           padding: const EdgeInsets.all(16.0),
