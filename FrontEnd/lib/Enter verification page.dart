@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Enter%20phone%20numper%20page.dart';
+import 'package:tap_on/Enter%20Number%20Page.dart';
 import 'package:tap_on/Home%20page.dart';
 
 class VerificationScreen extends StatefulWidget {
@@ -107,8 +107,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const HomePage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()));
                     // Confirm code logic
                   },
                   style: ElevatedButton.styleFrom(

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/showprovider.dart';
+import 'package:tap_on/Users/showToolshop.dart';
 
-class LocationPage extends StatefulWidget {
+class TLocationPage extends StatefulWidget {
   @override
   _LocationPageState createState() => _LocationPageState();
 }
 
-class _LocationPageState extends State<LocationPage> {
+class _LocationPageState extends State<TLocationPage> {
   final TextEditingController _locationController = TextEditingController();
   late GoogleMapController mapController;
 
@@ -22,6 +22,8 @@ class _LocationPageState extends State<LocationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Location'),
+        backgroundColor: Colors.amber,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -29,8 +31,6 @@ class _LocationPageState extends State<LocationPage> {
                 context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
-        title: Text('Location'),
-        backgroundColor: Colors.amber,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -80,8 +80,7 @@ class _LocationPageState extends State<LocationPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => NearbyServiceProvidersPage()),
+                  MaterialPageRoute(builder: (context) => NearbyToolRantPage()),
                 );
               },
               style: ElevatedButton.styleFrom(

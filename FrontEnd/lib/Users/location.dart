@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/showToolshop.dart';
+import 'package:tap_on/Users/showprovider.dart';
 
-
-class TLocationPage extends StatefulWidget {
+class LocationPage extends StatefulWidget {
   @override
   _LocationPageState createState() => _LocationPageState();
 }
 
-class _LocationPageState extends State<TLocationPage> {
+class _LocationPageState extends State<LocationPage> {
   final TextEditingController _locationController = TextEditingController();
   late GoogleMapController mapController;
 
@@ -23,17 +22,16 @@ class _LocationPageState extends State<TLocationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage()));
+          },
+        ),
         title: Text('Location'),
         backgroundColor: Colors.amber,
-         leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
-            },
       ),
-      ),
-      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -80,10 +78,10 @@ class _LocationPageState extends State<TLocationPage> {
             // Continue Button at the Bottom
             ElevatedButton(
               onPressed: () {
-                  Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => NearbyToolRantPage()),
+                      builder: (context) => NearbyServiceProvidersPage()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -99,7 +97,6 @@ class _LocationPageState extends State<TLocationPage> {
           ],
         ),
       ),
-      );
-  
+    );
   }
 }

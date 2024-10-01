@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
-import 'package:tap_on/providerDashboard.dart';
+import 'package:tap_on/ShopOwner/ShopOwnerDashboard.dart';
 
-class AddServicePage extends StatefulWidget {
-  const AddServicePage({super.key});
+class AddItemPage extends StatefulWidget {
+  const AddItemPage({super.key});
 
   @override
-  _AddSErvicePageState createState() => _AddSErvicePageState();
+  _AddItemPageState createState() => _AddItemPageState();
 }
 
-class _AddSErvicePageState extends State<AddServicePage> {
+class _AddItemPageState extends State<AddItemPage> {
   final _formKey = GlobalKey<FormState>();
   String? selectedCategory;
   bool isNew = true;
@@ -47,13 +47,11 @@ class _AddSErvicePageState extends State<AddServicePage> {
     }
   }
 
-  bool enableTimeDuration = false;
-  TextEditingController timeDurationController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Your Service"),
+        title: Text("Add Item"),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -64,21 +62,12 @@ class _AddSErvicePageState extends State<AddServicePage> {
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: SingleChildScrollView(
-          child: Form(
-            key: _formKey, // Use a form key to validate inputs
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Your Name *',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              SizedBox(height: 16),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Your Service',
+                  labelText: 'Name *',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -117,11 +106,9 @@ class _AddSErvicePageState extends State<AddServicePage> {
                     value: true,
                     groupValue: isNew,
                     onChanged: (value) {
-                      setState(
-                        () {
-                          isNew = value!;
-                        },
-                      );
+                      setState(() {
+                        isNew = value!;
+                      });
                     },
                   ),
                   const Text('New'),
@@ -140,7 +127,7 @@ class _AddSErvicePageState extends State<AddServicePage> {
 
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0),
-                child: Text('Service  Category'),
+                child: Text('Category'),
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -160,74 +147,74 @@ class _AddSErvicePageState extends State<AddServicePage> {
                       },
                     ),
                     ChoiceChip(
-                      label: const Text('Electrician'),
-                      selected: selectedCategory == 'Electrician',
+                      label: const Text('Electrical'),
+                      selected: selectedCategory == 'Electrical',
                       onSelected: (selected) {
                         setState(() {
-                          selectedCategory = 'Electrician';
+                          selectedCategory = 'Electrical';
                         });
                       },
                     ),
                     ChoiceChip(
-                      label: const Text('Carpentry'),
-                      selected: selectedCategory == 'Carpentry',
+                      label: const Text('Carpentry Tools'),
+                      selected: selectedCategory == 'Carpentry Tools',
                       onSelected: (selected) {
                         setState(() {
-                          selectedCategory = 'Carpentry';
+                          selectedCategory = 'Carpentry Tools';
                         });
                       },
                     ),
                     ChoiceChip(
-                      label: const Text('Painting'),
-                      selected: selectedCategory == 'Painting',
+                      label: const Text('Painting tool'),
+                      selected: selectedCategory == 'Painting tool',
                       onSelected: (selected) {
                         setState(() {
-                          selectedCategory = 'Painting';
+                          selectedCategory = 'Painting tool';
                         });
                       },
                     ),
                     ChoiceChip(
-                      label: const Text('Gardening'),
-                      selected: selectedCategory == 'Gardening',
+                      label: const Text('Gardening tool'),
+                      selected: selectedCategory == 'Gardening tool',
                       onSelected: (selected) {
                         setState(() {
-                          selectedCategory = 'Gardening';
+                          selectedCategory = 'Gardening tool';
                         });
                       },
                     ),
                     ChoiceChip(
-                      label: const Text('Repairing'),
-                      selected: selectedCategory == 'Repairing',
+                      label: const Text('Repairing tool'),
+                      selected: selectedCategory == 'Repairing tool',
                       onSelected: (selected) {
                         setState(() {
-                          selectedCategory = 'Repairing';
+                          selectedCategory = 'Repairing tool';
                         });
                       },
                     ),
                     ChoiceChip(
-                      label: const Text('Building'),
-                      selected: selectedCategory == 'Building',
+                      label: const Text('Building tool'),
+                      selected: selectedCategory == 'Building tool',
                       onSelected: (selected) {
                         setState(() {
-                          selectedCategory = 'Building';
+                          selectedCategory = 'Building tool';
                         });
                       },
                     ),
                     ChoiceChip(
-                      label: const Text('Phone Repairing'),
-                      selected: selectedCategory == 'Phone Repairing',
+                      label: const Text('Phone accessories'),
+                      selected: selectedCategory == 'Phone accessories',
                       onSelected: (selected) {
                         setState(() {
-                          selectedCategory = 'Phone Repairing';
+                          selectedCategory = 'Phone accessories';
                         });
                       },
                     ),
                     ChoiceChip(
-                      label: const Text('beauty professional'),
-                      selected: selectedCategory == 'beauty professional',
+                      label: const Text('Mechanical tool'),
+                      selected: selectedCategory == 'Mechanical tool',
                       onSelected: (selected) {
                         setState(() {
-                          selectedCategory = 'beauty professional';
+                          selectedCategory = 'Mechanical tool';
                         });
                       },
                     ),
@@ -236,7 +223,7 @@ class _AddSErvicePageState extends State<AddServicePage> {
               ),
 
               SizedBox(height: 16),
-              Text("Service Image"),
+              Text("Item Image"),
               GestureDetector(
                 onTap: () {
                   // Functionality to upload image
@@ -249,57 +236,21 @@ class _AddSErvicePageState extends State<AddServicePage> {
                 ),
               ),
               SizedBox(height: 16),
-              SizedBox(height: 16),
               SwitchListTile(
-                title: Text("Enable Time Duration"),
-                value: enableTimeDuration,
-                onChanged: (bool value) {
-                  setState(() {
-                    enableTimeDuration = value;
-                    if (!enableTimeDuration) {
-                      // Clear the time duration if the switch is disabled
-                      timeDurationController.clear();
-                    }
-                  });
-                },
+                title: Text("Purchase Limit"),
+                value: false,
+                onChanged: (bool value) {},
               ),
-
-              // Conditionally show and validate the "Time Duration" field
-              if (enableTimeDuration) ...[
-                SizedBox(height: 8),
-                TextFormField(
-                  controller: timeDurationController,
-                  decoration: InputDecoration(
-                    labelText: 'Time Duration (in hours)',
-                    border: OutlineInputBorder(),
-                  ),
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a time duration';
-                    }
-                    return null;
-                  },
+              SizedBox(height: 8),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Limit(available quantity)',
+                  border: OutlineInputBorder(),
                 ),
-              ],
-
-              SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // Only submit if the form is valid
-                    if (enableTimeDuration) {
-                      print('Time Duration: ${timeDurationController.text} hours');
-                    }
-                  }
-                },
-                child: Text("Submit"),
+                keyboardType: TextInputType.number,
               ),
-             
-
-
               SizedBox(height: 16),
-              Text("Price"),
+              Text("Item Price"),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Price',
@@ -307,19 +258,47 @@ class _AddSErvicePageState extends State<AddServicePage> {
                 ),
                 keyboardType: TextInputType.number,
               ),
+              SizedBox(height: 16),
+
+              SizedBox(height: 16),
+              Text("Availability"),
+              Column(
+                children: [
+                  RadioListTile(
+                    title: Text("Available"),
+                    value: 1,
+                    groupValue: 1,
+                    onChanged: (int? value) {},
+                  ),
+                  RadioListTile(
+                    title: Text("Sold out for today"),
+                    value: 2,
+                    groupValue: 1,
+                    onChanged: (int? value) {},
+                  ),
+                  RadioListTile(
+                    title: Text("Unavailable"),
+                    value: 3,
+                    groupValue: 1,
+                    onChanged: (int? value) {},
+                  ),
+                ],
+              ),
 
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   // Add discounts functionality
                 },
-                child: Text("+ Add Discounts"),
+                child: Text("+ Add Tool Discounts"),
               ),
               SizedBox(height: 16),
 
+              Text("Selling Dates"),
+
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0),
-                child: Text("Working Dates"),
+                child: Text('Available Weekdays'),
               ),
               Wrap(
                 spacing: 8.0,
@@ -339,7 +318,7 @@ class _AddSErvicePageState extends State<AddServicePage> {
               ),
 
               SizedBox(height: 16),
-              Text("Working Hours"),
+              Text("Selling Hours"),
 
 // Time Range
               ListTile(
@@ -360,7 +339,7 @@ class _AddSErvicePageState extends State<AddServicePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Providerdashboard()),
+                          builder: (context) => ShopdashboardPage()),
                     );
                   },
                   child: Text('Add'),
@@ -373,7 +352,6 @@ class _AddSErvicePageState extends State<AddServicePage> {
             ],
           ),
         ),
-      ),
       ),
     );
   }

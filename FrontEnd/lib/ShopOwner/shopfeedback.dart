@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(MaterialApp(
+    home: ReviewsPage(),
+  ));
+}
 
-
-class PrviderFeedbackPage extends StatelessWidget {
+class ReviewsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +48,7 @@ class PrviderFeedbackPage extends StatelessWidget {
               child: ListView(
                 children: [
                   _buildReview(
-                    'Mohamme Rishaf',
+                    'Joan Perkins',
                     'This chair is a great addition for any room in your home, not only just the living room. Featuring a mid-century design with modern available on the market. However, and with that said, if you are like most people in the market, it is just perfect!',
                     5,
                     '1 days ago',
@@ -66,7 +70,6 @@ class PrviderFeedbackPage extends StatelessWidget {
             ),
 
             // Write a review button
-            
           ],
         ),
       ),
@@ -86,7 +89,8 @@ class PrviderFeedbackPage extends StatelessWidget {
     );
   }
 
-  Widget _buildRatingRow(String label, int stars, Color color, double widthFactor) {
+  Widget _buildRatingRow(
+      String label, int stars, Color color, double widthFactor) {
     return Row(
       children: [
         Text(label),

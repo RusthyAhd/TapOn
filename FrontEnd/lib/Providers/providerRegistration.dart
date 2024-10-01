@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/providerDashboard.dart';
+import 'package:tap_on/Providers/providerDashboard.dart';
 
 class ServiceProviderRegistrationForm extends StatefulWidget {
   @override
-  _ServiceProviderRegistrationFormState createState() => _ServiceProviderRegistrationFormState();
+  _ServiceProviderRegistrationFormState createState() =>
+      _ServiceProviderRegistrationFormState();
 }
 
-class _ServiceProviderRegistrationFormState extends State<ServiceProviderRegistrationForm> {
+class _ServiceProviderRegistrationFormState
+    extends State<ServiceProviderRegistrationForm> {
   bool agreeToTerms = false;
 
   @override
@@ -146,14 +148,16 @@ class _ServiceProviderRegistrationFormState extends State<ServiceProviderRegistr
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: agreeToTerms ? () {
-                  Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>Providerdashboard(),
-                            ),
-                          );
-                } : null,
+                onPressed: agreeToTerms
+                    ? () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Providerdashboard(),
+                          ),
+                        );
+                      }
+                    : null,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
                 ),

@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/ShopOwnerDashboard.dart';
-import 'package:tap_on/providerDashboard.dart';
+import 'package:tap_on/ShopOwner/ShopOwnerDashboard.dart';
 
-class ProviderProfilePage extends StatefulWidget {
+class ShopProfilePage extends StatefulWidget {
   @override
-  _ProviderProfilePageState createState() =>  _ProviderProfilePageState();
+  _ShopProfilePageState createState() => _ShopProfilePageState();
 }
 
-class _ProviderProfilePageState extends State<ProviderProfilePage> {
+class _ShopProfilePageState extends State<ShopProfilePage> {
   // TextEditingControllers for each field
   TextEditingController emailController =
-      TextEditingController(text: 'rishaf.ho@merchant.lk');
+      TextEditingController(text: 'teatime.ho@merchant.lk');
   TextEditingController phoneController =
       TextEditingController(text: '0740710280');
-  TextEditingController NameController = TextEditingController(text: 'Rishaf');
+  TextEditingController OwnerNameController =
+      TextEditingController(text: 'Hamthy');
   TextEditingController shopNameController =
-      TextEditingController(text: 'Shop Name(if have)');
-  TextEditingController AddressController = TextEditingController(
+      TextEditingController(text: 'Tea Time (Homagama)');
+  TextEditingController shopAddressController = TextEditingController(
       text:
-          'No-02,Kinniya');
-    TextEditingController LocationController =
-      TextEditingController(text: 'city,postal code');        
-  TextEditingController DescriptionController =
-      TextEditingController(text: 'More Details in occupation(achievement) ');
-  
+          'Institute of Technology University of Moratuwa, \nHomagama-Diyagama Rd');
+  TextEditingController shopLocationController =
+      TextEditingController(text: 'city,postal code');
+  TextEditingController shopDescriptionController =
+      TextEditingController(text: 'Our shop provide.....');
+
   // Boolean flags to toggle the editability of each field
   bool isEmailEditable = false;
   bool isPhoneEditable = false;
-  bool isNameEditable = false;
+  bool isOwnerNameEditable = false;
   bool isShopNameEditable = false;
-  bool isAddressEditable = false;
-  bool isLocationEditable = false;
-  bool isDescriptionEditable = false;
+  bool isShopAddressEditable = false;
+  bool isShopLocationEditable = false;
+  bool isShopDescriptionEditable = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Provider Profile'),
-        backgroundColor:Colors.amber[700],
+        title: Text('Shop Profile'),
+        backgroundColor: Colors.amber[700],
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => Providerdashboard()));
+                MaterialPageRoute(builder: (context) => ShopdashboardPage()));
           },
         ),
       ),
@@ -56,66 +56,71 @@ class _ProviderProfilePageState extends State<ProviderProfilePage> {
               CircleAvatar(
                 radius: 40.0,
                 backgroundImage: AssetImage(
-                    'provider.png'), // Add your logo here
+                    'assets/tea_time_logo.png'), // Add your logo here
               ),
               SizedBox(height: 10),
               Text(
-                'Rishaf',
+                'Hamthy Hardware',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 5),
               Text(
-                'No-02,Kinniya',
+                'Institute of Technology University of Moratuwa, \nHomagama-Diyagama Rd',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, color: Colors.grey[600]),
               ),
               SizedBox(height: 20),
-              
               buildInfoSection('Account'),
               buildEditableTile('Email', emailController, isEmailEditable, () {
                 setState(() {
                   isEmailEditable = !isEmailEditable;
                 });
               }),
-              buildEditableTile('Phone Number', phoneController, isPhoneEditable, () {
+              buildEditableTile(
+                  'Phone Number', phoneController, isPhoneEditable, () {
                 setState(() {
                   isPhoneEditable = !isPhoneEditable;
                 });
               }),
-              buildEditableTile('Name', NameController, isNameEditable, () {
+              buildEditableTile(
+                  'Owner Name', OwnerNameController, isOwnerNameEditable, () {
                 setState(() {
-                  isNameEditable = !isNameEditable;
+                  isOwnerNameEditable = !isOwnerNameEditable;
                 });
               }),
-
-              buildEditableTile('Shop Name', shopNameController, isShopNameEditable, () {
+              buildEditableTile(
+                  'Shop Name', shopNameController, isShopNameEditable, () {
                 setState(() {
                   isShopNameEditable = !isShopNameEditable;
                 });
               }),
-              buildEditableTile(' Address', AddressController, isAddressEditable, () {
+              buildEditableTile(
+                  'Shop Address', shopAddressController, isShopAddressEditable,
+                  () {
                 setState(() {
-                  isAddressEditable = !isAddressEditable;
+                  isShopAddressEditable = !isShopAddressEditable;
                 });
               }),
-                   buildEditableTile('Shop Location', LocationController, isLocationEditable, () {
+              buildEditableTile('Shop Location', shopLocationController,
+                  isShopLocationEditable, () {
                 setState(() {
-                  isLocationEditable = !isLocationEditable;
+                  isShopLocationEditable = !isShopLocationEditable;
                 });
               }),
-              buildEditableTile('Shop Description', DescriptionController, isDescriptionEditable, () {
+              buildEditableTile('Shop Description', shopDescriptionController,
+                  isShopDescriptionEditable, () {
                 setState(() {
-                  isDescriptionEditable = !isDescriptionEditable;
+                  isShopDescriptionEditable = !isShopDescriptionEditable;
                 });
               }),
-              
               SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ShopdashboardPage()),
+                      MaterialPageRoute(
+                          builder: (context) => ShopdashboardPage()),
                     );
                   },
                   child: Text('Save'),
@@ -143,7 +148,8 @@ class _ProviderProfilePageState extends State<ProviderProfilePage> {
   }
 
   // Function to build an editable/non-editable tile
-  Widget buildEditableTile(String label, TextEditingController controller, bool isEditable, VoidCallback onTap) {
+  Widget buildEditableTile(String label, TextEditingController controller,
+      bool isEditable, VoidCallback onTap) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       title: isEditable

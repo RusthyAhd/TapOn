@@ -19,7 +19,6 @@ class NotificationPage extends StatelessWidget {
                   context, MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
-
         ),
         body: ListView(
           padding: const EdgeInsets.all(16.0),
@@ -51,7 +50,8 @@ class NotificationTile extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  const NotificationTile({super.key, required this.title, required this.subtitle});
+  const NotificationTile(
+      {super.key, required this.title, required this.subtitle});
 
   @override
   Widget build(BuildContext context) {

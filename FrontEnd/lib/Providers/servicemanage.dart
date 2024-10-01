@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/AddService.dart';
-
+import 'package:tap_on/Providers/AddService.dart';
 
 class ManageService extends StatefulWidget {
   @override
@@ -53,7 +52,8 @@ class _ManageServiceState extends State<ManageService> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => AddServicePage()),
+                        MaterialPageRoute(
+                            builder: (context) => AddServicePage()),
                       );
                       // Add Item action
                     },
@@ -70,7 +70,7 @@ class _ManageServiceState extends State<ManageService> {
                   itemCount: menuItems.length,
                   itemBuilder: (context, index) {
                     var item = menuItems[index];
-                    
+
                     return Card(
                       elevation: 4,
                       child: ListTile(
@@ -83,42 +83,39 @@ class _ManageServiceState extends State<ManageService> {
                           ),
                         ),
                         title: Text(item['name']),
-                        subtitle: Text(
-                            'Price:LKR ${item['price']}'),
+                        subtitle: Text('Price:LKR ${item['price']}'),
                         trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                item['available']
+                                    ? 'Available'
+                                    : 'Not Available',
+                                style: TextStyle(
+                                    color: item['available']
+                                        ? Colors.green
+                                        : Colors.red),
+                              ),
+                            ),
 
-                              Flexible(
-                                child: Text(
-                                  item['available']
-                                      ? 'Available'
-                                      : 'Not Available',
-                                  style: TextStyle(
-                                      color: item['available']
-                                          ? Colors.green
-                                          : Colors.red),
-                                ),
-                              ),
-
-                              SizedBox(width: 8),
-                              // Edit Button
-                              IconButton(
-                                icon: Icon(Icons.edit),
-                                onPressed: () {
-                                  // Open the dialog to edit item
-                                  _editItemDialog(context, item, index);
-                                },
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  _editItemDialog(context, item, index);
-                                },
-                                child: Text('Edit'),
-                              ),
-                            ],
-                          ),
-                        
+                            SizedBox(width: 8),
+                            // Edit Button
+                            IconButton(
+                              icon: Icon(Icons.edit),
+                              onPressed: () {
+                                // Open the dialog to edit item
+                                _editItemDialog(context, item, index);
+                              },
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                _editItemDialog(context, item, index);
+                              },
+                              child: Text('Edit'),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   },

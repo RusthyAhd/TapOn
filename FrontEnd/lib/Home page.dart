@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Enter%20phone%20numper%20page.dart';
+
+import 'package:tap_on/Enter%20Number%20Page.dart';
 import 'package:tap_on/Notification.dart';
-import 'package:tap_on/Tool%20location.dart';
-import 'package:tap_on/chatbot';
-import 'package:tap_on/edit%20profile.dart';
-import 'package:tap_on/providerRegistration.dart';
+import 'package:tap_on/Users/Tool%20location.dart';
 
-import 'package:tap_on/shopowner%20register.dart';
+import 'package:tap_on/Users/edit%20profile.dart';
+import 'package:tap_on/Providers/providerRegistration.dart';
 
-import 'package:tap_on/location.dart';
+import 'package:tap_on/ShopOwner/shopowner%20register.dart';
+
+import 'package:tap_on/Users/location.dart';
+import 'package:tap_on/Chatbot.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -76,7 +78,6 @@ class HomePage extends StatelessWidget {
               },
             ),
           ),
-
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
@@ -89,106 +90,106 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Expanded(
-            child:Container(
-              color:  const Color.fromARGB(255, 233, 231, 207),
-               child: GridView.count(
-              crossAxisCount: 3,
-              padding: const EdgeInsets.all(10.0),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              children: [
-                ServiceCard(
-                  icon: Icons.plumbing,
-                  label: 'Plumber',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.electrical_services,
-                  label: 'Electrician',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.construction,
-                  label: 'Carpenter',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.format_paint,
-                  label: 'Painter',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.grass,
-                  label: 'Gardener',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.kitchen,
-                  label: 'Fridge Repair',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.build,
-                  label: 'Biling',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.phone_android,
-                  label: 'Phone Repair',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.content_cut,
-                  label: 'beauty professional',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LocationPage()),
-                    );
-                  },
-                ),
-              ],
-            ),
+            child: Container(
+              color: const Color.fromARGB(255, 233, 231, 207),
+              child: GridView.count(
+                crossAxisCount: 3,
+                padding: const EdgeInsets.all(10.0),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                children: [
+                  ServiceCard(
+                    icon: Icons.plumbing,
+                    label: 'Plumber',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.electrical_services,
+                    label: 'Electrician',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.construction,
+                    label: 'Carpenter',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.format_paint,
+                    label: 'Painter',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.grass,
+                    label: 'Gardener',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.kitchen,
+                    label: 'Fridge Repair',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.build,
+                    label: 'Biling',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.phone_android,
+                    label: 'Phone Repair',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.content_cut,
+                    label: 'beauty professional',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LocationPage()),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 20),
@@ -201,106 +202,115 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Expanded(
-            child:Container( 
-               color: const Color.fromARGB(255, 233, 231, 207),
-            child: GridView.count(
-              crossAxisCount: 3,
-              padding: const EdgeInsets.all(10.0),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              children: [
-                ServiceCard(
-                  icon: Icons.plumbing,
-                  label: 'Plumbing Tools',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TLocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.electrical_services,
-                  label: 'Electrical Tools',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TLocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.construction,
-                  label: 'Carpenting Tools',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TLocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.format_paint,
-                  label: 'Painting Tools',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TLocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.grass,
-                  label: 'Gardening Tools',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TLocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.kitchen,
-                  label: 'Repairing Tools',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TLocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.build,
-                  label: 'Building Tools',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TLocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.phone_android,
-                  label: 'Phone Accessories',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TLocationPage()),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  icon: Icons.content_cut,
-                  label: 'Mechanical Tools',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TLocationPage()),
-                    );
-                  },
-                ),
-              ],
-            ),
+            child: Container(
+              color: const Color.fromARGB(255, 233, 231, 207),
+              child: GridView.count(
+                crossAxisCount: 3,
+                padding: const EdgeInsets.all(10.0),
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                children: [
+                  ServiceCard(
+                    icon: Icons.plumbing,
+                    label: 'Plumbing Tools',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TLocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.electrical_services,
+                    label: 'Electrical Tools',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TLocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.construction,
+                    label: 'Carpenting Tools',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TLocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.format_paint,
+                    label: 'Painting Tools',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TLocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.grass,
+                    label: 'Gardening Tools',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TLocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.kitchen,
+                    label: 'Repairing Tools',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TLocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.build,
+                    label: 'Building Tools',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TLocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.phone_android,
+                    label: 'Phone Accessories',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TLocationPage()),
+                      );
+                    },
+                  ),
+                  ServiceCard(
+                    icon: Icons.content_cut,
+                    label: 'Mechanical Tools',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TLocationPage()),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -338,11 +348,13 @@ class HomePage extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () {Navigator.push(
+              onPressed: () {
+                Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ServiceProviderRegistrationForm()));
-                
+                        builder: (context) =>
+                            ServiceProviderRegistrationForm()));
+
                 // Handle Provider button press
               },
               child: const Row(

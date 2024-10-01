@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/ProductDetailScreen.dart';
-import 'package:tap_on/Tool%20location.dart';
-
-
+import 'package:tap_on/Users/User%20product%20details.dart';
+import 'package:tap_on/Users/Tool%20location.dart';
 
 class NearbyToolRantPage extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
@@ -35,17 +33,14 @@ class NearbyToolRantPage extends StatelessWidget {
       backgroundColor: Colors.yellow[700],
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
-        title: Text('Nearby Tool Shop',
-
-            style: TextStyle(color: Colors.black)),
-             leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => TLocationPage()));
-            },
-    
-      ),
+        title: Text('Nearby Tool Shop', style: TextStyle(color: Colors.black)),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => TLocationPage()));
+          },
+        ),
       ),
       body: Column(
         children: [
@@ -84,10 +79,9 @@ class NearbyToolRantPage extends StatelessWidget {
                     trailing: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Toolmenu())
-                        );
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Toolmenu()));
                         // Action when the button is pressed
                       },
                       child: Text('Choose'),
@@ -101,7 +95,6 @@ class NearbyToolRantPage extends StatelessWidget {
           ),
         ],
       ),
-      );
-  
+    );
   }
 }

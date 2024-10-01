@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/showToolshop.dart';
-
-
-
+import 'package:tap_on/Users/showToolshop.dart';
 
 class Toolmenu extends StatelessWidget {
   @override
@@ -12,10 +9,8 @@ class Toolmenu extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => NearbyToolRantPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NearbyToolRantPage()));
           },
         ),
         title: Text('Products'),
