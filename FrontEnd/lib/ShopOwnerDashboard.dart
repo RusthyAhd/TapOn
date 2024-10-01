@@ -9,6 +9,8 @@ import 'package:tap_on/shopfeedback.dart';
 import 'package:tap_on/menumanager.dart';
 
 class ShopdashboardPage extends StatelessWidget {
+  const ShopdashboardPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,14 +19,14 @@ class ShopdashboardPage extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'TapOn ShopOwner',
               style: TextStyle(
                 fontSize: 20, // You can adjust the size
                 fontWeight: FontWeight.bold, // Optional: Makes the text bold
               ),
             ),
-            const Text(
+            Text(
               'Incoming Orders',
               style: TextStyle(
                 fontSize: 16, // You can adjust the size

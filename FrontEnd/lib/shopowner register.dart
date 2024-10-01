@@ -4,12 +4,12 @@ import 'package:tap_on/ShopOwnerDashboard.dart';
 class ShopOwnerRegistration extends StatefulWidget {
   const ShopOwnerRegistration({super.key});
 
- @override
+  @override
   _ShopOwnerRegistrationState createState() => _ShopOwnerRegistrationState();
 }
 
 class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
-  bool isAgreed = false; // Track if the user has agreed to the terms
+  bool isAgreed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,6 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                   hintText: 'Enter your shop name',
                 ),
               ),
-
               const SizedBox(height: 10),
               const TextField(
                 decoration: InputDecoration(
@@ -74,17 +73,24 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 10),
-                         ExpansionTile(
-              title: Text('More Options'),
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Description',
-                    hintText: 'Describe your landmark',
+              ExpansionTile(
+                title: Text('More Options'),
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Description',
+                      hintText: 'Describe your landmark',
+                    ),
                   ),
-                ),
-              ],
-            ),
+                  SizedBox(height: 10), // Add spacing between the fields
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Additional Info',
+                      hintText: 'Enter more details if necessary',
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(height: 20),
               const Text('Terms and Conditions',
                   style: TextStyle(fontWeight: FontWeight.bold)),
@@ -114,8 +120,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                     },
                   ),
                 ],
-              ),
-
+              ), 
               const SizedBox(height: 15),
               Center(
                 child: ElevatedButton(
@@ -124,7 +129,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>ShopdashboardPage(),
+                              builder: (context) => ShopdashboardPage(),
                             ),
                           );
                         }
@@ -136,11 +141,10 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
       ),
     );
   }
-}
+} 
