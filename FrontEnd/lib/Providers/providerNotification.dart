@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Home%20page.dart';
+import 'package:tap_on/Providers/providerDashboard.dart';
 
-class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
+class ProviderNotificationPage extends StatelessWidget {
+  const ProviderNotificationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +16,8 @@ class NotificationPage extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Providerdashboard()));
             },
           ),
         ),
@@ -24,20 +25,20 @@ class NotificationPage extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           children: [
             NotificationTile(
-              title: "Meeting reminder",
-              subtitle: "Today at 2:00 PM",
+              title: "New booking recieved",
+              subtitle: "Newbooking 123456 - Rishaf has booked  fiter replacement",
             ),
             NotificationTile(
-              title: "Your Service Accepted",
-              subtitle: "Track order status",
+              title: "Booking update",
+              subtitle: "Your service cancelled",
             ),
             NotificationTile(
-              title: "Your item confirmed",
-              subtitle: "Track order status",
+              title: "Your Service Added Succesfully",
+              subtitle: "Track service status",
             ),
             NotificationTile(
-              title: "Up to 50% off",
-              subtitle: "Track order status",
+              title: "Up to 50% off booking recieved",
+              subtitle: "New booking Incoming",
             ),
           ],
         ),

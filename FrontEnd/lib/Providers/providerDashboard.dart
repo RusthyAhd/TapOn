@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-
+import 'package:tap_on/Providers/AddService.dart';
 import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/ShopOwner/AddTools.dart';
-import 'package:tap_on/ShopOwner/ShopNotfication.dart';
-import 'package:tap_on/ShopOwner/ShopOrderhistory.dart';
-import 'package:tap_on/ShopOwner/ShopProfile.dart';
-import 'package:tap_on/ShopOwner/ToolsManagement.dart';
-import 'package:tap_on/ShopOwner/shopfeedback.dart';
+import 'package:tap_on/Providers/providerFeedback.dart';
+import 'package:tap_on/Providers/providerNotification.dart';
+import 'package:tap_on/Providers/providerOrderHistory.dart';
+import 'package:tap_on/Providers/providerProfile.dart';
+import 'package:tap_on/Providers/servicemanage.dart';
+import 'package:tap_on/acceptedProvider.dart';
+import 'package:tap_on/rejectedProvider.dart';
 
-class ShopdashboardPage extends StatelessWidget {
-  const ShopdashboardPage({super.key});
-
+class Providerdashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,14 +18,14 @@ class ShopdashboardPage extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'TapOn ShopOwner',
+            const Text(
+              'TapOn Provider',
               style: TextStyle(
                 fontSize: 20, // You can adjust the size
                 fontWeight: FontWeight.bold, // Optional: Makes the text bold
               ),
             ),
-            Text(
+            const Text(
               'Incoming Orders',
               style: TextStyle(
                 fontSize: 16, // You can adjust the size
@@ -74,7 +73,7 @@ class ShopdashboardPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ShopOrderhistoryPage()));
+                        builder: (context) => Providerorderhistory()));
                 // Handle Orders button press
               },
             ),
@@ -82,23 +81,23 @@ class ShopdashboardPage extends StatelessWidget {
             // Menu Manager button
             ListTile(
               leading: Icon(Icons.add),
-              title: Text('Add Tool'),
+              title: Text('Add Service'),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            AddItemPage())); // Handle Menu Manager button press
+                            AddServicePage())); // Handle Menu Manager button press
               },
             ),
 
             // Performance button
             ListTile(
               leading: Icon(Icons.edit),
-              title: Text('Menu Manager'),
+              title: Text('Service Manager'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MenuScreen()));
+                    MaterialPageRoute(builder: (context) => ManageService()));
                 // Handle Performance button press
               },
             ),
@@ -108,8 +107,10 @@ class ShopdashboardPage extends StatelessWidget {
               leading: Icon(Icons.notifications),
               title: Text('Notifications'),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Shopnotfication()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProviderNotificationPage()));
 
                 // Handle Notifications button press
               },
@@ -118,10 +119,12 @@ class ShopdashboardPage extends StatelessWidget {
             // Shop Profile button
             ListTile(
               leading: Icon(Icons.store),
-              title: Text('Shop Profile'),
+              title: Text('Provider Profile'),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ShopProfilePage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProviderProfilePage()));
                 // Handle Shop Profile button press
               },
             ),
@@ -129,8 +132,10 @@ class ShopdashboardPage extends StatelessWidget {
               leading: Icon(Icons.feedback),
               title: Text('Feedback'),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ReviewsPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PrviderFeedbackPage()));
                 // Handle Shop Profile button press
               },
             ),
@@ -138,13 +143,11 @@ class ShopdashboardPage extends StatelessWidget {
             const SizedBox(
               height: 25,
             ),
-            // Log Out button
+
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HomePage()));
-
-                // Handle Log Out button press
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: const Color.fromARGB(255, 8, 0, 0),
@@ -163,13 +166,31 @@ class ShopdashboardPage extends StatelessWidget {
               child: ListView(
                 children: [
                   orderItem(
-                    subStatus: '2ND ORDER',
-                    orderId: '162267901',
-                    date: '12 Sept 2024, 9:31 am',
-                    itemCount: 4,
-                    itemname: 'Hammer',
-                    statusColor: Colors.green,
-                  ),
+                      context: context,
+                      subStatus: '2ND ORDER',
+                      orderId: '162267901',
+                      date: '12 Sept 2024, 9:31 am',
+                      ordername: 'Santize full home',
+                      statusColor: Colors.brown,
+                      customername: 'Rishaf',
+                      customermobile: '0755354023',
+                      customerLocation: 'No-2,Kinniya'),
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView(
+                children: [
+                  orderItem(
+                      context: context,
+                      subStatus: '2ND ORDER',
+                      orderId: '162267901',
+                      date: '12 Sept 2024, 9:31 am',
+                      ordername: 'Santize full home',
+                      statusColor: Colors.brown,
+                      customername: 'Rishaf',
+                      customermobile: '0755354023',
+                      customerLocation: 'No-2,Kinniya'),
                 ],
               ),
             ),
@@ -184,11 +205,14 @@ class ShopdashboardPage extends StatelessWidget {
   }
 
   orderItem(
-      {required String subStatus,
+      {required BuildContext context,
+      required String subStatus,
       required String orderId,
       required String date,
-      required int itemCount,
-      required String itemname,
+      required customername,
+      required customermobile,
+      required customerLocation,
+      required String ordername,
       required MaterialColor statusColor}) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -199,11 +223,22 @@ class ShopdashboardPage extends StatelessWidget {
           children: [
             Text(
               'Order ID: $orderId',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
             ),
             SizedBox(height: 5),
-            Text('Item: $itemname ($itemCount pcs)'),
+            Text(
+              'Order: $ordername ',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 24.0,
+              ),
+            ),
+            SizedBox(height: 8),
             Text('Date: $date'),
+            Text('Customer Name: $customername'),
+            Text('Customer Location: $customerLocation'),
+            Text('Customer Mobile: $customermobile'),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -219,21 +254,34 @@ class ShopdashboardPage extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        // Handle the "Accept" button press
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AcceptedOrderPage(),
+                          ),
+                        );
                       },
                       child: const Text('Accept'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green, // Button color
+                        backgroundColor: const Color.fromARGB(
+                            255, 255, 197, 39), // Button color
                       ),
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(
                       onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CancelledOrderPage(),
+                          ),
+                        );
+
                         // Handle the "Reject" button press
                       },
                       child: const Text('Reject'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red, // Button color
+                        backgroundColor: Colors.white, // Button color
                       ),
                     ),
                   ],

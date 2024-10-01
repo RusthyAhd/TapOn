@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Home%20page.dart';
+import 'package:tap_on/ShopOwner/ShopOwnerDashboard.dart';
 
-class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
+class Shopnotfication extends StatelessWidget {
+  const Shopnotfication({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,8 @@ class NotificationPage extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ShopdashboardPage()));
             },
           ),
         ),
@@ -25,11 +25,11 @@ class NotificationPage extends StatelessWidget {
           children: [
             NotificationTile(
               title: "Meeting reminder",
-              subtitle: "Today at 2:00 PM",
+              subtitle: "TYou have prebooking order today at 2:00 PM",
             ),
             NotificationTile(
-              title: "Your Service Accepted",
-              subtitle: "Track order status",
+              title: "You have feedback",
+              subtitle: "Your equipments are good",
             ),
             NotificationTile(
               title: "Your item confirmed",

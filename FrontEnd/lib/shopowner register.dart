@@ -120,7 +120,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                     },
                   ),
                 ],
-              ), 
+              ),
               const SizedBox(height: 15),
               Center(
                 child: ElevatedButton(
@@ -147,4 +147,4 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
       ),
     );
   }
-} 
+}

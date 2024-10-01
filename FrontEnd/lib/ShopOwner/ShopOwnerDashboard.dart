@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/ShopOwner/AddTools.dart';
 import 'package:tap_on/ShopOwner/ShopNotfication.dart';
 import 'package:tap_on/ShopOwner/ShopOrderhistory.dart';
+import 'package:tap_on/ShopOwner/AddTools.dart';
 import 'package:tap_on/ShopOwner/ShopProfile.dart';
-import 'package:tap_on/ShopOwner/ToolsManagement.dart';
 import 'package:tap_on/ShopOwner/shopfeedback.dart';
 
-class ShopdashboardPage extends StatelessWidget {
-  const ShopdashboardPage({super.key});
+import 'package:tap_on/ShopOwner/ToolsManagement.dart';
 
+class ShopdashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,14 +17,14 @@ class ShopdashboardPage extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'TapOn ShopOwner',
               style: TextStyle(
                 fontSize: 20, // You can adjust the size
                 fontWeight: FontWeight.bold, // Optional: Makes the text bold
               ),
             ),
-            Text(
+            const Text(
               'Incoming Orders',
               style: TextStyle(
                 fontSize: 16, // You can adjust the size
