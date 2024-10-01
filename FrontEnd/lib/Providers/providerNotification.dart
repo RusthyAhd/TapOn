@@ -25,20 +25,20 @@ class ProviderNotificationPage extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           children: [
             NotificationTile(
-              title: "Meeting reminder",
-              subtitle: "Today at 2:00 PM",
+              title: "New booking recieved",
+              subtitle: "Newbooking 123456 - Rishaf has booked  fiter replacement",
             ),
             NotificationTile(
-              title: "Your Service Accepted",
-              subtitle: "Track order status",
+              title: "Booking update",
+              subtitle: "Your service cancelled",
             ),
             NotificationTile(
               title: "Your Service Added Succesfully",
               subtitle: "Track service status",
             ),
             NotificationTile(
-              title: "Up to 50% off",
-              subtitle: "Track service status",
+              title: "Up to 50% off booking recieved",
+              subtitle: "New booking Incoming",
             ),
           ],
         ),

@@ -40,7 +40,7 @@ class _LocationPageState extends State<LocationPage> {
             TextField(
               controller: _locationController,
               decoration: InputDecoration(
-                labelText: 'Enter Your Location',
+                labelText: 'Enter Your Location Details',
                 hintText: 'e.g. City, Postal Code',
                 border: OutlineInputBorder(),
               ),

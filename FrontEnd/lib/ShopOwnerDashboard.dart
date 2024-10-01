@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Providers/AddService.dart';
-import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/Providers/providerFeedback.dart';
-import 'package:tap_on/Providers/providerNotification.dart';
-import 'package:tap_on/Providers/providerOrderHistory.dart';
-import 'package:tap_on/Providers/providerProfile.dart';
-import 'package:tap_on/Providers/servicemanage.dart';
-import 'package:tap_on/acceptedProvider.dart';
-import 'package:tap_on/rejectedProvider.dart';
 
-class Providerdashboard extends StatelessWidget {
+import 'package:tap_on/Home%20page.dart';
+import 'package:tap_on/ShopOwner/AddTools.dart';
+import 'package:tap_on/ShopOwner/ShopNotfication.dart';
+import 'package:tap_on/ShopOwner/ShopOrderhistory.dart';
+import 'package:tap_on/ShopOwner/ShopProfile.dart';
+import 'package:tap_on/ShopOwner/ToolsManagement.dart';
+import 'package:tap_on/ShopOwner/shopfeedback.dart';
+
+class ShopdashboardPage extends StatelessWidget {
+  const ShopdashboardPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,14 +19,14 @@ class Providerdashboard extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'TapOn Provider',
+            Text(
+              'TapOn ShopOwner',
               style: TextStyle(
                 fontSize: 20, // You can adjust the size
                 fontWeight: FontWeight.bold, // Optional: Makes the text bold
               ),
             ),
-            const Text(
+            Text(
               'Incoming Orders',
               style: TextStyle(
                 fontSize: 16, // You can adjust the size
@@ -73,7 +74,7 @@ class Providerdashboard extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Providerorderhistory()));
+                        builder: (context) => ShopOrderhistoryPage()));
                 // Handle Orders button press
               },
             ),
@@ -81,23 +82,23 @@ class Providerdashboard extends StatelessWidget {
             // Menu Manager button
             ListTile(
               leading: Icon(Icons.add),
-              title: Text('Add Service'),
+              title: Text('Add Tool'),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            AddServicePage())); // Handle Menu Manager button press
+                            AddItemPage())); // Handle Menu Manager button press
               },
             ),
 
             // Performance button
             ListTile(
               leading: Icon(Icons.edit),
-              title: Text('Service Manager'),
+              title: Text('Menu Manager'),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ManageService()));
+                    MaterialPageRoute(builder: (context) => MenuScreen()));
                 // Handle Performance button press
               },
             ),
@@ -107,10 +108,8 @@ class Providerdashboard extends StatelessWidget {
               leading: Icon(Icons.notifications),
               title: Text('Notifications'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProviderNotificationPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Shopnotfication()));
 
                 // Handle Notifications button press
               },
@@ -119,12 +118,10 @@ class Providerdashboard extends StatelessWidget {
             // Shop Profile button
             ListTile(
               leading: Icon(Icons.store),
-              title: Text('Provider Profile'),
+              title: Text('Shop Profile'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProviderProfilePage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ShopProfilePage()));
                 // Handle Shop Profile button press
               },
             ),
@@ -132,10 +129,8 @@ class Providerdashboard extends StatelessWidget {
               leading: Icon(Icons.feedback),
               title: Text('Feedback'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PrviderFeedbackPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ReviewsPage()));
                 // Handle Shop Profile button press
               },
             ),
@@ -143,11 +138,13 @@ class Providerdashboard extends StatelessWidget {
             const SizedBox(
               height: 25,
             ),
-
+            // Log Out button
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => HomePage()));
+
+                // Handle Log Out button press
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: const Color.fromARGB(255, 8, 0, 0),
@@ -166,31 +163,13 @@ class Providerdashboard extends StatelessWidget {
               child: ListView(
                 children: [
                   orderItem(
-                      context: context,
-                      subStatus: '2ND ORDER',
-                      orderId: '162267901',
-                      date: '12 Sept 2024, 9:31 am',
-                      ordername: 'Santize full home',
-                      statusColor: Colors.brown,
-                      customername: 'Rishaf',
-                      customermobile: '0755354023',
-                      customerLocation: 'No-2,Kinniya'),
-                ],
-              ),
-            ),
-            Expanded(
-              child: ListView(
-                children: [
-                  orderItem(
-                      context: context,
-                      subStatus: '2ND ORDER',
-                      orderId: '162267901',
-                      date: '12 Sept 2024, 9:31 am',
-                      ordername: 'Santize full home',
-                      statusColor: Colors.brown,
-                      customername: 'Rishaf',
-                      customermobile: '0755354023',
-                      customerLocation: 'No-2,Kinniya'),
+                    subStatus: '2ND ORDER',
+                    orderId: '162267901',
+                    date: '12 Sept 2024, 9:31 am',
+                    itemCount: 4,
+                    itemname: 'Hammer',
+                    statusColor: Colors.green,
+                  ),
                 ],
               ),
             ),
@@ -205,14 +184,11 @@ class Providerdashboard extends StatelessWidget {
   }
 
   orderItem(
-      {required BuildContext context,
-      required String subStatus,
+      {required String subStatus,
       required String orderId,
       required String date,
-      required customername,
-      required customermobile,
-      required customerLocation,
-      required String ordername,
+      required int itemCount,
+      required String itemname,
       required MaterialColor statusColor}) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -223,22 +199,11 @@ class Providerdashboard extends StatelessWidget {
           children: [
             Text(
               'Order ID: $orderId',
-              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             SizedBox(height: 5),
-            Text(
-              'Order: $ordername ',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 24.0,
-              ),
-            ),
-            SizedBox(height: 8),
+            Text('Item: $itemname ($itemCount pcs)'),
             Text('Date: $date'),
-            Text('Customer Name: $customername'),
-            Text('Customer Location: $customerLocation'),
-            Text('Customer Mobile: $customermobile'),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -254,34 +219,21 @@ class Providerdashboard extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AcceptedOrderPage(),
-                          ),
-                        );
+                        // Handle the "Accept" button press
                       },
                       child: const Text('Accept'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(
-                            255, 255, 197, 39), // Button color
+                        backgroundColor: Colors.green, // Button color
                       ),
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CancelledOrderPage(),
-                          ),
-                        );
-
                         // Handle the "Reject" button press
                       },
                       child: const Text('Reject'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white, // Button color
+                        backgroundColor: Colors.red, // Button color
                       ),
                     ),
                   ],

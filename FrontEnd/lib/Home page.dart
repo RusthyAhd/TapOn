@@ -71,9 +71,7 @@ class HomePage extends StatelessWidget {
                 // Define your action here
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          ChatPage()), // Replace with your screen
+                  MaterialPageRoute(builder: (context) => ChatPage()),
                 );
               },
             ),
