@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          ChatPage()), // Replace with your screen
+                          ChatPage()), 
                 );
               },
             ),
@@ -139,7 +139,7 @@ class HomePage extends StatelessWidget {
                 ),
                 ServiceCard(
                   icon: Icons.grass,
-                  label: 'Gardener',
+                  label: 'Pest Control',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -149,7 +149,7 @@ class HomePage extends StatelessWidget {
                 ),
                 ServiceCard(
                   icon: Icons.kitchen,
-                  label: 'Fridge Repair',
+                  label: 'Automotive Care',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -159,7 +159,7 @@ class HomePage extends StatelessWidget {
                 ),
                 ServiceCard(
                   icon: Icons.build,
-                  label: 'Biling',
+                  label: 'Laundry',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -179,7 +179,7 @@ class HomePage extends StatelessWidget {
                 ),
                 ServiceCard(
                   icon: Icons.content_cut,
-                  label: 'beauty professional',
+                  label: 'Salon',
                   onTap: () {
                     Navigator.push(
                       context,
