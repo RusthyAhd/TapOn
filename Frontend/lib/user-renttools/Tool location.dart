@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/user-renttools/showToolshop.dart';
+import 'package:tap_on/user-renttools/Nearby_Tool_Shops.dart';
 
 class TLocationPage extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _LocationPageState extends State<TLocationPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Location'),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.amber[700],
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -53,9 +53,9 @@ class _LocationPageState extends State<TLocationPage> {
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor: Colors.black, // Text color
+                backgroundColor:  Colors.amber[700], 
               ),
-              child: Text('Add'),
+              child: Text('Search'),
             ),
             SizedBox(height: 10),
             // Map Display
@@ -66,12 +66,6 @@ class _LocationPageState extends State<TLocationPage> {
                   target: _center,
                   zoom: 14.0,
                 ),
-                markers: {
-                  Marker(
-                    markerId: MarkerId("selected-location"),
-                    position: _center,
-                  ),
-                },
               ),
             ),
             SizedBox(height: 10),
