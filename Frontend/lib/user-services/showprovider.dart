@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/user-services/location.dart';
-import 'package:tap_on/Providers/service%20details.dart';
+import 'package:tap_on/user-services/service%20details.dart';
 
 class NearbyServiceProvidersPage extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
