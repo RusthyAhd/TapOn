@@ -6,8 +6,8 @@ import 'package:tap_on/Providers/providerNotification.dart';
 import 'package:tap_on/Providers/providerOrderHistory.dart';
 import 'package:tap_on/Providers/providerProfile.dart';
 import 'package:tap_on/Providers/servicemanage.dart';
-import 'package:tap_on/acceptedProvider.dart';
-import 'package:tap_on/rejectedProvider.dart';
+import 'package:tap_on/Providers/acceptedProvider.dart';
+import 'package:tap_on/Providers/rejectedProvider.dart';
 
 class Providerdashboard extends StatelessWidget {
   @override

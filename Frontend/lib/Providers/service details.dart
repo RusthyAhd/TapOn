@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Users/waiting%20page.dart';
+import 'package:tap_on/user-services/waiting%20page.dart';
 
 class ServiceDetailsPage extends StatelessWidget {
   @override

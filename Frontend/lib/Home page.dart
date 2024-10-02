@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:tap_on/Enter%20Number%20Page.dart';
-import 'package:tap_on/Notification.dart';
-import 'package:tap_on/Users/Tool%20location.dart';
+import 'package:tap_on/Users/Notification.dart';
+import 'package:tap_on/user-renttools/Tool%20location.dart';
 
 import 'package:tap_on/Users/edit%20profile.dart';
 import 'package:tap_on/Providers/providerRegistration.dart';
 
 import 'package:tap_on/ShopOwner/shopowner%20register.dart';
 
-import 'package:tap_on/Users/location.dart';
-import 'package:tap_on/Chatbot.dart';
+import 'package:tap_on/user-services/location.dart';
+import 'package:tap_on/Users/Chatbot.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
