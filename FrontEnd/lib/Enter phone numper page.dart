@@ -1,10 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:tap_on/Enter%20verification%20page.dart';
 import 'package:tap_on/constants.dart';
 
 class Enternumber extends StatelessWidget{
   const Enternumber({super.key});
-
+  
 @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -66,7 +67,6 @@ class Enternumber extends StatelessWidget{
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder:(context) => VerificationScreen()));
-                      // Add your onPressed logic here
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
@@ -77,7 +77,7 @@ class Enternumber extends StatelessWidget{
                       ),
                     ),
                     child: const Text(
-                      'Send',
+                      'Sign in',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

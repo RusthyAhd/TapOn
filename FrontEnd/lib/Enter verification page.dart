@@ -2,44 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:tap_on/Enter%20phone%20numper%20page.dart';
 import 'package:tap_on/Home%20page.dart';
 
+
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({super.key});
 
   @override
   _VerificationScreenState createState() => _VerificationScreenState();
 }
-
 class _VerificationScreenState extends State<VerificationScreen> {
   final List<TextEditingController> _controllers =
       List.generate(4, (_) => TextEditingController());
   final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
-
-  @override
-  void initState() {
-    super.initState();
-    for (int i = 0; i < _controllers.length; i++) {
-      _controllers[i].addListener(() {
-        if (_controllers[i].text.length == 1) {
-          if (i < _controllers.length - 1) {
-            FocusScope.of(context).requestFocus(_focusNodes[i + 1]);
-          } else {
-            FocusScope.of(context).unfocus(); // Optionally dismiss the keyboard
-          }
-        }
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    for (var controller in _controllers) {
-      controller.dispose();
-    }
-    for (var focusNode in _focusNodes) {
-      focusNode.dispose();
-    }
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +49,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      counterText: '', // Removes character counter
+                      counterText: '', 
                     ),
                     keyboardType: TextInputType.number,
                     maxLength: 1,
@@ -94,7 +67,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const Enternumber()));
-                    // Resend code logic
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
@@ -109,7 +81,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => const HomePage()));
-                    // Confirm code logic
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,

@@ -9,21 +9,19 @@ class TapOnApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.amber[700], // background color change
+        backgroundColor: Colors.amber[700],
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Circle Avatar with image
               CircleAvatar(
                 radius: 180,
-                backgroundColor: const Color.fromARGB(255, 252, 250, 250),
                 child: Image.asset(
-                  'assets/images/logo.png', // Place your logo here
+                  'assets/images/logo.png',
                   fit: BoxFit.contain,
                 ),
               ),
-              const SizedBox(height: 40), // Space between image and text
+              const SizedBox(height: 40),
               const Text(
                 'Discover new interests.',
                 style: TextStyle(
@@ -46,8 +44,6 @@ class TapOnApp extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Enternumber()));
-
-                  // Add your onPressed action here
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amber, // Button color

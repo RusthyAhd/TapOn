@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/constants.dart';
 
 class OrdersPage extends StatelessWidget {
   @override

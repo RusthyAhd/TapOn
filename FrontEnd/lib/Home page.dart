@@ -4,9 +4,7 @@ import 'package:tap_on/Notification.dart';
 import 'package:tap_on/Tool%20location.dart';
 import 'package:tap_on/chatbot';
 import 'package:tap_on/edit%20profile.dart';
-
 import 'package:tap_on/shopowner%20register.dart';
-
 import 'package:tap_on/location.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,19 +31,17 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const NotificationPage()));
-              // Add your onPressed logic here
-              // Notification action
             },
           ),
         ],
       ),
-      body: Column(
+      body: Column( 
         children: [
           const SizedBox(height: 20),
           ListTile(
             leading: const CircleAvatar(
               backgroundImage: AssetImage(
-                  'assets/profile.jpg'), // Replace with profile image
+                  'assets/profile.jpg'), 
             ),
             title: TextButton(
               onPressed: () {
@@ -58,7 +54,7 @@ class HomePage extends StatelessWidget {
                 'Rishaf',
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black, // You can customize text color
+                  color: Colors.black, 
                 ),
               ),
             ),
