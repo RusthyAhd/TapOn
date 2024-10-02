@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:tap_on/Users/showprovider.dart';
-import 'package:tap_on/Users/temporarly%20confirmed.dart';
+import 'package:tap_on/user-services/showprovider.dart';
+import 'package:tap_on/user-renttools/temporarly%20confirmed.dart';
 
 class WaitingPage extends StatefulWidget {
   @override

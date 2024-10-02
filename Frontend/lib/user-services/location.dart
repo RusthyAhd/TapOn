@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/Users/showToolshop.dart';
+import 'package:tap_on/user-services/showprovider.dart';
 
-class TLocationPage extends StatefulWidget {
+class LocationPage extends StatefulWidget {
   @override
   _LocationPageState createState() => _LocationPageState();
 }
 
-class _LocationPageState extends State<TLocationPage> {
+class _LocationPageState extends State<LocationPage> {
   final TextEditingController _locationController = TextEditingController();
   late GoogleMapController mapController;
 
@@ -22,8 +22,6 @@ class _LocationPageState extends State<TLocationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Location'),
-        backgroundColor: Colors.amber,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -31,6 +29,8 @@ class _LocationPageState extends State<TLocationPage> {
                 context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
+        title: Text('Location'),
+        backgroundColor: Colors.amber,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -40,7 +40,7 @@ class _LocationPageState extends State<TLocationPage> {
             TextField(
               controller: _locationController,
               decoration: InputDecoration(
-                labelText: 'Enter Your Location',
+                labelText: 'Enter Your Location Details',
                 hintText: 'e.g. City, Postal Code',
                 border: OutlineInputBorder(),
               ),
@@ -80,7 +80,8 @@ class _LocationPageState extends State<TLocationPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NearbyToolRantPage()),
+                  MaterialPageRoute(
+                      builder: (context) => NearbyServiceProvidersPage()),
                 );
               },
               style: ElevatedButton.styleFrom(

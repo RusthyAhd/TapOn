@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Users/User%20product%20details.dart';
-import 'package:tap_on/Users/Tool%20location.dart';
+import 'package:tap_on/user-services/location.dart';
+import 'package:tap_on/Providers/service%20details.dart';
 
-class NearbyToolRantPage extends StatelessWidget {
+class NearbyServiceProvidersPage extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
     {
-      'name': 'hamthy hardware',
+      'name': 'Mohammed Rishaf',
       'address': '4140 Parker Rd, Allentown, New Mexico 31134',
       'rating': 4.9,
       'service': 'General',
       'image': 'assets/mohammed.jpg',
     },
     {
-      'name': 'omega store',
+      'name': 'Annette Black',
       'address': 'Electrical Services',
       'rating': 4.9,
       'service': 'Electrical',
@@ -33,14 +33,20 @@ class NearbyToolRantPage extends StatelessWidget {
       backgroundColor: Colors.yellow[700],
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
-        title: Text('Nearby Tool Shop', style: TextStyle(color: Colors.black)),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => TLocationPage()));
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LocationPage()),
+            );
+            // Action when the button is pressed
           },
         ),
+        title: Text('Nearby Service Providers',
+            style: TextStyle(color: Colors.black)),
+        centerTitle: true,
+        elevation: 0,
       ),
       body: Column(
         children: [
@@ -79,9 +85,10 @@ class NearbyToolRantPage extends StatelessWidget {
                     trailing: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Toolmenu()));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ServiceDetailsPage()),
+                        );
                         // Action when the button is pressed
                       },
                       child: Text('Choose'),
