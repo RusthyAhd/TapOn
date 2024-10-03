@@ -6,10 +6,7 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  // Controllers for text fields
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
+
 
   // Dropdown options for gender
   List<String> genderOptions = ["Male", "Female", "Other"];
@@ -37,14 +34,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('View Profile'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.save),
-            onPressed: () {
-              // Save changes function
-            },
-          ),
-        ],
+    
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -56,12 +46,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: AssetImage('assets/profile_picture.png'), // Your image here
+                    backgroundImage: AssetImage('assets/images/muhammed.jpeg'), 
                   ),
                   SizedBox(height: 8),
                   ElevatedButton(
                     onPressed: () {
-                      // Functionality for changing photo
+                      // changing photo
                     },
                     child: Text('Change Photo'),
                   ),
@@ -72,19 +62,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             Text('Details', style: TextStyle(fontSize: 18)),
             SizedBox(height: 8),
             TextFormField(
-              controller: _nameController,
               decoration: InputDecoration(
                 labelText: 'Full Name',
               ),
             ),
             TextFormField(
-              controller: _phoneController,
               decoration: InputDecoration(
                 labelText: 'Phone Number',
               ),
             ),
             TextFormField(
-              controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Email Address',
               ),
@@ -105,7 +92,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
             ),
             SizedBox(height: 8),
-            // Gender dropdown
+      
             DropdownButtonFormField<String>(
               decoration: InputDecoration(
                 labelText: 'Gender',
@@ -148,8 +135,3 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: EditProfileScreen(),
-  ));
-}

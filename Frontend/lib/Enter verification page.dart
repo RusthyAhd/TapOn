@@ -10,36 +10,6 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  final List<TextEditingController> _controllers =
-      List.generate(4, (_) => TextEditingController());
-  final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
-
-  @override
-  void initState() {
-    super.initState();
-    for (int i = 0; i < _controllers.length; i++) {
-      _controllers[i].addListener(() {
-        if (_controllers[i].text.length == 1) {
-          if (i < _controllers.length - 1) {
-            FocusScope.of(context).requestFocus(_focusNodes[i + 1]);
-          } else {
-            FocusScope.of(context).unfocus(); // Optionally dismiss the keyboard
-          }
-        }
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    for (var controller in _controllers) {
-      controller.dispose();
-    }
-    for (var focusNode in _focusNodes) {
-      focusNode.dispose();
-    }
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +36,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   height: 50,
                   margin: const EdgeInsets.symmetric(horizontal: 8),
                   child: TextField(
-                    controller: _controllers[index],
-                    focusNode: _focusNodes[index],
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 20),
                     decoration: InputDecoration(
@@ -94,7 +62,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const Enternumber()));
-                    // Resend code logic
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
@@ -111,7 +78,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HomePage()));
-                    // Confirm code logic
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,

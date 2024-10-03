@@ -71,10 +71,6 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
               ),
-              IconButton(
-                icon: Icon(Icons.send),
-                onPressed: () {}
-              ),
             ],
           ),
         ),
