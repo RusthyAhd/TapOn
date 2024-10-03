@@ -29,14 +29,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   final TextEditingController _controller = TextEditingController();
 
-  void _sendMessage() {
-    if (_controller.text.isNotEmpty) {
-      setState(() {
-        messages.add({"text": _controller.text, "isUser": true});
-      });
-      _controller.clear();
-    }
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +73,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
               IconButton(
                 icon: Icon(Icons.send),
-                onPressed: _sendMessage,
+                onPressed: () {}
               ),
             ],
           ),
