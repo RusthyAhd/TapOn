@@ -7,7 +7,9 @@ const OwnerModel = require('./models/Owner.model')
 const port = 3000;
 
 app.get('/',(req,res)=>{
-    res.send("Hello Mr.Rusthy Do you know") //when run anywhere "http://localhost:${port}" this will show
+
+    res.send("Hello TapOn Guys") //when run anywhere "http://localhost:${port}" this will show
+
 });
 
 app.listen(port,()=>{

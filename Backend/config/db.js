@@ -7,3 +7,4 @@ const connection =mongoose.createConnection('mongodb+srv://rusthy2001:rusthy.011
 });//create mongodb database
 
 module.exports = connection;
+
