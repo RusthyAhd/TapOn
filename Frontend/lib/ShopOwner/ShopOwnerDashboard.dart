@@ -5,7 +5,6 @@ import 'package:tap_on/ShopOwner/ShopOrderhistory.dart';
 import 'package:tap_on/ShopOwner/AddTools.dart';
 import 'package:tap_on/ShopOwner/ShopProfile.dart';
 import 'package:tap_on/ShopOwner/shopfeedback.dart';
-
 import 'package:tap_on/ShopOwner/ToolsManagement.dart';
 
 class ShopdashboardPage extends StatelessWidget {
@@ -20,15 +19,15 @@ class ShopdashboardPage extends StatelessWidget {
             const Text(
               'TapOn ShopOwner',
               style: TextStyle(
-                fontSize: 20, // You can adjust the size
-                fontWeight: FontWeight.bold, // Optional: Makes the text bold
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const Text(
               'Incoming Orders',
               style: TextStyle(
-                fontSize: 16, // You can adjust the size
-                fontWeight: FontWeight.normal, // Optional: Normal text weight
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
               ),
             ),
           ],
