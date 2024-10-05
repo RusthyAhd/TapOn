@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/user-services/preBooking.dart';
 import 'package:tap_on/user-services/waiting%20page.dart';
 
 class ServiceDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[700],
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
         leading: IconButton(
@@ -35,13 +36,13 @@ class ServiceDetailsPage extends StatelessWidget {
             SizedBox(height: 15),
 
             // Service name and description
-            Text('Service Name & Description',
+            Text('Plumbing',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             SizedBox(height: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset('assets/plumbing_service.png',
+                Image.asset('assets/images/service_image.png',
                     height: 50, width: 50),
                 SizedBox(height: 10),
                 Text(
@@ -78,16 +79,23 @@ class ServiceDetailsPage extends StatelessWidget {
                   child: Text('Book Service'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
+                    foregroundColor: Colors.yellow,
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     textStyle: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
                 SizedBox(height: 8),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PreBookServicePage()),
+                    );
+                  },
                   child: Text('Pre Booking'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
+                    foregroundColor: Colors.yellow,
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     textStyle: TextStyle(fontSize: 16, color: Colors.white),
                   ),
@@ -102,7 +110,7 @@ class ServiceDetailsPage extends StatelessWidget {
                         label:
                             Text('Call', style: TextStyle(color: Colors.black)),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
+                          backgroundColor: Colors.amber,
                           side: BorderSide(color: Colors.black),
                         ),
                       ),
@@ -115,7 +123,7 @@ class ServiceDetailsPage extends StatelessWidget {
                         label: Text('Message',
                             style: TextStyle(color: Colors.black)),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
+                          backgroundColor: Colors.amber,
                           side: BorderSide(color: Colors.black),
                         ),
                       ),

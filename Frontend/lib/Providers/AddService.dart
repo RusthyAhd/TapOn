@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tap_on/Providers/providerDashboard.dart';
 
 class AddServicePage extends StatefulWidget {
@@ -15,7 +18,24 @@ class _AddSErvicePageState extends State<AddServicePage> {
   bool isNew = true;
   TimeOfDay? startTime;
   TimeOfDay? endTime;
-
+  File? _image;
+  double _totalAmount = 0.0; // Store total amount, initially 0
+  double _discount = 0.0; // To store the discount value
+  TextEditingController _priceController = TextEditingController();
+  TextEditingController _discountController = TextEditingController();
+  // Function to update total amount based on the price entered
+  void _updateTotalAmount() {
+    setState(() {
+      _totalAmount = double.tryParse(_priceController.text) ?? 0.0;
+    });
+  }
+    // Function to apply the discount
+  void _applyDiscount() {
+    setState(() {
+      _discount = double.tryParse(_discountController.text) ?? 0.0;
+      _totalAmount = (double.tryParse(_priceController.text) ?? 0.0) - _discount;  // Adjust total amount
+    });
+  }
   // Weekdays selection
   final List<String> weekdays = [
     'Monday',
@@ -47,13 +67,26 @@ class _AddSErvicePageState extends State<AddServicePage> {
     }
   }
 
+  //pick image
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
   bool enableTimeDuration = false;
   TextEditingController timeDurationController = TextEditingController();
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Add Your Service"),
+        backgroundColor: Colors.amber,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -238,16 +271,17 @@ class _AddSErvicePageState extends State<AddServicePage> {
                 SizedBox(height: 16),
                 Text("Service Image"),
                 GestureDetector(
-                  onTap: () {
-                    // Functionality to upload image
-                  },
+                  onTap: _pickImage,
                   child: Container(
                     width: 150,
                     height: 150,
                     color: Colors.grey[300],
-                    child: Icon(Icons.camera_alt),
+                    child: _image == null
+                        ? Icon(Icons.camera_alt)
+                        : Image.file(_image!, fit: BoxFit.cover),
                   ),
                 ),
+
                 SizedBox(height: 16),
                 SizedBox(height: 16),
                 SwitchListTile(
@@ -297,22 +331,63 @@ class _AddSErvicePageState extends State<AddServicePage> {
                   child: Text("Submit"),
                 ),
 
-                SizedBox(height: 16),
-                Text("Price"),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Price',
-                    border: OutlineInputBorder(),
-                  ),
-                  keyboardType: TextInputType.number,
-                ),
+              
+            // Input field for the price
+            TextField(
+              controller: _priceController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: 'Enter Price',
+                hintText: 'Enter price in numbers',
+              ),
+              onChanged: (value) {
+                _updateTotalAmount();  // Update total when price is entered
+              },
+            ),
 
                 SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    // Add discounts functionality
+                  // Display the total amount
+            Text(
+              "Total Price: \Rs.${_totalAmount.toStringAsFixed(2)}",
+              style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16),
+ ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Enter Discount'),
+                      content: TextField(
+                        controller: _discountController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: 'Discount Amount',
+                          hintText: 'Enter discount in numbers',
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();  // Close dialog
+                          },
+                          child: Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _applyDiscount();  // Apply the discount
+                            Navigator.of(context).pop();  // Close dialog
+                          },
+                          child: Text('Apply'),
+                        ),
+                      ],
+                    );
                   },
-                  child: Text("+ Add Discounts"),
+                );
+              },
+              child: Text("+ Add Discounts"),
+              
                 ),
                 SizedBox(height: 16),
 
@@ -362,11 +437,10 @@ class _AddSErvicePageState extends State<AddServicePage> {
                             builder: (context) => Providerdashboard()),
                       );
                     },
-                    child: Text('Add'),
+                    child: Text('Add Service'),
                     style: ElevatedButton.styleFrom(
-                        minimumSize: Size(double.infinity, 50),
-                        backgroundColor:
-                            (Colors.yellow[700]) // Full width button
+                        backgroundColor: (Colors.yellow[700]),
+                        foregroundColor: Colors.black // Full width button
                         ),
                   ),
                 ),

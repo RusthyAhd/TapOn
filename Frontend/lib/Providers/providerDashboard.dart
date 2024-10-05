@@ -144,17 +144,20 @@ class Providerdashboard extends StatelessWidget {
               height: 25,
             ),
 
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
-              },
-              style: ElevatedButton.styleFrom(
-                foregroundColor: const Color.fromARGB(255, 8, 0, 0),
-                backgroundColor: const Color.fromARGB(255, 219, 135, 9),
-                minimumSize: Size(70, 50),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                        foregroundColor: Colors.yellow ,
+                  
+                  minimumSize: Size(70, 50),
+                ),
+                child: Text('Back to Home'),
               ),
-              child: Text('Back to Home'),
             ),
           ],
         ),
@@ -215,6 +218,7 @@ class Providerdashboard extends StatelessWidget {
       required String ordername,
       required MaterialColor statusColor}) {
     return Card(
+       color: const Color.fromARGB(255, 233, 231, 207),
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Padding(
         padding: EdgeInsets.all(15),
@@ -264,7 +268,8 @@ class Providerdashboard extends StatelessWidget {
                       child: const Text('Accept'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(
-                            255, 255, 197, 39), // Button color
+                            255, 255, 197, 39), 
+                            foregroundColor: Colors.black// Button color
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -281,7 +286,8 @@ class Providerdashboard extends StatelessWidget {
                       },
                       child: const Text('Reject'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white, // Button color
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black // Button color
                       ),
                     ),
                   ],
