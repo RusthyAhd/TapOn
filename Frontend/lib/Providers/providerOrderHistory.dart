@@ -1,13 +1,63 @@
 import 'package:flutter/material.dart';
 
-class Providerorderhistory extends StatelessWidget {
+class Providerorderhistory extends StatefulWidget {
+  @override
+  _ProviderorderhistoryState createState() => _ProviderorderhistoryState();
+}
+
+class _ProviderorderhistoryState extends State<Providerorderhistory> {
+  String selectedDateFilter = 'Date'; // To store the selected date filter
+  String orderIdFilter = '';
+  // List of all orders. You can add new orders to this list dynamically.
+  List<Map<String, dynamic>> allOrders = [
+    {
+      'status': 'COMPLETED',
+      'subStatus': '2ND ORDER',
+      'orderId': '162267901',
+      'date': '12 Sept 2024, 9:31 am',
+      'ordername': 'Homemaitanance',
+      'statusColor': Colors.green,
+      'dateFilter': 'Today',
+    },
+    {
+      'status': 'COMPLETED',
+      'subStatus': 'NEW CUSTOMER',
+      'orderId': '162250430',
+      'date': '11 Sept 2024, 12:15 pm',
+      'ordername': 'Homemaitanance',
+      'statusColor': Colors.green,
+      'dateFilter': 'Yesterday',
+    },
+    {
+      'status': 'CANCELLED',
+      'subStatus': 'NEW CUSTOMER',
+      'reason': 'Change my mind',
+      'orderId': '162246651',
+      'date': '11 Sept 2024, 8:36 am',
+      'ordername': 'Homemaitanance',
+      'statusColor': Colors.red,
+      'dateFilter': 'Yesterday',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
+    // Filter the orders based on the selected date filter
+    List<Map<String, dynamic>> filteredOrders = allOrders.where((order) {
+            // Check if selected date filter matches the order's date filter
+      bool matchesDateFilter = selectedDateFilter == 'Date' ||
+          order['dateFilter'] == selectedDateFilter;
+      // Check if the Order ID matches the input
+      bool matchesOrderId =
+          orderIdFilter.isEmpty || order['orderId'].contains(orderIdFilter);
+
+      return matchesDateFilter && matchesOrderId;
+    }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Service History '),
-        backgroundColor:  Colors.yellow[700],
-
+        backgroundColor: Colors.yellow[700],
       ),
       body: Column(
         children: [
@@ -22,15 +72,17 @@ class Providerorderhistory extends StatelessWidget {
                       labelText: 'Date',
                       border: OutlineInputBorder(),
                     ),
-                    items: ['Date', 'Today', 'Yesterday']
-                        .map((String category) {
+                    items:
+                        ['Date', 'Today', 'Yesterday'].map((String category) {
                       return DropdownMenuItem<String>(
                         value: category,
                         child: Text(category),
                       );
                     }).toList(),
                     onChanged: (newValue) {
-                      // Handle date change
+                      setState(() {
+                        selectedDateFilter = newValue!;
+                      });
                     },
                   ),
                 ),
@@ -42,13 +94,22 @@ class Providerorderhistory extends StatelessWidget {
                       labelText: 'Order ID',
                       border: OutlineInputBorder(),
                     ),
-                  ),
+                    onChanged: (value){
+                       setState(() {
+                        orderIdFilter = value; 
+                    },
+                       );
+                    },
+                ),
                 ),
                 SizedBox(width: 8.0),
                 // Reset Button
                 ElevatedButton(
                   onPressed: () {
-                    // Handle reset
+                    setState(() {
+                      selectedDateFilter = 'Date';
+                      orderIdFilter = ''; // Reset filter
+                    });
                   },
                   child: Text('Reset'),
                 ),
@@ -56,35 +117,20 @@ class Providerorderhistory extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView(
-              children: [
-                orderItem(
-                  status: 'COMPLETED',
-                  subStatus: '2ND ORDER',
-                  orderId: '162267901',
-                  date: '12 Sept 2024, 9:31 am',
-                  ordername:'Homemaitanance',
-                  statusColor: Colors.green,
-                ),
-                orderItem(
-                  status: 'COMPLETED',
-                  subStatus: 'NEW CUSTOMER',
-                  orderId: '162250430',
-                  date: '11 Sept 2024, 12:15 pm',
-                  ordername:'Homemaitanance',
-                  statusColor: Colors.green,
-                ),
-                orderItem(
-                  status: 'CANCELLED',
-                  subStatus: 'NEW CUSTOMER',
-                  reason: 'Change my mind',
-                  orderId: '162246651',
-                  date: '11 Sept 2024, 8:36 am',
-                  ordername:'Homemaitanance',
-                  statusColor: Colors.red,
-                ),
-                
-              ],
+            child: ListView.builder(
+              itemCount: filteredOrders.length,
+              itemBuilder: (context, index) {
+                var order = filteredOrders[index];
+                return orderItem(
+                  status: order['status'],
+                  subStatus: order['subStatus'],
+                  reason: order['reason'],
+                  orderId: order['orderId'],
+                  date: order['date'],
+                  ordername: order['ordername'],
+                  statusColor: order['statusColor'],
+                );
+              },
             ),
           ),
         ],
@@ -143,7 +189,6 @@ class Providerorderhistory extends StatelessWidget {
                 style: TextStyle(color: Colors.red),
               ),
             ],
-            
           ],
         ),
       ),
