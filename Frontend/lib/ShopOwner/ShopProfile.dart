@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/ShopOwner/ShopOwnerDashboard.dart';
 
 class ShopProfilePage extends StatefulWidget {

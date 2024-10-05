@@ -5,25 +5,25 @@ import 'package:tap_on/user-renttools/Tool%20location.dart';
 class NearbyToolRantPage extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
     {
-      'name': 'hamthy hardware',
-      'address': '4140 Parker Rd, Allentown, New Mexico 31134',
-      'rating': 4.9,
+      'name': 'Icom hardware',
+      'address': 'ViharaMahathevi Park Road,Town Hall , Colombo',
+      'rating': 4.4,
       'service': 'General',
-      'image': 'assets/mohammed.jpg',
+      'image': 'assets/images/muhammed.jpeg',
     },
     {
-      'name': 'omega store',
+      'name': 'Salman Store',
       'address': 'Electrical Services',
       'rating': 4.9,
       'service': 'Electrical',
-      'image': 'assets/annette.jpg',
+      'image': 'assets/images/salman.jpeg',
     },
     {
       'name': 'Guy Hawkins',
       'address': 'Plumbing Services',
       'rating': 4.5,
       'service': 'Plumbing',
-      'image': 'assets/guy.jpg',
+      'image': 'assets/images/sarukan.jpeg',
     },
   ];
 
@@ -33,7 +33,7 @@ class NearbyToolRantPage extends StatelessWidget {
       backgroundColor: Colors.yellow[700],
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
-        title: Text('Nearby Tool Shop', style: TextStyle(color: Colors.black)),
+        title: Text('Nearby Tool Shops', style: TextStyle(color: Colors.black)),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -86,7 +86,8 @@ class NearbyToolRantPage extends StatelessWidget {
                       },
                       child: Text('Choose'),
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.yellow[700]),
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.yellow[700]),
                     ),
                   ),
                 );

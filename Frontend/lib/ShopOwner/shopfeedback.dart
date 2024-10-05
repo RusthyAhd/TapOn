@@ -38,12 +38,10 @@ class ReviewsPage extends StatelessWidget {
             ),
             SizedBox(height: 16),
 
-            // Rating distribution
             _buildRatingDistribution(),
 
             SizedBox(height: 16),
 
-            // Review list
             Expanded(
               child: ListView(
                 children: [
