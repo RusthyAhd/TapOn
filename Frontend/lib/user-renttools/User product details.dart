@@ -5,6 +5,7 @@ class Toolmenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.yellow[700],
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -32,23 +33,7 @@ class Toolmenu extends StatelessWidget {
             ),
             SizedBox(height: 10),
             // Categories buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Location'),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Electronics'),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Filters'),
-                ),
-              ],
-            ),
+
             SizedBox(height: 10),
             // List of items
             Expanded(

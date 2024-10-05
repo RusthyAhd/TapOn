@@ -45,19 +45,24 @@ class _LocationPageState extends State<TLocationPage> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 10),
             // Search Button
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 // Add search functionality here
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor:  Colors.amber[700], 
+                backgroundColor: Colors.amber[700],
               ),
-              child: Text('Search'),
+              child: Container(
+                width: 500, // Set the desired width here
+                child: Text('Search',textAlign: TextAlign.center,),
+              ),
             ),
-            SizedBox(height: 10),
+            SizedBox(
+              height: 10,
+            ),
             // Map Display
             Expanded(
               child: GoogleMap(
