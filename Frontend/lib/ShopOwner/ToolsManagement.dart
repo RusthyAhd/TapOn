@@ -19,7 +19,7 @@ class _MenuScreenState extends State<MenuScreen> {
     },
     {
       'id': 5878695,
-      'name': 'brush ',
+      'name': 'Brush ',
       'quantity': 04,
       'price': 595.00,
       'available': false,
