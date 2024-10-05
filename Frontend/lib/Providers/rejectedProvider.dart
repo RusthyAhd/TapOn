@@ -8,15 +8,7 @@ class CancelledOrderPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Rejected"),
-        actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              "Check Status",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
+        
         backgroundColor: Colors.amber,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),

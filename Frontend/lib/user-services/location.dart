@@ -85,8 +85,8 @@ class _LocationPageState extends State<LocationPage> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.amber, // Button color
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.yellow, // Button color
                 padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
               ),
               child: Text(

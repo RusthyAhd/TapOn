@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/constants.dart';
 
 class ShopOrderhistoryPage extends StatelessWidget {
   @override
@@ -7,8 +6,7 @@ class ShopOrderhistoryPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('History'),
-        backgroundColor:  Colors.yellow[700],
-
+        backgroundColor: Colors.yellow[700],
       ),
       body: Column(
         children: [
@@ -23,8 +21,8 @@ class ShopOrderhistoryPage extends StatelessWidget {
                       labelText: 'Date',
                       border: OutlineInputBorder(),
                     ),
-                    items: ['Date', 'Today', 'Yesterday']
-                        .map((String category) {
+                    items:
+                        ['Date', 'Today', 'Yesterday'].map((String category) {
                       return DropdownMenuItem<String>(
                         value: category,
                         child: Text(category),
@@ -65,7 +63,7 @@ class ShopOrderhistoryPage extends StatelessWidget {
                   orderId: '162267901',
                   date: '12 Sept 2024, 9:31 am',
                   itemCount: 4,
-                  itemname:'Hammer',
+                  itemname: 'Hammer',
                   statusColor: Colors.green,
                 ),
                 orderItem(
@@ -74,7 +72,7 @@ class ShopOrderhistoryPage extends StatelessWidget {
                   orderId: '162250430',
                   date: '11 Sept 2024, 12:15 pm',
                   itemCount: 1,
-                  itemname:'Hammer',
+                  itemname: 'Hammer',
                   statusColor: Colors.green,
                 ),
                 orderItem(
@@ -84,10 +82,9 @@ class ShopOrderhistoryPage extends StatelessWidget {
                   orderId: '162246651',
                   date: '11 Sept 2024, 8:36 am',
                   itemCount: 2,
-                  itemname:'Hammer',
+                  itemname: 'Hammer',
                   statusColor: Colors.red,
                 ),
-                
               ],
             ),
           ),
@@ -148,7 +145,6 @@ class ShopOrderhistoryPage extends StatelessWidget {
                 style: TextStyle(color: Colors.red),
               ),
             ],
-            
           ],
         ),
       ),

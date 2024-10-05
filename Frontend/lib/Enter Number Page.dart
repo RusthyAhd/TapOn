@@ -2,8 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:tap_on/Enter%20verification%20page.dart';
 import 'package:tap_on/constants.dart';
 
-class Enternumber extends StatelessWidget {
+class Enternumber extends StatefulWidget {
   const Enternumber({super.key});
+
+  @override
+  _EnternumberState createState() => _EnternumberState();
+}
+class _EnternumberState  extends State<Enternumber>{
+   final _formKey = GlobalKey<FormState>();
+  final _phoneController = TextEditingController(); 
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    super.dispose();
+  }
+
+  String? validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your phone number';
+    } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+      return 'Please enter a valid 10-digit phone number';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +74,18 @@ class Enternumber extends StatelessWidget {
                     slogan,
                     style: TextStyle(color: Colors.grey),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 50.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.phone),
-                        labelText: "Enter your Number",
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                    child: Form(
+                      key: _formKey,
+                      child: TextFormField(
+                        controller: _phoneController,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.phone),
+                          labelText: "Enter your Number",
+                        ),
+                        keyboardType: TextInputType.phone,
+                        validator: validatePhoneNumber,
                       ),
                     ),
                   ),
@@ -67,11 +94,15 @@ class Enternumber extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      if (_formKey.currentState!.validate()) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => VerificationScreen()));
-                      // Add your onPressed logic here
+
+
+                      
+
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,

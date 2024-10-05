@@ -30,7 +30,7 @@ class NearbyServiceProvidersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[700],
+      backgroundColor: Colors.white ,
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
         leading: IconButton(
@@ -93,7 +93,10 @@ class NearbyServiceProvidersPage extends StatelessWidget {
                       },
                       child: Text('Choose'),
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.yellow[700]),
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.yellow,
+                          ),
+                          
                     ),
                   ),
                 );

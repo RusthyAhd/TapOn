@@ -5,17 +5,9 @@ class AcceptedOrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.amber,
         title: Text('Accepted'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Text('Check Status',
-                  style: TextStyle(
-                      color: Colors.white, backgroundColor: Colors.amber)),
-            ),
-          ),
-        ],
+        
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -49,11 +41,21 @@ class AcceptedOrderPage extends StatelessWidget {
                 Text('12:00 PM'),
               ],
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 25),
 
             // Customer Details
-            ListTile(
-              title: Text('About Customer'),
+            Text("About Customer",style: TextStyle(fontSize: 16),),
+            SizedBox(height: 10,),
+           Container(
+  padding: EdgeInsets.all(10),  // Optional padding around the Container
+  decoration: BoxDecoration(
+    color: Colors.grey[200],  // Background color of the container
+    borderRadius: BorderRadius.circular(10),
+  ), 
+  child: Column(
+            children: [
+              ListTile(
+              title: Text('Customer Details'),
               trailing: TextButton(
                 onPressed: () {
                   // Implement navigation to map or directions page
@@ -94,6 +96,9 @@ class AcceptedOrderPage extends StatelessWidget {
                 ],
               ),
             ),
+            ],
+  ),
+           ),
 
             SizedBox(height: 16),
 
@@ -145,8 +150,3 @@ class AcceptedOrderPage extends StatelessWidget {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: AcceptedOrderPage(),
-  ));
-}
