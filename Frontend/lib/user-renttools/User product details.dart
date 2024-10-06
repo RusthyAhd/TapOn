@@ -5,7 +5,6 @@ class Toolmenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[700],
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -14,10 +13,15 @@ class Toolmenu extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => NearbyToolRantPage()));
           },
         ),
-        title: Text('Products'),
+        title: const Text('Products',
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24)),
         backgroundColor: Colors.amber,
       ),
-      body: Padding(
+      body: 
+       Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
@@ -39,36 +43,16 @@ class Toolmenu extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  productTile(
-                      context,
-                      'OnePlus 11R 256GB 12GB RAM',
-                      'Rs 89,000',
-                      'Colombo, Mobile Phones',
-                      'https://via.placeholder.com/150'), // Example Image URL
-                  productTile(
-                      context,
-                      'Xiaomi Redmi 12 8GB | 128GB (Used)',
-                      'Rs 30,000',
-                      'Colombo, Mobile Phones',
-                      'https://via.placeholder.com/150'),
-                  productTile(
-                      context,
-                      'Apple iPhone 15 Pro 128GB (New)',
-                      'Rs 295,000',
-                      'Colombo, Mobile Phones',
-                      'https://via.placeholder.com/150'),
-                  productTile(
-                      context,
-                      'Samsung Galaxy M51 6GB 128GB (Used)',
-                      'Rs 34,500',
-                      'Kegalle, Mobile Phones',
-                      'https://via.placeholder.com/150'),
-                  productTile(
-                      context,
-                      'ZTE A35 2GB/64GB (New)',
-                      'Rs 23,680',
-                      'Colombo, Mobile Phones',
-                      'https://via.placeholder.com/150'),
+                  productTile(context, 'Hammer (New)', 'Rs 1,000',
+                      'assets/images/hammer.jpg'),
+                  productTile(context, 'Pliers (Used)', 'Rs 300',
+                      'assets/images/pliers.jpg'),
+                  productTile(context, 'Screwdrivers (New)', 'Rs 1,900',
+                      'assets/images/Screwdrivers.jpg'),
+                  productTile(context, 'Wire Stripper (Used)', 'Rs 500',
+                      'assets/images/Wire Stripper.jpeg'),
+                  productTile(context, 'Flame Retardant Shirt (New)', 'Rs 680',
+                      'assets/images/Flame Retardant Shirt.jpg'),
                 ],
               ),
             ),
@@ -78,17 +62,16 @@ class Toolmenu extends StatelessWidget {
     );
   }
 
-  Widget productTile(BuildContext context, String title, String price,
-      String location, String imageUrl) {
+  Widget productTile(
+      BuildContext context, String title, String price, String image) {
     return Card(
       child: ListTile(
-        leading: Image.network(imageUrl, width: 50, height: 50),
+        leading: Image.asset(image, width: 50, height: 50),
         title: Text(title),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(price),
-            Text(location),
           ],
         ),
         trailing: Icon(Icons.more_vert),
