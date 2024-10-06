@@ -18,10 +18,8 @@ class InitialScreen extends StatefulWidget {
 class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
 
-    return MaterialApp(
+    return const MaterialApp(
       home: TapOnApp(),
       title: appName,
       debugShowCheckedModeBanner: false,
