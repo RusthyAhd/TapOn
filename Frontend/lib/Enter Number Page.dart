@@ -80,7 +80,7 @@ class _EnternumberState  extends State<Enternumber>{
                       key: _formKey,
                       child: TextFormField(
                         controller: _phoneController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           prefixIcon: Icon(Icons.phone),
                           labelText: "Enter your Number",
                         ),
@@ -98,11 +98,11 @@ class _EnternumberState  extends State<Enternumber>{
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => VerificationScreen()));
+                              builder: (context) => const VerificationScreen()));
 
 
                       
-
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
