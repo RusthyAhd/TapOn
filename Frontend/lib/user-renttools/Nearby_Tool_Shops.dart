@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:tap_on/user-renttools/User%20product%20details.dart';
 import 'package:tap_on/user-renttools/Tool%20location.dart';
+import 'package:tap_on/user-renttools/Toolmenu.dart';
 
 class NearbyToolRantPage extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
@@ -10,21 +9,21 @@ class NearbyToolRantPage extends StatelessWidget {
       'name': 'Icom hardware',
       'address': 'ViharaMahathevi Park Road,Town Hall , Colombo',
       'rating': 4.5,
-      'service': 'General',
+      'Phone No': '0759560114',
       'image': 'assets/images/muhammed.jpeg',
     },
     {
       'name': 'Salman Store',
-      'address': 'Electrical Services',
+      'address': 'No.19,Old Boc Lane Kinniya-04',
       'rating': 2.9,
-      'service': 'Electrical',
+      'Phone No': '0756598114',
       'image': 'assets/images/salman.jpeg',
     },
     {
       'name': 'Guy Hawkins',
-      'address': 'Plumbing Services',
+      'address': 'Diyagama,Homagama,colombo-5.',
       'rating': 4.0,
-      'service': 'Plumbing',
+      'Phone No': '0756596523',
       'image': 'assets/images/sarukan.jpeg',
     },
   ];
@@ -46,15 +45,19 @@ class NearbyToolRantPage extends StatelessWidget {
             // AppBar with Custom Styling
             SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 2),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16.0, horizontal: 2),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
+                      icon:
+                          Icon(Icons.arrow_back, color: Colors.black, size: 30),
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => TLocationPage()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TLocationPage()));
                       },
                     ),
                     const Text(
@@ -65,7 +68,9 @@ class NearbyToolRantPage extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(width: 30), // Placeholder to balance the title alignment
+                    SizedBox(
+                        width:
+                            30), // Placeholder to balance the title alignment
                   ],
                 ),
               ),
@@ -79,16 +84,17 @@ class NearbyToolRantPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 10,
                     offset: Offset(0, 5),
                   )
                 ],
-                border: Border.all(color: Colors.white.withOpacity(0.4), width: 1),
+                border:
+                    Border.all(color: Colors.white.withOpacity(0.4), width: 1),
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Map View Placeholder',
                   style: TextStyle(
@@ -109,18 +115,10 @@ class NearbyToolRantPage extends StatelessWidget {
                   final provider = serviceProviders[index];
 
                   return GestureDetector(
-                    onTap: () {
-                      // Navigate to Tool Details Page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Toolmenu(),
-                        ),
-                      );
-                    },
                     child: Card(
                       elevation: 10,
-                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -163,7 +161,7 @@ class NearbyToolRantPage extends StatelessWidget {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    'Service: ${provider['service']}',
+                                    'Phone No: ${provider['Phone No']}',
                                     style: TextStyle(color: Colors.grey[800]),
                                   ),
                                   SizedBox(height: 8),
@@ -177,7 +175,8 @@ class NearbyToolRantPage extends StatelessWidget {
                                         allowHalfRating: true,
                                         itemCount: 5,
                                         itemSize: 20,
-                                        itemPadding: EdgeInsets.symmetric(horizontal: 2),
+                                        itemPadding:
+                                            EdgeInsets.symmetric(horizontal: 2),
                                         itemBuilder: (context, _) => Icon(
                                           Icons.star,
                                           color: Colors.amber,
@@ -197,16 +196,60 @@ class NearbyToolRantPage extends StatelessWidget {
                             // "Choose" Button with Ripple Effect
                             ElevatedButton(
                               onPressed: () {
+                                // Pass the shop's name and relevant products
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Toolmenu()),
+                                    builder: (context) => Toolmenu(
+                                      shopName: provider['name'],
+                                      products: const [
+                                        {
+                                          'title': 'Hammer (New)',
+                                          'price': 'Rs 1,000',
+                                          'image': 'assets/images/hammer.jpg',
+                                          'description':
+                                              'This is a high-quality new hammer made for heavy-duty usage.',
+                                        },
+                                        {
+                                          'title': 'Pliers (Used)',
+                                          'price': 'Rs 300',
+                                          'image': 'assets/images/pliers.jpg',
+                                          'description':
+                                              'Used pliers in good condition. Suitable for small repairs.',
+                                        },
+                                                              {
+                                          'title': 'Screwdrivers (New)',
+                                          'price': 'Rs 900',
+                                          'image': 'assets/images/Screwdrivers.jpg',
+                                          'description':
+                                              'This is a high-quality new hammer made for heavy-duty usage.',
+                                        },
+                                                              {
+                                          'title': 'Wire Stripper (Used)',
+                                          'price': 'Rs 500',
+                                          'image': 'assets/images/Wire Stripper.jpeg',
+                                          'description':
+                                              'This is a high-quality new hammer made for heavy-duty usage.',
+                                        },
+                                                              {
+                                          'title': 'Flame Retardant Shirt (New)',
+                                          'price': 'Rs 680',
+                                          'image': 'assets/images/Flame Retardant Shirt.jpg',
+                                          'description':
+                                              'This is a high-quality new hammer made for heavy-duty usage.',
+                                        },
+                                        // Add more products for the shop here...
+                                      ],
+                                    ),
+                                  ),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.white, backgroundColor: Colors.yellow[700],
+                                foregroundColor: Colors.white,
+                                backgroundColor: Colors.black,
                                 elevation: 5,
-                                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 16),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
@@ -215,7 +258,7 @@ class NearbyToolRantPage extends StatelessWidget {
                                 'Choose',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),
@@ -230,4 +273,3 @@ class NearbyToolRantPage extends StatelessWidget {
     );
   }
 }
-
