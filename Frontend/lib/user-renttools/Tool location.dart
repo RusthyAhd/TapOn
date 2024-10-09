@@ -141,7 +141,7 @@ class _LocationPageState extends State<TLocationPage> {
               ),
               child: Container(
                 width: size.width * 0.3, // 90% of screen width
-                child: Text(
+                child: const Text(
                   'Continue',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18),

@@ -40,7 +40,7 @@ class ConfirmedServicePage extends StatelessWidget {
                     child: Icon(Icons.plumbing, size: 40, color: Colors.blue),
                   ),
                   SizedBox(width: 16),
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -95,8 +95,8 @@ class ConfirmedServicePage extends StatelessWidget {
             ),
 
             // Service Description
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -144,7 +144,7 @@ class ConfirmedServicePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   color: Colors.white,
                 ),
-                child: Column(
+                child: const Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -213,7 +213,7 @@ class ConfirmedServicePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: Center(
+                child: const Center(
                   child: Text(
                     "Cancel",
                     style: TextStyle(color: Colors.white, fontSize: 16),
