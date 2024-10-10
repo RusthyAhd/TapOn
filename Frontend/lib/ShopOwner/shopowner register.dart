@@ -40,7 +40,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
       try {
         // Send POST request to backend with user data
         var response = await http.post(
-          Uri.parse(registration),
+          Uri.parse("http://localhost:3000/registration"),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode(shopownerData),
         );
