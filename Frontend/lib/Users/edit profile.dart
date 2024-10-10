@@ -8,7 +8,7 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
 
 
-  // Dropdown options for gender
+  
   List<String> genderOptions = ["Male", "Female", "Other"];
   String selectedGender = "";
 
@@ -70,6 +70,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               decoration: InputDecoration(
                 labelText: 'Phone Number',
               ),
+            ),
+            TextFormField(
+              decoration:const InputDecoration(
+                labelText: 'Add'
+              )
             ),
             TextFormField(
               decoration: InputDecoration(

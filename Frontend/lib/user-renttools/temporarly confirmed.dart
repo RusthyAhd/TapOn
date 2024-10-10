@@ -14,7 +14,7 @@ class ConfirmedServicePage extends StatelessWidget {
               width: double.infinity,
               padding: EdgeInsets.all(16),
               color: Colors.black,
-              child: Center(
+              child: const Center(
                 child: Text(
                   "On the way to pick up your service\nin 2 mins",
                   textAlign: TextAlign.center,
