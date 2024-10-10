@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:tap_on/database/config.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -29,12 +32,73 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
+  // Create Profile API call
+  Future<void> createProfile() async {
+    final url = Uri.parse("http://localhost:3000/registration");
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'name': _nameController.text,
+        'email': _emailController.text,
+        'phone': _phoneController.text,
+        'gender': selectedGender,
+        'birthday': selectedDate?.toIso8601String(), // Convert DateTime to ISO format
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      print('Profile created successfully');
+    } else {
+      print('Failed to create profile: ${response.body}');
+    }
+  }
+
+  // Fetch Profile by Email API call
+  Future<void> _fetchProfile(String email) async {
+    final url = Uri.parse("http://localhost:3000" + "/$email");
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final profile = jsonDecode(response.body);
+      setState(() {
+        _nameController.text = profile['name'];
+        _emailController.text = profile['email'];
+        _phoneController.text = profile['phone'];
+        selectedGender = profile['gender'];
+        selectedDate = DateTime.parse(profile['birthday']);
+      });
+    } else {
+      print('Failed to fetch profile: ${response.body}');
+    }
+  }
+
+  // Update Profile API call
+  Future<void> _updateProfile(String email) async {
+    final url = Uri.parse("http://localhost:3000" + "/$email");
+    final response = await http.put(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'name': _nameController.text,
+        'phone': _phoneController.text,
+        'gender': selectedGender,
+        'birthday': selectedDate?.toIso8601String(),
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      print('Profile updated successfully');
+    } else {
+      print('Failed to update profile: ${response.body}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('View Profile'),
-    
+        title: Text('Edit Profile'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -139,4 +203,3 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     );
   }
 }
-

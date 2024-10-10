@@ -4,12 +4,16 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/user-renttools/Nearby_Tool_Shops.dart';
 
+
+
 class TLocationPage extends StatefulWidget {
   @override
   _LocationPageState createState() => _LocationPageState();
 }
 
 class _LocationPageState extends State<TLocationPage> {
+  List<String> genderOptions = ["Colombo", "Trincomalee", "Batticaloa", "Kandy","Jaffna"];
+  String selectedGender = "";
   final TextEditingController _locationController = TextEditingController();
   late GoogleMapController mapController;
   bool isLoading = true; // Track if map is loading
@@ -51,53 +55,31 @@ class _LocationPageState extends State<TLocationPage> {
         child: Column(
           children: <Widget>[
             // Location Input Field with Icon
-            TextField(
-              controller: _locationController,
+            
+                
+           DropdownButtonFormField<String>(
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.location_on, color: Colors.amber[700]),
-                labelText: 'Enter Your Location',
-                labelStyle: TextStyle(color: Colors.amber[700]),
-                hintText: 'e.g. City, Postal Code',
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 243, 166, 33)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey[400]!),
-                ),
-                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.location_on, color: Colors.amber,),
+                labelText: "Select Your Location",
+                labelStyle: TextStyle(color: Colors.amber),
+
               ),
+              value: selectedGender.isNotEmpty ? selectedGender : null,
+              items: genderOptions
+                  .map((gender) => DropdownMenuItem<String>(
+                        value: gender,
+                        child: Text(gender),
+                      ))
+                  .toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedGender = value!;
+                });
+              },
             ),
-            SizedBox(height: 10),
 
             // Search Button with Animation
-            ElevatedButton(
-              onPressed: () {
-                // Add search functionality here
-              },
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.amber[700],
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
-              child: Container(
-                width: size.width * 0.9, // 90% of screen width
-                padding: EdgeInsets.symmetric(vertical: 12),
-                child:Center(
-                  child: Text('Search',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-              
-                  ),
-
-
-                )
-              ),
-            ),
+         
             SizedBox(height: 10),
 
             // Map Display with Loader
