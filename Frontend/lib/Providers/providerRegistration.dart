@@ -1,7 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:tap_on/Providers/providerDashboard.dart';
 
 class ServiceProviderRegistrationForm extends StatefulWidget {
+  const ServiceProviderRegistrationForm({super.key});
   @override
   _ServiceProviderRegistrationFormState createState() =>
       _ServiceProviderRegistrationFormState();
@@ -10,16 +13,63 @@ class ServiceProviderRegistrationForm extends StatefulWidget {
 class _ServiceProviderRegistrationFormState
     extends State<ServiceProviderRegistrationForm> {
   final _formKey = GlobalKey<FormState>();
-  bool agreeToTerms = false;
+
+  // Controllers for form fields
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController serviceTitleController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+
+  bool isAgreed = false;
+
+  // Method to handle registration process
+  Future<void> registerServiceProvider() async {
+    if (_formKey.currentState!.validate() && isAgreed) {
+      // Preparing the data to send to backend
+      Map<String, String> providerData = {
+        'name': nameController.text,
+        'service_title': serviceTitleController.text,
+        'phone': phoneController.text,
+        'address': addressController.text,
+        'location': locationController.text,
+        'email': emailController.text,
+      };
+
+      try {
+        // API call for service provider registration
+        var response = await http.post(
+          Uri.parse('http://localhost:3000/serviceregistration'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode(providerData),
+        );
+
+        if (response.statusCode == 200) {
+          // Successfully saved data to MongoDB, navigate to the dashboard
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Providerdashboard(),
+            ),
+          );
+          print('Provider Details successfully Registered ');
+        } else {
+          // Handle error from the backend
+          print('Failed to save data. Status code: ${response.statusCode}');
+        }
+      } catch (error) {
+        print('Error occurred while submitting data: $error');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
-        title: Text('Registration Form For Service Provider'),
+        title: Text('Service Provider Registration'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -28,8 +78,8 @@ class _ServiceProviderRegistrationFormState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Name Field
               TextFormField(
+                controller: nameController,
                 decoration: InputDecoration(
                   labelText: 'Name',
                   hintText: 'Enter your name',
@@ -41,13 +91,12 @@ class _ServiceProviderRegistrationFormState
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
-
-              // Service Title Field
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(
+                controller: serviceTitleController,
+                decoration: const InputDecoration(
                   labelText: 'Service Title',
-                  hintText: 'Enter your Occupation',
+                  hintText: 'Enter your occupation',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -56,37 +105,11 @@ class _ServiceProviderRegistrationFormState
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
-
-              // Service Type Field (using FilterChip)
-              Text(
-                'Service Type',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8.0),
-              Wrap(
-                spacing: 8.0,
-                runSpacing: 4.0,
-                children: [
-                  FilterChipWidget(label: 'Plumbing'),
-                  FilterChipWidget(label: 'Electrical work'),
-                  FilterChipWidget(label: 'Carpentering'),
-                  FilterChipWidget(label: 'Painting'),
-                  FilterChipWidget(label: 'Gardening'),
-                  FilterChipWidget(label: 'Repairing(fridges...)'),
-                  FilterChipWidget(label: 'Building'),
-                  FilterChipWidget(label: 'Phone repairing'),
-                  FilterChipWidget(label: 'Barber'),
-                  FilterChipWidget(label: 'Other'),
-                ],
-              ),
-              SizedBox(height: 16.0),
-
-              // Phone Number Field
+              const SizedBox(height: 16.0),
               TextFormField(
                 controller: phoneController,
                 decoration: InputDecoration(
-                  labelText: 'Enter Your Phone Number',
+                  labelText: 'Phone Number',
                   hintText: 'Enter your phone number',
                 ),
                 keyboardType: TextInputType.phone,
@@ -99,11 +122,10 @@ class _ServiceProviderRegistrationFormState
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
-
-              // Address Field
+              const SizedBox(height: 16.0),
               TextFormField(
-                decoration: InputDecoration(
+                controller: addressController,
+                decoration: const InputDecoration(
                   labelText: 'Address',
                   hintText: 'Enter your address',
                 ),
@@ -115,12 +137,11 @@ class _ServiceProviderRegistrationFormState
                 },
               ),
               SizedBox(height: 16.0),
-
-              // Location Field
               TextFormField(
+                controller: locationController,
                 decoration: InputDecoration(
-                  labelText: 'Enter Your Location',
-                  hintText: 'e.g. City, Postal Code',
+                  labelText: 'Location',
+                  hintText: 'City or Postal Code',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -130,122 +151,68 @@ class _ServiceProviderRegistrationFormState
                 },
               ),
               SizedBox(height: 16.0),
-
-              // Email Field
               TextFormField(
                 controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   hintText: 'Enter your email',
                 ),
-                keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
-                  } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                      .hasMatch(value)) {
+                  } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
                     return 'Enter a valid email address';
                   }
                   return null;
                 },
               ),
               SizedBox(height: 16.0),
-
-              // More Options (Description)
-              ExpansionTile(
-                title: Text('More Options'),
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Description',
-                      hintText: 'Describe your Achievements',
-                    ),
-                  ),
-                ],
+              const Text('Terms and Conditions',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              const SizedBox(height: 10),
+              const Text(
+                'By using the Handyman App, you agree to these terms. Provide '
+                'accurate information during registration. You are responsible for '
+                'keeping your account details secure. Must ensure tools are '
+                'described accurately, safe, and functional. The app only connects '
+                'users and providers. We are not responsible for the quality or '
+                'outcome of services or tools provided. You must provide accurate '
+                'contact information.',
+                style: TextStyle(fontSize: 12),
               ),
-              SizedBox(height: 16.0),
-
-              // Terms and Conditions
-              Text(
-                'Terms and Conditions',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                'By using the Handyman App, you agree to these terms. Provide accurate information during registration. You are responsible for keeping your account details secure. Must ensure tools are described accurately, safe, and functional. The app only connects users and providers. We are not responsible for the quality or safety of services or tools provided. You must provide accurate contact information.',
-                style: TextStyle(color: Colors.black54),
-              ),
-              SizedBox(height: 16.0),
-
-              // Agreement Checkbox
+              const SizedBox(height: 20),
               Row(
-                children: [
+                children: <Widget>[
+                  const Text('Do You Agree?',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  const SizedBox(width: 5),
                   Checkbox(
-                    value: agreeToTerms,
+                    value: isAgreed,
                     onChanged: (bool? value) {
                       setState(() {
-                        agreeToTerms = value!;
+                        isAgreed = value ?? false;
                       });
                     },
                   ),
-                  Text('Do You Agree'),
                 ],
               ),
-
-              // Continue Button
+              const SizedBox(height: 15),
               Center(
                 child: ElevatedButton(
-                  onPressed: agreeToTerms
-                      ? () {
-                          if (_formKey.currentState!.validate()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Providerdashboard(),
-                              ),
-                            );
-                          }
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.yellow,
-                  ),
+                  onPressed: isAgreed
+                      ? registerServiceProvider
+                      : null, // Disable if not agreed
                   child: Text('Continue'),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.yellow[700], // Button color
+                  ),
                 ),
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-// Reusable FilterChipWidget
-class FilterChipWidget extends StatefulWidget {
-  final String label;
-
-  FilterChipWidget({required this.label});
-
-  @override
-  _FilterChipWidgetState createState() => _FilterChipWidgetState();
-}
-
-class _FilterChipWidgetState extends State<FilterChipWidget> {
-  bool _isSelected = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return FilterChip(
-      label: Text(widget.label),
-      selected: _isSelected,
-      onSelected: (isSelected) {
-        setState(() {
-          _isSelected = isSelected;
-        });
-      },
-      selectedColor: Colors.yellow[700],
     );
   }
 }

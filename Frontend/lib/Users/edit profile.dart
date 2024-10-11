@@ -1,7 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:tap_on/database/config.dart';
+
+import 'dart:convert';
+
+import 'package:tap_on/Home%20page.dart'; // To handle JSON encoding/decoding
+
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -9,6 +13,8 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+
+
   // Controllers for the form fields
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -19,6 +25,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   String selectedGender = "";
 
   DateTime? selectedDate;
+
+  // Controllers to hold input values
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
+  // API endpoint for registration
+  final String apiUrl =
+      "http://your-backend-url.com/registration"; // Replace with your backend URL
 
   // Function to show date picker
   Future<void> _selectDate(BuildContext context) async {
@@ -94,6 +109,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       print('Profile updated successfully');
     } else {
       print('Failed to update profile: ${response.body}');
+
     }
   }
 
@@ -101,6 +117,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         title: Text('Edit Profile'),
       ),
       body: Padding(
@@ -131,6 +148,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               SizedBox(height: 8),
               TextFormField(
                 controller: _nameController,
+
                 decoration: InputDecoration(
                   labelText: 'Full Name',
                 ),
@@ -141,6 +159,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   labelText: 'Phone Number',
                 ),
               ),
+
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -167,6 +186,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
                   labelText: 'Gender',
+
                 ),
                 value: selectedGender.isNotEmpty ? selectedGender : null,
                 items: genderOptions
