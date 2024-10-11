@@ -3,7 +3,6 @@ import 'package:tap_on/ShopOwner/ShopOwnerDashboard.dart';
 import 'package:http/http.dart'
     as http; // Import the HTTP package for backend communication.
 import 'dart:convert'; // For JSON encoding/decoding.
-import '../database/config.dart';
 
 class ShopOwnerRegistration extends StatefulWidget {
   const ShopOwnerRegistration({super.key});
@@ -40,7 +39,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
       try {
         // Send POST request to backend with user data
         var response = await http.post(
-          Uri.parse(registration),
+          Uri.parse('http://localhost:3000/shopregistration'),
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode(shopownerData),
         );
@@ -53,7 +52,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
               builder: (context) => ShopdashboardPage(),
             ),
           );
-          print('Registered successfull');
+          print('Shopowner Details successfully Registered ');
         } else {
           // Handle error from the backend
           print('Failed to save data. Status code: ${response.statusCode}');
@@ -122,6 +121,8 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your phone number';
+                    } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+                      return 'Enter a valid 10-digit phone number';
                     }
                     return null;
                   },
@@ -147,9 +148,12 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                     labelText: 'Location',
                     hintText: 'e.g. City, Postal Code',
                   ),
+                  keyboardType: TextInputType.phone,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your location';
+                      return 'Please enter your phone number';
+                    } else if (!RegExp(r'^\d{05}$').hasMatch(value)) {
+                      return 'Enter a valid 05-digit number';
                     }
                     return null;
                   },
@@ -165,6 +169,9 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your email';
+                    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$')
+                        .hasMatch(value)) {
+                      return 'Enter a valid email address';
                     }
                     return null;
                   },

@@ -1,7 +1,9 @@
-const router = require('express').Router();
+const express = require('express'); // Import express package
+const OwnerController = require('../controllers/Owner.controller'); // Import the controller
 
-const OwnerController = require('../controllers/Owner.Controller');
+const router = express.Router();
 
-router.post('/registration',OwnerController.register);
+// Update POST route for shop registration
+router.post('/shopregistration', OwnerController.register);
 
 module.exports = router;
