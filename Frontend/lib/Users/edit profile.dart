@@ -1,5 +1,5 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
@@ -15,12 +15,13 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
 
 
+
   // Controllers for the form fields
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
 
-  // Dropdown options for gender
+
   List<String> genderOptions = ["Male", "Female", "Other"];
   String selectedGender = "";
 
@@ -49,6 +50,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       });
     }
   }
+
 
   // Create Profile API call
   Future<void> createProfile() async {
@@ -122,111 +124,104 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: AssetImage('assets/images/muhammed.jpeg'),
-                    ),
-                    SizedBox(height: 8),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Logic to change photo
-                      },
-                      child: Text('Change Photo'),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
-              Text('Details', style: TextStyle(fontSize: 18)),
-              SizedBox(height: 8),
-              TextFormField(
-                controller: _nameController,
 
-                decoration: InputDecoration(
-                  labelText: 'Full Name',
-                ),
-              ),
-              TextFormField(
-                controller: _phoneController,
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                ),
-              ),
-
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  labelText: 'Email Address',
-                ),
-              ),
-              SizedBox(height: 8),
-              // Birthday field
-              InkWell(
-                onTap: () => _selectDate(context),
-                child: InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: 'Birthday',
-                  ),
-                  child: Text(
-                    selectedDate != null
-                        ? "${selectedDate!.toLocal()}".split(' ')[0]
-                        : 'Select your birthday..',
-                  ),
-                ),
-              ),
-              SizedBox(height: 8),
-              // Gender dropdown
-              DropdownButtonFormField<String>(
-                decoration: InputDecoration(
-                  labelText: 'Gender',
-
-                ),
-                value: selectedGender.isNotEmpty ? selectedGender : null,
-                items: genderOptions
-                    .map((gender) => DropdownMenuItem<String>(
-                          value: gender,
-                          child: Text(gender),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedGender = value!;
-                  });
-                },
-              ),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Column(
                 children: [
-                  OutlinedButton(
-                    onPressed: () {
-                      // Handle cancel action
-                    },
-                    child: Text('Cancel'),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage('assets/images/muhammed.jpeg'),
                   ),
+                  SizedBox(height: 8),
                   ElevatedButton(
-                    onPressed: () async {
-                      if (_emailController.text.isNotEmpty) {
-                        // If profile exists, update it
-                        await _updateProfile(_emailController.text);
-                      } else {
-                        // If new profile, create it
-                        await createProfile();
-                      }
+                    onPressed: () {
+                      // changing photo
                     },
-                    child: Text('Save Changes'),
+                    child: Text('Change Photo'),
                   ),
                 ],
+
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 16),
+            Text('Details', style: TextStyle(fontSize: 18)),
+            SizedBox(height: 8),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Full Name',
+              ),
+
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Phone Number',
+
+              ),
+            ),
+            TextFormField(decoration: const InputDecoration(labelText: 'Add')),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Email Address',
+              ),
+            ),
+            SizedBox(height: 8),
+            // Birthday field
+            InkWell(
+              onTap: () => _selectDate(context),
+              child: InputDecorator(
+                decoration: InputDecoration(
+
+                  labelText: 'Birthday',
+                ),
+                child: Text(
+                  selectedDate != null
+                      ? "${selectedDate!.toLocal()}".split(' ')[0]
+                      : 'Select your birthday..',
+
+                ),
+              ),
+            ),
+            SizedBox(height: 8),
+
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                labelText: 'Gender',
+              ),
+              value: selectedGender.isNotEmpty ? selectedGender : null,
+              items: genderOptions
+                  .map((gender) => DropdownMenuItem<String>(
+                        value: gender,
+                        child: Text(gender),
+                      ))
+                  .toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedGender = value!;
+                });
+              },
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    // Handle cancel action
+                  },
+                  child: Text('Cancel'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle save changes action
+                  },
+                  child: Text('Save Changes'),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
