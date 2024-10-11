@@ -1,7 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:tap_on/database/config.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -9,9 +6,6 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-
-
-  
   List<String> genderOptions = ["Male", "Female", "Other"];
   String selectedGender = "";
 
@@ -32,68 +26,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-  // Create Profile API call
-  Future<void> createProfile() async {
-    final url = Uri.parse("http://localhost:3000/registration");
-    final response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'name': _nameController.text,
-        'email': _emailController.text,
-        'phone': _phoneController.text,
-        'gender': selectedGender,
-        'birthday': selectedDate?.toIso8601String(), // Convert DateTime to ISO format
-      }),
-    );
-
-    if (response.statusCode == 201) {
-      print('Profile created successfully');
-    } else {
-      print('Failed to create profile: ${response.body}');
-    }
-  }
-
-  // Fetch Profile by Email API call
-  Future<void> _fetchProfile(String email) async {
-    final url = Uri.parse("http://localhost:3000" + "/$email");
-    final response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      final profile = jsonDecode(response.body);
-      setState(() {
-        _nameController.text = profile['name'];
-        _emailController.text = profile['email'];
-        _phoneController.text = profile['phone'];
-        selectedGender = profile['gender'];
-        selectedDate = DateTime.parse(profile['birthday']);
-      });
-    } else {
-      print('Failed to fetch profile: ${response.body}');
-    }
-  }
-
-  // Update Profile API call
-  Future<void> _updateProfile(String email) async {
-    final url = Uri.parse("http://localhost:3000" + "/$email");
-    final response = await http.put(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'name': _nameController.text,
-        'phone': _phoneController.text,
-        'gender': selectedGender,
-        'birthday': selectedDate?.toIso8601String(),
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      print('Profile updated successfully');
-    } else {
-      print('Failed to update profile: ${response.body}');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,7 +42,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: AssetImage('assets/images/muhammed.jpeg'), 
+                    backgroundImage: AssetImage('assets/images/muhammed.jpeg'),
                   ),
                   SizedBox(height: 8),
                   ElevatedButton(
@@ -135,11 +67,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 labelText: 'Phone Number',
               ),
             ),
-            TextFormField(
-              decoration:const InputDecoration(
-                labelText: 'Add'
-              )
-            ),
+            TextFormField(decoration: const InputDecoration(labelText: 'Add')),
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Email Address',
@@ -161,7 +89,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
             ),
             SizedBox(height: 8),
-      
+
             DropdownButtonFormField<String>(
               decoration: InputDecoration(
                 labelText: 'Gender',

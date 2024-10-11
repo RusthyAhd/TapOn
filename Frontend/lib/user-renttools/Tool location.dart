@@ -1,10 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/user-renttools/Nearby_Tool_Shops.dart';
-
-
 
 class TLocationPage extends StatefulWidget {
   @override
@@ -12,9 +9,20 @@ class TLocationPage extends StatefulWidget {
 }
 
 class _LocationPageState extends State<TLocationPage> {
-  List<String> genderOptions = ["Colombo", "Trincomalee", "Batticaloa", "Kandy","Jaffna"];
+  List<String> genderOptions = [
+    "Colombo",
+    "Trincomalee",
+    "Batticaloa",
+    "Kandy",
+    "Jaffna",
+    'Galle',
+    'Ampara',
+    'Anuradhapura',
+    'Badulla',
+    'Gampaha',
+    'Hambantota',
+  ];
   String selectedGender = "";
-  final TextEditingController _locationController = TextEditingController();
   late GoogleMapController mapController;
   bool isLoading = true; // Track if map is loading
 
@@ -37,9 +45,7 @@ class _LocationPageState extends State<TLocationPage> {
         title: const Text(
           'Location',
           style: TextStyle(
-              fontSize: 24, 
-              fontWeight: FontWeight.bold, 
-              color: Colors.white),
+              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.amber[700],
         leading: IconButton(
@@ -55,14 +61,15 @@ class _LocationPageState extends State<TLocationPage> {
         child: Column(
           children: <Widget>[
             // Location Input Field with Icon
-            
-                
-           DropdownButtonFormField<String>(
+
+            DropdownButtonFormField<String>(
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.location_on, color: Colors.amber,),
+                prefixIcon: Icon(
+                  Icons.location_on,
+                  color: Colors.amber,
+                ),
                 labelText: "Select Your Location",
                 labelStyle: TextStyle(color: Colors.amber),
-
               ),
               value: selectedGender.isNotEmpty ? selectedGender : null,
               items: genderOptions
@@ -79,7 +86,7 @@ class _LocationPageState extends State<TLocationPage> {
             ),
 
             // Search Button with Animation
-         
+
             SizedBox(height: 10),
 
             // Map Display with Loader

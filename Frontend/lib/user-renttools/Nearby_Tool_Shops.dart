@@ -9,21 +9,21 @@ class NearbyToolRantPage extends StatelessWidget {
       'name': 'Icom hardware',
       'address': 'ViharaMahathevi Park Road,Town Hall , Colombo',
       'rating': 4.5,
-      'Phone No': '0759560114',
+      'Shipping': 'Free Shipping ',
       'image': 'assets/images/muhammed.jpeg',
     },
     {
       'name': 'Salman Store',
       'address': 'No.19,Old Boc Lane Kinniya-04',
       'rating': 2.9,
-      'Phone No': '0756598114',
+      'Shipping': 'Free Shipping ',
       'image': 'assets/images/salman.jpeg',
     },
     {
       'name': 'Guy Hawkins',
       'address': 'Diyagama,Homagama,colombo-5.',
       'rating': 4.0,
-      'Phone No': '0756596523',
+      'Shipping': 'Free Shipping ',
       'image': 'assets/images/sarukan.jpeg',
     },
   ];
@@ -161,7 +161,7 @@ class NearbyToolRantPage extends StatelessWidget {
                                   ),
                                   SizedBox(height: 4),
                                   Text(
-                                    'Phone No: ${provider['Phone No']}',
+                                    'Shipping: ${provider['Shipping']}',
                                     style: TextStyle(color: Colors.grey[800]),
                                   ),
                                   SizedBox(height: 8),
