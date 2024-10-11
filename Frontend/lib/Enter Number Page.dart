@@ -8,10 +8,12 @@ class Enternumber extends StatefulWidget {
   @override
   _EnternumberState createState() => _EnternumberState();
 }
-class _EnternumberState  extends State<Enternumber>{
-  
-   final _formKey = GlobalKey<FormState>();
-  final _phoneController = TextEditingController(); 
+
+
+class _EnternumberState extends State<Enternumber> {
+  final _formKey = GlobalKey<FormState>();
+  final _phoneController = TextEditingController();
+
   @override
   void dispose() {
     _phoneController.dispose();
@@ -85,7 +87,6 @@ class _EnternumberState  extends State<Enternumber>{
                           prefixIcon: Icon(Icons.phone),
                           labelText: "Enter your Number",
                         ),
-                        keyboardType: TextInputType.phone,
                         validator: validatePhoneNumber,
                       ),
                     ),
@@ -96,13 +97,11 @@ class _EnternumberState  extends State<Enternumber>{
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const VerificationScreen()));
-
-
-                      
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const VerificationScreen()));
                       }
                     },
                     style: ElevatedButton.styleFrom(
