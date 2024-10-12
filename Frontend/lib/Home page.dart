@@ -9,15 +9,11 @@ import 'package:tap_on/login.dart';
 import 'package:tap_on/user-renttools/Tool%20location.dart';
 import 'package:tap_on/Providers/providerRegistration.dart';
 
-
-
 import 'package:tap_on/ShopOwner/shopowner%20register.dart';
 import 'package:tap_on/user-renttools/Tool%20location.dart';
 
-
 import 'package:tap_on/user-services/location.dart';
 import 'package:tap_on/Users/Chatbot.dart';
-
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -51,7 +47,6 @@ class HomePage extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           ListTile(
-
             leading: const CircleAvatar(
               backgroundImage: AssetImage(
                   'assets/profile.jpg'), // Replace with profile image
@@ -60,18 +55,13 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ProfilePage()));
-
               },
               child: CircleAvatar(
                 backgroundImage: AssetImage('assets/profile.jpg'),
               ),
             ),
-          title:Text("rishaf"),
-            
-            
-      
             trailing: IconButton(
-              icon: const Icon(Icons.support_agent), 
+              icon: const Icon(Icons.support_agent),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -106,7 +96,8 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationPage()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                   ),
@@ -116,7 +107,8 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationPage()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                   ),
@@ -126,7 +118,8 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationPage()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                   ),
@@ -136,7 +129,8 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationPage()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                   ),
@@ -146,7 +140,8 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationPage()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                   ),
@@ -156,7 +151,8 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationPage()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                   ),
@@ -166,7 +162,8 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationPage()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                   ),
@@ -176,7 +173,8 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationPage()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                   ),
@@ -186,7 +184,8 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LocationPage()),
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()),
                       );
                     },
                   ),
@@ -335,10 +334,8 @@ class HomePage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LoginPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
                 // Handle Shop Owner button press
               },
               child: const Row(
