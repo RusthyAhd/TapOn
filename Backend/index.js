@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const body_parser = require('body-parser');
 
 // Import routes
 const OwnerRouter = require('./routes/OwnerRoutes'); // Shop Owner routes
@@ -13,32 +12,29 @@ const app = express();
 mongoose.set('debug', true);
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://rusthy2001:rusthy.01122001@tapon-atlas.9qjax.mongodb.net/Tapon-DB?retryWrites=true&w=majority&appName=TapOn-Atlas', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB Successfully Connected with TapOn-DB'))
-.catch(error => {
-    console.error('MongoDB Connection Error:', error.message);
-});
-
-    app.get('/serviceregistration', async (req, res) => {
-        try {
-            const test = await mongoose.connection.db.admin().ping(); // Check MongoDB connectivity
-            
-            // Log the test result in terminal
-            console.log('MongoDB Ping Result:', test);
-    
-            res.status(200).send('MongoDB connection is working: ' + JSON.stringify(test));
-        } catch (error) {
-            console.error('MongoDB Ping Failed:', error.message); // Log the error to the terminal
-            res.status(500).send('MongoDB connection failed: ' + error.message);
-        }
+mongoose.connect('mongodb+srv://rusthy2001:rusthy.01122001@tapon-atlas.9qjax.mongodb.net/Tapon-DB?retryWrites=true&w=majority&appName=TapOn-Atlas')
+    .then(() => console.log('MongoDB Successfully Connected with TapOn-DB'))
+    .catch(error => {
+        console.error('MongoDB Connection Error:', error.message);
     });
 
+// Health check route to verify MongoDB connectivity
+app.get('/serviceregistration', async (req, res) => {
+    try {
+        const test = await mongoose.connection.db.admin().ping(); // Check MongoDB connectivity
+        
+        // Log the test result in terminal
+        console.log('MongoDB Ping Result:', test);
 
-// Use middleware for parsing JSON
-app.use(body_parser.json());
+        res.status(200).send('MongoDB connection is working: ' + JSON.stringify(test));
+    } catch (error) {
+        console.error('MongoDB Ping Failed:', error.message); // Log the error to the terminal
+        res.status(500).send('MongoDB connection failed: ' + error.message);
+    }
+});
+
+// Use middleware for parsing JSON (built-in Express middleware)
+app.use(express.json());
 
 // Define the routes for shop owner and service provider registration
 app.use('/', OwnerRouter);  // Shop owner routes are under /shopowner
