@@ -6,4 +6,9 @@ const router = express.Router(); // Create a new router
 // Define the route for service provider registration
 router.post('/serviceregistration', ServiceProviderController.serviceregister);
 
+
+router.get('/serviceproviders', ServiceProviderController.getServiceProviders);
+
+
+
 module.exports = router;

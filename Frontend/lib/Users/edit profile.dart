@@ -1,117 +1,75 @@
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-
 import 'dart:convert';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-import 'package:tap_on/Home%20page.dart'; // To handle JSON encoding/decoding
-
-
-class EditProfileScreen extends StatefulWidget {
+class ProfilePage extends StatefulWidget {
   @override
-  _EditProfileScreenState createState() => _EditProfileScreenState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
 
+class _ProfilePageState extends State<ProfilePage> {
+  final _formKey = GlobalKey<FormState>();
+  String fullName = '';
+  String phoneNumber = '';
+  String email = '';
+  DateTime birthday = DateTime.now();
+  String gender = 'Male';
+  String address = '';
+  String location = '';
+  File? profilePhoto;
 
+  Future<void> createOrUpdateProfile() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
 
-  // Controllers for the form fields
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
+      // Prepare the request body
+      final requestBody = {
+        'fullName': fullName,
+        'phoneNumber': phoneNumber,
+        'email': email,
+        'birthday': birthday.toIso8601String(),
+        'gender': gender,
+        'address': address,
+        'location': location,
+        // Add logic for photo upload here (if needed)
+      };
 
+      // Send a POST request to the backend
+      final response = await http.post(
+        Uri.parse('http://localhost:3000/profile'), // Update with your backend URL
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(requestBody),
+      );
 
-  List<String> genderOptions = ["Male", "Female", "Other"];
-  String selectedGender = "";
+      if (response.statusCode == 200) {
+        // Successfully created or updated the profile
+        final responseData = json.decode(response.body);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(responseData['success'])),
+        );
+      } else {
+        // Handle error
+        final responseData = json.decode(response.body);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(responseData['error'])),
+        );
+      }
 
-  DateTime? selectedDate;
+    }
+  }
 
-  // Controllers to hold input values
-  TextEditingController fullNameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  Future<void> pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
-  // API endpoint for registration
-  final String apiUrl =
-      "http://your-backend-url.com/registration"; // Replace with your backend URL
-
-  // Function to show date picker
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null && picked != selectedDate) {
+    if (image != null) {
       setState(() {
-        selectedDate = picked;
+        profilePhoto = File(image.path);
       });
-    }
-  }
-
-
-  // Create Profile API call
-  Future<void> createProfile() async {
-    final url = Uri.parse("http://localhost:3000/registration");
-    final response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'name': _nameController.text,
-        'email': _emailController.text,
-        'phone': _phoneController.text,
-        'gender': selectedGender,
-        'birthday': selectedDate?.toIso8601String(), // Convert DateTime to ISO format
-      }),
-    );
-
-    if (response.statusCode == 201) {
-      print('Profile created successfully');
-    } else {
-      print('Failed to create profile: ${response.body}');
-    }
-  }
-
-  // Fetch Profile by Email API call
-  Future<void> _fetchProfile(String email) async {
-    final url = Uri.parse("http://localhost:3000" + "/$email");
-    final response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      final profile = jsonDecode(response.body);
-      setState(() {
-        _nameController.text = profile['name'];
-        _emailController.text = profile['email'];
-        _phoneController.text = profile['phone'];
-        selectedGender = profile['gender'];
-        selectedDate = DateTime.parse(profile['birthday']);
-      });
-    } else {
-      print('Failed to fetch profile: ${response.body}');
-    }
-  }
-
-  // Update Profile API call
-  Future<void> _updateProfile(String email) async {
-    final url = Uri.parse("http://localhost:3000" + "/$email");
-    final response = await http.put(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'name': _nameController.text,
-        'phone': _phoneController.text,
-        'gender': selectedGender,
-        'birthday': selectedDate?.toIso8601String(),
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      print('Profile updated successfully');
-    } else {
-      print('Failed to update profile: ${response.body}');
-
     }
   }
 
@@ -119,76 +77,111 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
-        title: Text('Edit Profile'),
+        title: Text('Profile Management'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
 
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage('assets/images/muhammed.jpeg'),
-                  ),
-                  SizedBox(height: 8),
-                  ElevatedButton(
-                    onPressed: () {
-                      // changing photo
-                    },
-                    child: Text('Change Photo'),
-                  ),
-                ],
-
+        padding: EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Full Name'),
+                validator: (value) => value!.isEmpty ? 'Please enter your full name' : null,
+                onSaved: (value) => fullName = value!,
               ),
-            ),
-            SizedBox(height: 16),
-            Text('Details', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 8),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Full Name',
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Phone Number'),
+                validator: (value) => value!.isEmpty ? 'Please enter your phone number' : null,
+                onSaved: (value) => phoneNumber = value!,
               ),
-
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Phone Number',
-
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Email'),
+                validator: (value) => value!.isEmpty ? 'Please enter your email' : null,
+                onSaved: (value) => email = value!,
               ),
-            ),
-            TextFormField(decoration: const InputDecoration(labelText: 'Add')),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Email Address',
-              ),
-            ),
-            SizedBox(height: 8),
-            // Birthday field
-            InkWell(
-              onTap: () => _selectDate(context),
-              child: InputDecorator(
+              TextFormField(
                 decoration: InputDecoration(
-
                   labelText: 'Birthday',
+                  hintText: 'Select your birthday',
                 ),
-                child: Text(
-                  selectedDate != null
-                      ? "${selectedDate!.toLocal()}".split(' ')[0]
-                      : 'Select your birthday..',
-
+                readOnly: true,
+                onTap: () async {
+                  DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: birthday,
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime(2101),
+                  );
+                  if (pickedDate != null && pickedDate != birthday) {
+                    setState(() {
+                      birthday = pickedDate;
+                    });
+                  }
+                },
+                controller: TextEditingController(
+                  text: "${birthday.toLocal()}".split(' ')[0], // Show selected date
                 ),
               ),
-            ),
-            SizedBox(height: 8),
+              DropdownButtonFormField<String>(
+                value: gender,
+                decoration: InputDecoration(labelText: 'Gender'),
+                items: <String>['Male', 'Female', 'Other']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    gender = newValue!;
+                  });
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Address'),
+                validator: (value) => value!.isEmpty ? 'Please enter your address' : null,
+                onSaved: (value) => address = value!,
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Location'),
+                validator: (value) => value!.isEmpty ? 'Please enter your location' : null,
+                onSaved: (value) => location = value!,
+              ),
+              SizedBox(height: 20),
+              GestureDetector(
+                onTap: pickImage,
+                child: Column(
+                  children: [
+                    if (profilePhoto != null)
+                      Image.file(
+                        profilePhoto!,
+                        height: 100,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      )
+                    else
+                      Container(
+                        height: 100,
+                        width: 100,
+                        color: Colors.grey[300],
+                        child: Center(child: Text('No photo selected')),
+                      ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Tap to upload profile photo',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: createOrUpdateProfile,
+                child: Text('Save Profile'),
 
-            DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                labelText: 'Gender',
               ),
               value: selectedGender.isNotEmpty ? selectedGender : null,
               items: genderOptions
