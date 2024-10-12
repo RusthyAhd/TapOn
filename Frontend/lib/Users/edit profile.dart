@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
@@ -8,6 +9,7 @@ class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
+
 
 class _ProfilePageState extends State<ProfilePage> {
   final _formKey = GlobalKey<FormState>();
@@ -56,6 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
           SnackBar(content: Text(responseData['error'])),
         );
       }
+
     }
   }
 
@@ -77,6 +80,7 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text('Profile Management'),
       ),
       body: Padding(
+
         padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -177,9 +181,40 @@ class _ProfilePageState extends State<ProfilePage> {
               ElevatedButton(
                 onPressed: createOrUpdateProfile,
                 child: Text('Save Profile'),
+
               ),
-            ],
-          ),
+              value: selectedGender.isNotEmpty ? selectedGender : null,
+              items: genderOptions
+                  .map((gender) => DropdownMenuItem<String>(
+                        value: gender,
+                        child: Text(gender),
+                      ))
+                  .toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedGender = value!;
+                });
+              },
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    // Handle cancel action
+                  },
+                  child: Text('Cancel'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle save changes action
+                  },
+                  child: Text('Save Changes'),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

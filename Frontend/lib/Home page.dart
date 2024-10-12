@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:tap_on/Enter%20Number%20Page.dart';
 import 'package:tap_on/Users/Notification.dart';
+
 import 'package:tap_on/Users/edit%20profile.dart';
 
 import 'package:tap_on/login.dart';
@@ -10,8 +11,13 @@ import 'package:tap_on/Providers/providerRegistration.dart';
 
 
 
+import 'package:tap_on/ShopOwner/shopowner%20register.dart';
+import 'package:tap_on/user-renttools/Tool%20location.dart';
+
+
 import 'package:tap_on/user-services/location.dart';
 import 'package:tap_on/Users/Chatbot.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -37,8 +43,6 @@ class HomePage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const NotificationPage()));
-              // Add your onPressed logic here
-              // Notification action
             },
           ),
         ],
@@ -47,6 +51,7 @@ class HomePage extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           ListTile(
+
             leading: const CircleAvatar(
               backgroundImage: AssetImage(
                   'assets/profile.jpg'), // Replace with profile image
@@ -55,19 +60,19 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ProfilePage()));
+
               },
-              child: const Text(
-                'Rishaf',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black, // You can customize text color
-                ),
+              child: CircleAvatar(
+                backgroundImage: AssetImage('assets/profile.jpg'),
               ),
             ),
+          title:Text("rishaf"),
+            
+            
+      
             trailing: IconButton(
-              icon: const Icon(Icons.support_agent), // Settings icon
+              icon: const Icon(Icons.support_agent), 
               onPressed: () {
-                // Define your action here
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ChatPage()),
