@@ -45,7 +45,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode(shopownerData),
         );
-
+ 
         if (response.statusCode == 200) {
           // Successfully saved data to MongoDB, navigate to the dashboard
           Navigator.push(
