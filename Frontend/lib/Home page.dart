@@ -4,10 +4,16 @@ import 'package:tap_on/Enter%20Number%20Page.dart';
 import 'package:tap_on/Users/Notification.dart';
 
 import 'package:tap_on/Users/edit%20profile.dart';
+
+import 'package:tap_on/login.dart';
+import 'package:tap_on/user-renttools/Tool%20location.dart';
 import 'package:tap_on/Providers/providerRegistration.dart';
+
+
 
 import 'package:tap_on/ShopOwner/shopowner%20register.dart';
 import 'package:tap_on/user-renttools/Tool%20location.dart';
+
 
 import 'package:tap_on/user-services/location.dart';
 import 'package:tap_on/Users/Chatbot.dart';
@@ -45,12 +51,16 @@ class HomePage extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           ListTile(
-            leading: GestureDetector(
-              onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => EditProfileScreen()));
+
+            leading: const CircleAvatar(
+              backgroundImage: AssetImage(
+                  'assets/profile.jpg'), // Replace with profile image
+            ),
+            title: TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()));
+
               },
               child: CircleAvatar(
                 backgroundImage: AssetImage('assets/profile.jpg'),
@@ -152,7 +162,7 @@ class HomePage extends StatelessWidget {
                   ),
                   ServiceCard(
                     icon: Icons.build,
-                    label: 'Biling',
+                    label: 'beauty professional',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -172,7 +182,7 @@ class HomePage extends StatelessWidget {
                   ),
                   ServiceCard(
                     icon: Icons.content_cut,
-                    label: 'beauty professional',
+                    label: 'other',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -292,7 +302,7 @@ class HomePage extends StatelessWidget {
                   ),
                   ServiceCard(
                     icon: Icons.content_cut,
-                    label: 'Mechanical Tools',
+                    label: 'Other',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -328,7 +338,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ShopOwnerRegistration()));
+                        builder: (context) => LoginPage()));
                 // Handle Shop Owner button press
               },
               child: const Row(

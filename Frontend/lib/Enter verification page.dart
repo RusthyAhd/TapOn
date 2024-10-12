@@ -10,6 +10,24 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
+  // List of TextEditingControllers for the 6 text fields
+  final List<TextEditingController> _controllers =
+      List.generate(6, (index) => TextEditingController());
+
+  // List of FocusNodes for the 6 text fields
+  final List<FocusNode> _focusNodes = List.generate(6, (index) => FocusNode());
+
+  @override
+  void dispose() {
+    // Dispose the controllers and focus nodes
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
+    for (var focusNode in _focusNodes) {
+      focusNode.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +48,14 @@ class _VerificationScreenState extends State<VerificationScreen> {
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(4, (index) {
+              children: List.generate(6, (index) {
                 return Container(
                   width: 50,
                   height: 50,
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  margin: const EdgeInsets.symmetric(horizontal: 5),
                   child: TextField(
+                    controller: _controllers[index],
+                    focusNode: _focusNodes[index],
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 20),
                     decoration: InputDecoration(
@@ -48,6 +68,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     ),
                     keyboardType: TextInputType.number,
                     maxLength: 1,
+                    onChanged: (value) {
+                      if (value.isNotEmpty && index < 5) {
+                        // Move to the next field if the current one is filled
+                        FocusScope.of(context).requestFocus(_focusNodes[index + 1]);
+                      } else if (value.isEmpty && index > 0) {
+                        // Move to the previous field if the current one is cleared
+                        FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
+                      }
+                    },
                   ),
                 );
               }),

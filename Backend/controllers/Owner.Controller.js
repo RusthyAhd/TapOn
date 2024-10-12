@@ -5,10 +5,10 @@ const OwnerModel = require('../models/Owner.model'); // Import the Owner model
 exports.register = async (req, res ) => {
     try {
         // Destructure fields from request body
-        const { name, shop_name, phone, address, location, email } = req.body;
+        const { name, shop_name, phone, address, location, email, category } = req.body;
         
         // Validate input
-        if (!name || !shop_name || !phone || !address || !location || !email) {
+        if (!name || !shop_name || !phone || !address || !location || !email || !category) {
             return res.status(400).json({ status: false, error: 'All fields are required' });
         }
 
@@ -19,7 +19,8 @@ exports.register = async (req, res ) => {
             phone,
             address,
             location,
-            email
+            email,
+            category,
         });
 
         // Save to the database

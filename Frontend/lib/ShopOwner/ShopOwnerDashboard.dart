@@ -13,6 +13,8 @@ class ShopdashboardPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
+        
+        
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -148,7 +150,7 @@ class ShopdashboardPage extends StatelessWidget {
                 backgroundColor: const Color.fromARGB(255, 219, 135, 9),
                 minimumSize: Size(70, 50),
               ),
-              child: Text('Back to Home'),
+              child: Text('Log Out'),
             ),
           ],
         ),
