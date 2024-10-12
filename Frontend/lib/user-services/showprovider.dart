@@ -1,7 +1,7 @@
 //showprovider.dart
 import 'package:flutter/material.dart';
-import 'package:tap_on/user-services/location.dart';
 import 'package:tap_on/Providers/service%20details.dart';
+import 'package:tap_on/user-services/location.dart';
 
 class NearbyServiceProvidersPage extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
@@ -31,7 +31,7 @@ class NearbyServiceProvidersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white ,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
         leading: IconButton(
@@ -39,7 +39,7 @@ class NearbyServiceProvidersPage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => LocationPage()),
+              MaterialPageRoute(builder: (context) => LocationScreen()),
             );
             // Action when the button is pressed
           },
@@ -94,10 +94,9 @@ class NearbyServiceProvidersPage extends StatelessWidget {
                       },
                       child: Text('Choose'),
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          foregroundColor: Colors.yellow,
-                          ),
-                          
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.yellow,
+                      ),
                     ),
                   ),
                 );

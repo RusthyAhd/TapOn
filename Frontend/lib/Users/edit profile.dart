@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
@@ -9,7 +8,6 @@ class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
-
 
 class _ProfilePageState extends State<ProfilePage> {
   final _formKey = GlobalKey<FormState>();
@@ -40,7 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
       // Send a POST request to the backend
       final response = await http.post(
-        Uri.parse('http://localhost:3000/profile'), // Update with your backend URL
+        Uri.parse(
+            'http://localhost:3000/profile'), // Update with your backend URL
         headers: {'Content-Type': 'application/json'},
         body: json.encode(requestBody),
       );
@@ -58,7 +57,6 @@ class _ProfilePageState extends State<ProfilePage> {
           SnackBar(content: Text(responseData['error'])),
         );
       }
-
     }
   }
 
@@ -80,25 +78,27 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text('Profile Management'),
       ),
       body: Padding(
-
         padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: Column(
+          child: ListView(
             children: [
               TextFormField(
                 decoration: InputDecoration(labelText: 'Full Name'),
-                validator: (value) => value!.isEmpty ? 'Please enter your full name' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your full name' : null,
                 onSaved: (value) => fullName = value!,
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Phone Number'),
-                validator: (value) => value!.isEmpty ? 'Please enter your phone number' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your phone number' : null,
                 onSaved: (value) => phoneNumber = value!,
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Email'),
-                validator: (value) => value!.isEmpty ? 'Please enter your email' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your email' : null,
                 onSaved: (value) => email = value!,
               ),
               TextFormField(
@@ -121,7 +121,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   }
                 },
                 controller: TextEditingController(
-                  text: "${birthday.toLocal()}".split(' ')[0], // Show selected date
+                  text: "${birthday.toLocal()}"
+                      .split(' ')[0], // Show selected date
                 ),
               ),
               DropdownButtonFormField<String>(
@@ -142,12 +143,14 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Address'),
-                validator: (value) => value!.isEmpty ? 'Please enter your address' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your address' : null,
                 onSaved: (value) => address = value!,
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Location'),
-                validator: (value) => value!.isEmpty ? 'Please enter your location' : null,
+                validator: (value) =>
+                    value!.isEmpty ? 'Please enter your location' : null,
                 onSaved: (value) => location = value!,
               ),
               SizedBox(height: 20),
@@ -181,40 +184,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ElevatedButton(
                 onPressed: createOrUpdateProfile,
                 child: Text('Save Profile'),
-
               ),
-              value: selectedGender.isNotEmpty ? selectedGender : null,
-              items: genderOptions
-                  .map((gender) => DropdownMenuItem<String>(
-                        value: gender,
-                        child: Text(gender),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedGender = value!;
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                OutlinedButton(
-                  onPressed: () {
-                    // Handle cancel action
-                  },
-                  child: Text('Cancel'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle save changes action
-                  },
-                  child: Text('Save Changes'),
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
