@@ -5,7 +5,7 @@ const body_parser = require('body-parser');
 // Import routes
 const OwnerRouter = require('./routes/OwnerRoutes'); // Shop Owner routes
 const ServiceProviderRouter = require('./routes/serviceProviderroutes'); // Service Provider routes
-
+const profileRoutes = require('./routes/Profile.routes');
 // Initialize the express app
 const app = express();
 
@@ -43,6 +43,9 @@ app.use(body_parser.json());
 // Define the routes for shop owner and service provider registration
 app.use('/', OwnerRouter);  // Shop owner routes are under /shopowner
 app.use('/', ServiceProviderRouter); // Service provider routes are under /serviceprovider
+app.use('/', profileRoutes);
+
+
 
 // Define a simple route for the home page
 app.get('/', (req, res) => {

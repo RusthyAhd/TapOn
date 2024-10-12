@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Enter%20verification%20page.dart';
+import 'package:tap_on/Enter verification page.dart';
+import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/constants.dart';
+
 
 class Enternumber extends StatefulWidget {
   const Enternumber({super.key});
@@ -12,6 +14,7 @@ class Enternumber extends StatefulWidget {
 class _EnternumberState extends State<Enternumber> {
   final _formKey = GlobalKey<FormState>();
   final _phoneController = TextEditingController();
+
   @override
   void dispose() {
     _phoneController.dispose();
@@ -19,10 +22,11 @@ class _EnternumberState extends State<Enternumber> {
   }
 
   String? validatePhoneNumber(String? value) {
+    // Check if the number starts with 0 and is followed by 9 digits
     if (value == null || value.isEmpty) {
-      return 'Please fg enter your phone number';
-    } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
-      return 'Please enter a valid 10-digit phone number';
+      return 'Please enter your phone number';
+    } else if (!RegExp(r'^0\d{9}$').hasMatch(value)) {
+      return 'Please enter a valid Sri Lankan phone number';
     }
     return null;
   }
@@ -81,31 +85,31 @@ class _EnternumberState extends State<Enternumber> {
                       key: _formKey,
                       child: TextFormField(
                         controller: _phoneController,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           prefixIcon: Icon(Icons.phone),
                           labelText: "Enter your Number",
                         ),
+                        keyboardType: TextInputType.phone,
                         validator: validatePhoneNumber,
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 25,
-                  ),
+                  const SizedBox(height: 25),
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        // Optionally show a loading indicator here
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const VerificationScreen()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VerificationScreen(),
+                          ),
+                        );
                       }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 100, vertical: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

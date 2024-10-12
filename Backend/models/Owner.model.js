@@ -8,7 +8,8 @@ const OwnerSchema = new mongoose.Schema({
     phone: { type: String, required: true },
     address: { type: String, required: true },
     location: { type: String, required: true },
-    email: { type: String, required: true }
+    email: { type: String, required: true },
+    category: { type: String, required: true },// Make it required if needed
 }, { timestamps: true });
 
 // Check if the model is already compiled to prevent OverwriteModelError

@@ -20,7 +20,29 @@ class _ServiceProviderRegistrationFormState
   final TextEditingController nameController = TextEditingController();
   final TextEditingController serviceTitleController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
+  List<String> genderOptions = [
+    "Colombo",
+    "Trincomalee",
+    "Batticaloa",
+    "Kandy",
+    "Jaffna"
+  ];
+  String selectedGender = "";
+
   final TextEditingController locationController = TextEditingController();
+
+  String? selectedCategory; // To store selected category
+  final List<String> categories = [
+    'Plumber',
+    'Electrician',
+    'Carpenter',
+    'Painter',
+    'Gardener',
+    'Fridge Repair',
+    'Beauty Professional',
+    'Phone Repair',
+    'Other'
+  ]; // Category list
 
   bool isAgreed = false;
 
@@ -33,8 +55,9 @@ class _ServiceProviderRegistrationFormState
         'service_title': serviceTitleController.text,
         'phone': phoneController.text,
         'address': addressController.text,
-        'location': locationController.text,
+        'location': selectedGender!,
         'email': emailController.text,
+        'category': selectedCategory!, // Add selected category
       };
 
       try {
@@ -53,7 +76,7 @@ class _ServiceProviderRegistrationFormState
               builder: (context) => Providerdashboard(),
             ),
           );
-          print('Provider Details successfully Registered ');
+          print('Provider Details successfully Registered');
         } else {
           // Handle error from the backend
           print('Failed to save data. Status code: ${response.statusCode}');
@@ -137,19 +160,30 @@ class _ServiceProviderRegistrationFormState
                 },
               ),
               SizedBox(height: 16.0),
-              TextFormField(
-                controller: locationController,
-                decoration: InputDecoration(
-                  labelText: 'Location',
-                  hintText: 'City or Postal Code',
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your location';
-                  }
-                  return null;
-                },
+
+              // Location Input Field with Icon                     
+           DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.location_on, color: Colors.amber,),
+                labelText: "Select Your Location",
+                labelStyle: TextStyle(color: Colors.amber),
+
               ),
+              value: selectedGender.isNotEmpty ? selectedGender : null,
+              items: genderOptions
+                  .map((gender) => DropdownMenuItem<String>(
+                        value: gender,
+                        child: Text(gender),
+                      ))
+                  .toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedGender = value!;
+                });
+              },
+            ),
+
+
               SizedBox(height: 16.0),
               TextFormField(
                 controller: emailController,
@@ -166,7 +200,35 @@ class _ServiceProviderRegistrationFormState
                   return null;
                 },
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
+
+              // Dropdown for category selection
+              DropdownButtonFormField<String>(
+                value: selectedCategory,
+                decoration: InputDecoration(
+                  labelText: 'Select Category',
+                  hintText: 'Choose your category',
+                ),
+                items: categories.map((String category) {
+                  return DropdownMenuItem<String>(
+                    value: category,
+                    child: Text(category),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    selectedCategory = newValue;
+                  });
+                },
+                validator: (value) {
+                  if (value == null) {
+                    return 'Please select a category';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16.0),
+
               const Text('Terms and Conditions',
                   style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 10),

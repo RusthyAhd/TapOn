@@ -17,11 +17,34 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
   final TextEditingController shopNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-  final TextEditingController locationController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  List<String> genderOptions = [
+    "Colombo",
+    "Trincomalee",
+    "Batticaloa",
+    "Kandy",
+    "Jaffna"
+  ];
+  String selectedGender = "";
+  final TextEditingController locationController = TextEditingController();
 
   bool isAgreed = false; // Track if the user has agreed to the terms
   final _formKey = GlobalKey<FormState>(); // Form key for validation
+
+  String? selectedCategory; // Variable to hold the selected category
+
+  // List of categories for the dropdown
+  final List<String> categories = [
+    'Plumbing Tools',
+    'Electrical Tools',
+    'Carpenting Tools',
+    'Painting Tools',
+    'Gardening Tools',
+    'Repairing Tools',
+    'Building Tools',
+    'Phone Accessories',
+    'Other',
+  ];
 
   // Function to handle the submission of form data
   Future<void> registerOwner() async {
@@ -32,16 +55,15 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
         'shop_name': shopNameController.text,
         'phone': phoneController.text,
         'address': addressController.text,
-        'location': locationController.text,
+        'location': selectedGender,
         'email': emailController.text,
+        'category': selectedCategory ?? '', // Add category to the data
       };
 
       try {
         // Send POST request to backend with user data
         var response = await http.post(
-
           Uri.parse('http://localhost:3000/shopregistration'),
-
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode(shopownerData),
         );
@@ -144,22 +166,32 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                   },
                 ),
                 const SizedBox(height: 10),
-                TextFormField(
-                  controller: locationController,
-                  decoration: const InputDecoration(
-                    labelText: 'Location',
-                    hintText: 'e.g. City, Postal Code',
+
+// Location Input Field with Icon
+
+                DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.location_on,
+                      color: Colors.blue,
+                    ),
+                    labelText: "Select Your Location",
+                    labelStyle: TextStyle(color: Colors.blue),
                   ),
-                  keyboardType: TextInputType.phone,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your phone number';
-                    } else if (!RegExp(r'^\d{05}$').hasMatch(value)) {
-                      return 'Enter a valid 05-digit number';
-                    }
-                    return null;
+                  value: selectedGender.isNotEmpty ? selectedGender : null,
+                  items: genderOptions
+                      .map((gender) => DropdownMenuItem<String>(
+                            value: gender,
+                            child: Text(gender),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedGender = value!;
+                    });
                   },
                 ),
+
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: emailController,
@@ -174,6 +206,32 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                     } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$')
                         .hasMatch(value)) {
                       return 'Enter a valid email address';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 10),
+                // DropdownButtonFormField for Category
+                DropdownButtonFormField<String>(
+                  decoration: const InputDecoration(
+                    labelText: 'Category',
+                    hintText: 'Select your category',
+                  ),
+                  value: selectedCategory,
+                  items: categories.map((String category) {
+                    return DropdownMenuItem<String>(
+                      value: category,
+                      child: Text(category),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      selectedCategory = newValue;
+                    });
+                  },
+                  validator: (value) {
+                    if (value == null) {
+                      return 'Please select a category';
                     }
                     return null;
                   },
