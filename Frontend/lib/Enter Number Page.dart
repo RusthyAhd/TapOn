@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Enter verification page.dart';
-import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/constants.dart';
-
 
 class Enternumber extends StatefulWidget {
   const Enternumber({super.key});
@@ -10,7 +8,6 @@ class Enternumber extends StatefulWidget {
   @override
   _EnternumberState createState() => _EnternumberState();
 }
-
 
 class _EnternumberState extends State<Enternumber> {
   final _formKey = GlobalKey<FormState>();
@@ -110,7 +107,8 @@ class _EnternumberState extends State<Enternumber> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 100, vertical: 20),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

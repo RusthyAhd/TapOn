@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:tap_on/Enter%20Number%20Page.dart';
+import 'package:tap_on/Toollogin.dart';
 import 'package:tap_on/Users/Notification.dart';
-
-import 'package:tap_on/Users/edit%20profile.dart';
-
-import 'package:tap_on/login.dart';
-import 'package:tap_on/user-renttools/Tool%20location.dart';
-import 'package:tap_on/Providers/providerRegistration.dart';
-
-import 'package:tap_on/ShopOwner/shopowner%20register.dart';
+import 'package:tap_on/Users/edit%20profile.dart'; // Ensure ProfilePage exists here
+import 'package:tap_on/Servicelogin.dart';
 import 'package:tap_on/user-renttools/Tool%20location.dart';
 
 import 'package:tap_on/user-services/location.dart';
@@ -56,9 +51,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ProfilePage()));
               },
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/profile.jpg'),
-              ),
+              child: const Text("Profile"), // Add text to the button
             ),
             trailing: IconButton(
               icon: const Icon(Icons.support_agent),
@@ -158,7 +151,7 @@ class HomePage extends StatelessWidget {
                   ),
                   ServiceCard(
                     icon: Icons.build,
-                    label: 'beauty professional',
+                    label: 'Beauty Professional',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -180,7 +173,7 @@ class HomePage extends StatelessWidget {
                   ),
                   ServiceCard(
                     icon: Icons.content_cut,
-                    label: 'other',
+                    label: 'Other',
                     onTap: () {
                       Navigator.push(
                         context,
@@ -335,7 +328,7 @@ class HomePage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
+                    MaterialPageRoute(builder: (context) => TLoginPage()));
                 // Handle Shop Owner button press
               },
               child: const Row(
@@ -348,14 +341,13 @@ class HomePage extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ServiceProviderRegistrationForm()));
-
-                // Handle Provider button press
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PLoginPage()));
+                // Handle Shop Owner button press
               },
+
+              // Handle Provider button press
+
               child: const Row(
                 children: [
                   Icon(Icons.engineering),

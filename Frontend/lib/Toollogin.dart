@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:tap_on/ShopOwner/ShopOwnerDashboard.dart';
 import 'package:tap_on/ShopOwner/shopowner%20register.dart';
 
-class LoginPage extends StatelessWidget {
+class TLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          title: const Text('TapOn'),
+          backgroundColor: Colors.amber[700],
           elevation: 0,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -24,9 +26,6 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              
-             
-            
               SizedBox(height: 40), // Space between logo and text fields
 
               // Mobile number or email field
@@ -51,15 +50,14 @@ class LoginPage extends StatelessWidget {
               // Log in button
               ElevatedButton(
                 onPressed: () {
-                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ShopdashboardPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ShopdashboardPage()));
                 },
                 child: Text('Log in'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.amber[700],
                   padding: EdgeInsets.symmetric(vertical: 15),
                   textStyle: TextStyle(fontSize: 18),
                 ),
@@ -74,7 +72,9 @@ class LoginPage extends StatelessWidget {
                   },
                   child: Text(
                     'Forgot password?',
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(
+                      color: Colors.amber[700],
+                    ),
                   ),
                 ),
               ),
@@ -84,20 +84,18 @@ class LoginPage extends StatelessWidget {
               // Create new account button
               OutlinedButton(
                 onPressed: () {
-                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ShopOwnerRegistration()));
-
-
-                 
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ShopOwnerRegistration()));
                 },
                 child: Text('Register as Shop Owner'),
                 style: OutlinedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 15),
-                  textStyle: TextStyle(fontSize: 18),
-                  side: BorderSide(color: Colors.blue),
+                  textStyle: TextStyle(
+                    fontSize: 18,
+                  ),
+                  side: BorderSide(color: Colors.amber),
                 ),
               ),
             ],

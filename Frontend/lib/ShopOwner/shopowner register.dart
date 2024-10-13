@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/ShopOwner/ShopOwnerDashboard.dart';
-import 'package:http/http.dart'
-    as http; // Import the HTTP package for backend communication.
-import 'dart:convert'; // For JSON encoding/decoding.
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ShopOwnerRegistration extends StatefulWidget {
   const ShopOwnerRegistration({super.key});
@@ -18,16 +17,39 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+
   List<String> genderOptions = [
     "Colombo",
-    "Trincomalee",
-    "Batticaloa",
+    "Gampaha",
+    "Kalutara",
     "Kandy",
-    "Jaffna"
+    "Matale",
+    "Nuwara Eliya",
+    "Galle",
+    "Matara",
+    "Hambantota",
+    "Jaffna",
+    "Kilinochchi",
+    "Mannar",
+    "Vavuniya",
+    "Batticaloa",
+    "Ampara",
+    "Trincomalee",
+    "Polonnaruwa",
+    "Anuradhapura",
+    "Dambulla",
+    "Kurunegala",
+    "Puttalam",
+    "Ratnapura",
+    "Kegalle",
+    "Badulla",
+    "Monaragala",
   ];
-  String selectedGender = "";
-  final TextEditingController locationController = TextEditingController();
 
+  String selectedGender = "";
   bool isAgreed = false; // Track if the user has agreed to the terms
   final _formKey = GlobalKey<FormState>(); // Form key for validation
 
@@ -57,8 +79,12 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
         'address': addressController.text,
         'location': selectedGender,
         'email': emailController.text,
-        'category': selectedCategory ?? '', // Add category to the data
+        'category': selectedCategory ?? '',
+        'password': passwordController.text,
+        'confirmPassword': confirmPasswordController.text,
       };
+
+      print('Submitting data: $shopownerData'); // Debug print
 
       try {
         // Send POST request to backend with user data
@@ -67,7 +93,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode(shopownerData),
         );
- 
+
         if (response.statusCode == 200) {
           // Successfully saved data to MongoDB, navigate to the dashboard
           Navigator.push(
@@ -76,13 +102,24 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
               builder: (context) => ShopdashboardPage(),
             ),
           );
-          print('Shopowner Details successfully Registered ');
+          print('Shopowner Details successfully Registered');
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Registration successful!')),
+          );
         } else {
           // Handle error from the backend
           print('Failed to save data. Status code: ${response.statusCode}');
+          print(
+              'Response body: ${response.body}'); // Print response body for more info
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Failed to save data: ${response.body}')),
+          );
         }
       } catch (error) {
         print('Error occurred while submitting data: $error');
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Error occurred while submitting data')),
+        );
       }
     }
   }
@@ -93,10 +130,8 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
         title: const Text(
-          'Registration Form For Shop Owner',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          'Shop Owner Registration',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: Padding(
@@ -107,40 +142,23 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                TextFormField(
+                _buildTextField(
                   controller: nameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
-                    hintText: 'Enter your name',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },
+                  labelText: 'Name',
+                  hintText: 'Enter your name',
+                  icon: Icons.person,
                 ),
-                const SizedBox(height: 10),
-                TextFormField(
+                _buildTextField(
                   controller: shopNameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Shop Name',
-                    hintText: 'Enter your shop name',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your shop name';
-                    }
-                    return null;
-                  },
+                  labelText: 'Shop Name',
+                  hintText: 'Enter your shop name',
+                  icon: Icons.store,
                 ),
-                const SizedBox(height: 10),
-                TextFormField(
+                _buildTextField(
                   controller: phoneController,
-                  decoration: const InputDecoration(
-                    labelText: 'Phone Number',
-                    hintText: 'Enter your phone number',
-                  ),
+                  labelText: 'Phone Number',
+                  hintText: 'Enter your phone number',
+                  icon: Icons.phone,
                   keyboardType: TextInputType.phone,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -151,54 +169,29 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 10),
-                TextFormField(
+                _buildTextField(
                   controller: addressController,
-                  decoration: const InputDecoration(
-                    labelText: 'Address',
-                    hintText: 'Enter your address',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your address';
-                    }
-                    return null;
-                  },
+                  labelText: 'Address',
+                  hintText: 'Enter your address',
+                  icon: Icons.home,
                 ),
-                const SizedBox(height: 10),
-
-// Location Input Field with Icon
-
-                DropdownButtonFormField<String>(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.location_on,
-                      color: Colors.blue,
-                    ),
-                    labelText: "Select Your Location",
-                    labelStyle: TextStyle(color: Colors.blue),
-                  ),
+                _buildDropdownField(
+                  labelText: 'Select Your District',
+                  hintText: 'Select your district',
                   value: selectedGender.isNotEmpty ? selectedGender : null,
-                  items: genderOptions
-                      .map((gender) => DropdownMenuItem<String>(
-                            value: gender,
-                            child: Text(gender),
-                          ))
-                      .toList(),
+                  items: genderOptions,
+                  icon: Icons.location_on,
                   onChanged: (value) {
                     setState(() {
                       selectedGender = value!;
                     });
                   },
                 ),
-
-                const SizedBox(height: 10),
-                TextFormField(
+                _buildTextField(
                   controller: emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'Enter your email',
-                  ),
+                  labelText: 'Email',
+                  hintText: 'Enter your email',
+                  icon: Icons.email,
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -210,20 +203,33 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 10),
-                // DropdownButtonFormField for Category
-                DropdownButtonFormField<String>(
-                  decoration: const InputDecoration(
-                    labelText: 'Category',
-                    hintText: 'Select your category',
-                  ),
+                _buildTextField(
+                  controller: passwordController,
+                  labelText: 'Password',
+                  hintText: 'Enter your password',
+                  icon: Icons.lock,
+                  obscureText: true,
+                ),
+                _buildTextField(
+                  controller: confirmPasswordController,
+                  labelText: 'Confirm Password',
+                  hintText: 'Re-enter your password',
+                  icon: Icons.lock,
+                  obscureText: true,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    } else if (value != passwordController.text) {
+                      return 'Passwords do not match';
+                    }
+                    return null;
+                  },
+                ),
+                _buildDropdownField(
+                  labelText: 'Category',
+                  hintText: 'Select your category',
                   value: selectedCategory,
-                  items: categories.map((String category) {
-                    return DropdownMenuItem<String>(
-                      value: category,
-                      child: Text(category),
-                    );
-                  }).toList(),
+                  items: categories,
                   onChanged: (String? newValue) {
                     setState(() {
                       selectedCategory = newValue;
@@ -246,8 +252,7 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                   'keeping your account details secure. Must ensure tools are '
                   'described accurately, safe, and functional. The app only connects '
                   'users and providers. We are not responsible for the quality or '
-                  'outcome of services or tools provided. You must provide accurate '
-                  'contact information.',
+                  'outcome of services or tools provided.',
                   style: TextStyle(fontSize: 12),
                 ),
                 const SizedBox(height: 20),
@@ -269,20 +274,81 @@ class _ShopOwnerRegistrationState extends State<ShopOwnerRegistration> {
                 const SizedBox(height: 15),
                 Center(
                   child: ElevatedButton(
-                    onPressed: isAgreed
-                        ? registerOwner
-                        : null, // Disable if not agreed
-                    child: Text('Continue'),
+                    onPressed: isAgreed ? registerOwner : null,
+                    child: const Text('Continue'),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black,
-                      backgroundColor: Colors.yellow[700], // Button color
-                    ),
+                      backgroundColor: Colors.yellow[700],
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 30),
+                      textStyle: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
+                    ).copyWith(elevation: ButtonStyleButton.allOrNull(5)),
                   ),
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String labelText,
+    required String hintText,
+    IconData? icon,
+    bool obscureText = false,
+    FormFieldValidator<String>? validator,
+    TextInputType? keyboardType,
+  }) {
+    return Card(
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          prefixIcon: icon != null ? Icon(icon, color: Colors.blue) : null,
+          labelText: labelText,
+          hintText: hintText,
+          border: OutlineInputBorder(),
+        ),
+        obscureText: obscureText,
+        keyboardType: keyboardType,
+        validator: validator,
+      ),
+    );
+  }
+
+  Widget _buildDropdownField({
+    required String labelText,
+    required String hintText,
+    required String? value,
+    required List<String> items,
+    IconData? icon,
+    ValueChanged<String?>? onChanged,
+    FormFieldValidator<String>? validator,
+  }) {
+    return Card(
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: DropdownButtonFormField<String>(
+        decoration: InputDecoration(
+          prefixIcon: icon != null ? Icon(icon, color: Colors.blue) : null,
+          labelText: labelText,
+          hintText: hintText,
+          border: OutlineInputBorder(),
+        ),
+        value: value,
+        items: items.map((item) {
+          return DropdownMenuItem<String>(
+            value: item,
+            child: Text(item),
+          );
+        }).toList(),
+        onChanged: onChanged,
+        validator: validator,
       ),
     );
   }

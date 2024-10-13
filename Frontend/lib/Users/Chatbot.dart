@@ -10,8 +10,37 @@ class ChatPage extends StatelessWidget {
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.help_outline),
+            onPressed: () {
+              // Add help functionality here
+              showHelpDialog(context);
+            },
+          ),
+        ],
       ),
       body: ChatScreen(),
+    );
+  }
+
+  void showHelpDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Help'),
+          content: Text('How can we assist you?'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -27,10 +56,6 @@ class _ChatScreenState extends State<ChatScreen> {
     {"text": "I'm here to help. How can I assist?", "isUser": false},
   ];
 
-  final TextEditingController _controller = TextEditingController();
-
- 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,13 +66,16 @@ class _ChatScreenState extends State<ChatScreen> {
             itemBuilder: (context, index) {
               final message = messages[index];
               return Align(
-                alignment:
-                    message["isUser"] ? Alignment.centerRight : Alignment.centerLeft,
+                alignment: message["isUser"]
+                    ? Alignment.centerRight
+                    : Alignment.centerLeft,
                 child: Container(
                   padding: EdgeInsets.all(12),
                   margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                   decoration: BoxDecoration(
-                    color: message["isUser"] ? Colors.grey[300] : Colors.yellow[700],
+                    color: message["isUser"]
+                        ? Colors.grey[300]
+                        : Colors.yellow[700],
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(message["text"]),
@@ -57,21 +85,15 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                    hintText: "Ask a question",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: FloatingActionButton(
+              onPressed: () {
+                // Add speaking button functionality here
+              },
+              child: Icon(Icons.mic, size: 28),
+              backgroundColor: Colors.amber[700],
+            ),
           ),
         ),
       ],
