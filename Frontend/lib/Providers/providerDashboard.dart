@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Providers/AddService.dart';
 import 'package:tap_on/Home%20page.dart';
+import 'package:tap_on/Providers/acceptedservicehistrory.dart';
+
 import 'package:tap_on/Providers/providerFeedback.dart';
 import 'package:tap_on/Providers/providerNotification.dart';
 import 'package:tap_on/Providers/providerOrderHistory.dart';
 import 'package:tap_on/Providers/providerProfile.dart';
+import 'package:tap_on/Providers/rejectedProvider.dart';
 import 'package:tap_on/Providers/servicemanage.dart';
 import 'package:tap_on/Providers/acceptedProvider.dart';
-import 'package:tap_on/Providers/rejectedProvider.dart';
 
 class Providerdashboard extends StatelessWidget {
   @override
@@ -34,6 +36,15 @@ class Providerdashboard extends StatelessWidget {
             ),
           ],
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.home),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
+            },
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -152,11 +163,10 @@ class Providerdashboard extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
-                        foregroundColor: Colors.yellow ,
-                  
+                  foregroundColor: Colors.yellow,
                   minimumSize: Size(70, 50),
                 ),
-                child: Text('Back to Home'),
+                child: Text('Log Out'),
               ),
             ),
           ],
@@ -204,21 +214,38 @@ class Providerdashboard extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    Acceptservicehistory()), // Navigate to accepted orders page
+          );
+        },
+        backgroundColor:
+            const Color.fromARGB(255, 255, 214, 7), // Color of the button
+        child: const Text(
+          'Accept',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
     );
   }
 
-  orderItem(
-      {required BuildContext context,
-      required String subStatus,
-      required String orderId,
-      required String date,
-      required customername,
-      required customermobile,
-      required customerLocation,
-      required String ordername,
-      required MaterialColor statusColor}) {
+  Widget orderItem({
+    required BuildContext context,
+    required String subStatus,
+    required String orderId,
+    required String date,
+    required String customername,
+    required String customermobile,
+    required String customerLocation,
+    required String ordername,
+    required MaterialColor statusColor,
+  }) {
     return Card(
-       color: const Color.fromARGB(255, 233, 231, 207),
+      color: const Color.fromARGB(255, 233, 231, 207),
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Padding(
         padding: EdgeInsets.all(15),
@@ -267,10 +294,10 @@ class Providerdashboard extends StatelessWidget {
                       },
                       child: const Text('Accept'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(
-                            255, 255, 197, 39), 
-                            foregroundColor: Colors.black// Button color
-                      ),
+                          backgroundColor:
+                              const Color.fromARGB(255, 255, 197, 39),
+                          foregroundColor: Colors.black // Button color
+                          ),
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(
@@ -286,9 +313,9 @@ class Providerdashboard extends StatelessWidget {
                       },
                       child: const Text('Reject'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.black // Button color
-                      ),
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.black // Button color
+                          ),
                     ),
                   ],
                 ),

@@ -3,7 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tap_on/user-renttools/Tool%20location.dart';
 import 'package:tap_on/user-renttools/Toolmenu.dart';
 
-class NearbyToolRantPage extends StatelessWidget {
+class NearbyToolRentPage extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
     {
       'name': 'Icom hardware',
@@ -217,24 +217,28 @@ class NearbyToolRantPage extends StatelessWidget {
                                           'description':
                                               'Used pliers in good condition. Suitable for small repairs.',
                                         },
-                                                              {
+                                        {
                                           'title': 'Screwdrivers (New)',
                                           'price': 'Rs 900',
-                                          'image': 'assets/images/Screwdrivers.jpg',
+                                          'image':
+                                              'assets/images/Screwdrivers.jpg',
                                           'description':
                                               'This is a high-quality new hammer made for heavy-duty usage.',
                                         },
-                                                              {
+                                        {
                                           'title': 'Wire Stripper (Used)',
                                           'price': 'Rs 500',
-                                          'image': 'assets/images/Wire Stripper.jpeg',
+                                          'image':
+                                              'assets/images/Wire Stripper.jpeg',
                                           'description':
                                               'This is a high-quality new hammer made for heavy-duty usage.',
                                         },
-                                                              {
-                                          'title': 'Flame Retardant Shirt (New)',
+                                        {
+                                          'title':
+                                              'Flame Retardant Shirt (New)',
                                           'price': 'Rs 680',
-                                          'image': 'assets/images/Flame Retardant Shirt.jpg',
+                                          'image':
+                                              'assets/images/Flame Retardant Shirt.jpg',
                                           'description':
                                               'This is a high-quality new hammer made for heavy-duty usage.',
                                         },

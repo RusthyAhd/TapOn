@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/user-services/waiting%20page.dart';
 
 class ProductDetailsPage extends StatelessWidget {
   final String title;
@@ -34,7 +35,7 @@ class ProductDetailsPage extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -86,34 +87,64 @@ class ProductDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-          
-                //call button process
+              SizedBox(height: 16),
+
+              //call button process
+              Column(
+                children: [
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 50, vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
                     onPressed: () {
-                      // Handle "call" action
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => WaitingPage()),
+                      );
                     },
-                    child: const Text(
-                      'call',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    child: Text('Request'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.yellow,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      textStyle: TextStyle(fontSize: 16, color: Colors.white),
                     ),
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(Icons.phone, color: Colors.black),
+                          label: Text('Call',
+                              style: TextStyle(color: Colors.black)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.amber,
+                            side: BorderSide(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 2),
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(Icons.message, color: Colors.black),
+                          label: Text('Message',
+                              style: TextStyle(color: Colors.black)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.amber,
+                            side: BorderSide(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-          
+            ],
           ),
         ),
-      );
-  
+      ),
+    );
   }
 }
 

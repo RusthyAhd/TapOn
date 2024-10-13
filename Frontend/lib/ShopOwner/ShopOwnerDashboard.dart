@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Home%20page.dart';
+import 'package:tap_on/Providers/acceptedservicehistrory.dart';
 import 'package:tap_on/ShopOwner/ShopNotfication.dart';
 import 'package:tap_on/ShopOwner/ShopOrderhistory.dart';
 import 'package:tap_on/ShopOwner/AddTools.dart';
 import 'package:tap_on/ShopOwner/ShopProfile.dart';
+import 'package:tap_on/ShopOwner/acceptedtoolhistrory.dart';
 import 'package:tap_on/ShopOwner/shopfeedback.dart';
 import 'package:tap_on/ShopOwner/ToolsManagement.dart';
 
@@ -13,8 +15,6 @@ class ShopdashboardPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow[700],
-        
-        
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,6 +34,15 @@ class ShopdashboardPage extends StatelessWidget {
             ),
           ],
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.home),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomePage()));
+            },
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -177,6 +186,22 @@ class ShopdashboardPage extends StatelessWidget {
               child: Text('Your orders show here'),
             ),
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    Accepttoolhistory()), // Navigate to accepted orders page
+          );
+        },
+        backgroundColor:
+            const Color.fromARGB(255, 255, 214, 7), // Color of the button
+        child: const Text(
+          'Accept',
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );

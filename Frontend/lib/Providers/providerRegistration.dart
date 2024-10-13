@@ -20,16 +20,40 @@ class _ServiceProviderRegistrationFormState
   final TextEditingController nameController = TextEditingController();
   final TextEditingController serviceTitleController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-  List<String> genderOptions = [
-    "Colombo",
-    "Trincomalee",
-    "Batticaloa",
-    "Kandy",
-    "Jaffna"
-  ];
-  String selectedGender = "";
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
-  final TextEditingController locationController = TextEditingController();
+  List<String> locationOptions = [
+    "Colombo",
+    "Gampaha",
+    "Kalutara",
+    "Kandy",
+    "Matale",
+    "Nuwara Eliya",
+    "Galle",
+    "Matara",
+    "Hambantota",
+    "Jaffna",
+    "Kilinochchi",
+    "Mannar",
+    "Vavuniya",
+    "Batticaloa",
+    "Ampara",
+    "Trincomalee",
+    "Polonnaruwa",
+    "Anuradhapura",
+    "Dambulla",
+    "Kurunegala",
+    "Puttalam",
+    "Ratnapura",
+    "Kegalle",
+    "Badulla",
+    "Monaragala",
+  ];
+
+  String selectedLocation = "";
 
   String? selectedCategory; // To store selected category
   final List<String> categories = [
@@ -55,9 +79,11 @@ class _ServiceProviderRegistrationFormState
         'service_title': serviceTitleController.text,
         'phone': phoneController.text,
         'address': addressController.text,
-        'location': selectedGender!,
+        'location': selectedLocation,
         'email': emailController.text,
         'category': selectedCategory!, // Add selected category
+        'description': descriptionController.text,
+        'password': passwordController.text,
       };
 
       try {
@@ -77,12 +103,21 @@ class _ServiceProviderRegistrationFormState
             ),
           );
           print('Provider Details successfully Registered');
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Registration successful!')),
+          );
         } else {
           // Handle error from the backend
           print('Failed to save data. Status code: ${response.statusCode}');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Failed to save data: ${response.body}')),
+          );
         }
       } catch (error) {
         print('Error occurred while submitting data: $error');
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Error occurred while submitting data')),
+        );
       }
     }
   }
@@ -95,47 +130,32 @@ class _ServiceProviderRegistrationFormState
         title: Text('Service Provider Registration'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextFormField(
+              _buildTextField(
                 controller: nameController,
-                decoration: InputDecoration(
-                  labelText: 'Name',
-                  hintText: 'Enter your name',
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your name';
-                  }
-                  return null;
-                },
+                labelText: 'Name',
+                hintText: 'Enter your name',
+                icon: Icons.person,
               ),
               const SizedBox(height: 16.0),
-              TextFormField(
+              _buildTextField(
                 controller: serviceTitleController,
-                decoration: const InputDecoration(
-                  labelText: 'Service Title',
-                  hintText: 'Enter your occupation',
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your occupation';
-                  }
-                  return null;
-                },
+                labelText: 'Service Title',
+                hintText: 'Enter your occupation',
+                icon: Icons.work,
               ),
               const SizedBox(height: 16.0),
-              TextFormField(
+              _buildTextField(
                 controller: phoneController,
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                  hintText: 'Enter your phone number',
-                ),
+                labelText: 'Phone Number',
+                hintText: 'Enter your phone number',
                 keyboardType: TextInputType.phone,
+                icon: Icons.phone,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your phone number';
@@ -146,51 +166,32 @@ class _ServiceProviderRegistrationFormState
                 },
               ),
               const SizedBox(height: 16.0),
-              TextFormField(
+              _buildTextField(
                 controller: addressController,
-                decoration: const InputDecoration(
-                  labelText: 'Address',
-                  hintText: 'Enter your address',
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your address';
-                  }
-                  return null;
+                labelText: 'Address',
+                hintText: 'Enter your address',
+                icon: Icons.home,
+              ),
+              const SizedBox(height: 16.0),
+              // Location Input Field with Icon
+              _buildDropdownField(
+                labelText: "Select Your District",
+                hintText: 'Choose your district',
+                value: selectedLocation.isNotEmpty ? selectedLocation : null,
+                items: locationOptions,
+                icon: Icons.location_on,
+                onChanged: (value) {
+                  setState(() {
+                    selectedLocation = value!;
+                  });
                 },
               ),
-              SizedBox(height: 16.0),
-
-              // Location Input Field with Icon                     
-           DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.location_on, color: Colors.amber,),
-                labelText: "Select Your Location",
-                labelStyle: TextStyle(color: Colors.amber),
-
-              ),
-              value: selectedGender.isNotEmpty ? selectedGender : null,
-              items: genderOptions
-                  .map((gender) => DropdownMenuItem<String>(
-                        value: gender,
-                        child: Text(gender),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedGender = value!;
-                });
-              },
-            ),
-
-
-              SizedBox(height: 16.0),
-              TextFormField(
+              const SizedBox(height: 16.0),
+              _buildTextField(
                 controller: emailController,
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  hintText: 'Enter your email',
-                ),
+                labelText: 'Email',
+                hintText: 'Enter your email',
+                icon: Icons.email,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your email';
@@ -201,20 +202,54 @@ class _ServiceProviderRegistrationFormState
                 },
               ),
               const SizedBox(height: 16.0),
-
+              // Password Field
+              _buildTextField(
+                controller: passwordController,
+                labelText: 'Password',
+                hintText: 'Enter your password',
+                obscureText: true,
+                icon: Icons.lock,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16.0),
+              // Confirm Password Field
+              _buildTextField(
+                controller: confirmPasswordController,
+                labelText: 'Confirm Password',
+                hintText: 'Re-enter your password',
+                obscureText: true,
+                icon: Icons.lock,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please confirm your password';
+                  } else if (value != passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16.0),
+              // Description Field
+              _buildTextField(
+                controller: descriptionController,
+                labelText: 'Description',
+                hintText: 'Enter a brief description of your services',
+                maxLines: 3,
+                icon: Icons.description,
+              ),
+              const SizedBox(height: 16.0),
               // Dropdown for category selection
-              DropdownButtonFormField<String>(
+              _buildDropdownField(
+                labelText: 'Select Category',
+                hintText: 'Choose your category',
                 value: selectedCategory,
-                decoration: InputDecoration(
-                  labelText: 'Select Category',
-                  hintText: 'Choose your category',
-                ),
-                items: categories.map((String category) {
-                  return DropdownMenuItem<String>(
-                    value: category,
-                    child: Text(category),
-                  );
-                }).toList(),
+                items: categories,
+                icon: Icons.category,
                 onChanged: (String? newValue) {
                   setState(() {
                     selectedCategory = newValue;
@@ -228,7 +263,6 @@ class _ServiceProviderRegistrationFormState
                 },
               ),
               const SizedBox(height: 16.0),
-
               const Text('Terms and Conditions',
                   style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 10),
@@ -264,7 +298,7 @@ class _ServiceProviderRegistrationFormState
                   onPressed: isAgreed
                       ? registerServiceProvider
                       : null, // Disable if not agreed
-                  child: Text('Continue'),
+                  child: const Text('Continue'),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,
                     backgroundColor: Colors.yellow[700], // Button color
@@ -274,6 +308,69 @@ class _ServiceProviderRegistrationFormState
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  // Method to build text field with icon
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String labelText,
+    required String hintText,
+    bool obscureText = false,
+    int maxLines = 1,
+    FormFieldValidator<String>? validator,
+    TextInputType? keyboardType,
+    required IconData icon,
+  }) {
+    return Card(
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: labelText,
+          hintText: hintText,
+          border: OutlineInputBorder(),
+          prefixIcon: Icon(icon),
+        ),
+        obscureText: obscureText,
+        keyboardType: keyboardType,
+        maxLines: maxLines,
+        validator: validator,
+      ),
+    );
+  }
+
+  // Method to build dropdown field with icon
+  Widget _buildDropdownField({
+    required String labelText,
+    required String hintText,
+    required String? value,
+    required List<String> items,
+    required IconData icon,
+    ValueChanged<String?>? onChanged,
+    FormFieldValidator<String>? validator,
+  }) {
+    return Card(
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: DropdownButtonFormField<String>(
+        decoration: InputDecoration(
+          labelText: labelText,
+          hintText: hintText,
+          border: OutlineInputBorder(),
+          prefixIcon: Icon(icon),
+        ),
+        value: value,
+        items: items.map((item) {
+          return DropdownMenuItem<String>(
+            value: item,
+            child: Text(item),
+          );
+        }).toList(),
+        onChanged: onChanged,
+        validator: validator,
       ),
     );
   }

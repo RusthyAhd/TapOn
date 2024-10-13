@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/user-services/showprovider.dart';
 
 class LocationScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class LocationScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NearbyServiceProvidersPage(),
+                builder: (context) => HomePage(),
               ),
             );
           },
@@ -56,6 +57,10 @@ class _HomeBodyState extends State<HomeBody> {
               TextField(
                 controller: locationController,
                 decoration: const InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.location_on,
+                    color: Colors.amber,
+                  ),
                   border: OutlineInputBorder(),
                   labelText: 'Enter Your Location Details',
                 ),
@@ -64,7 +69,7 @@ class _HomeBodyState extends State<HomeBody> {
               ElevatedButton(
                 onPressed: _addLocation,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
+                  backgroundColor: Colors.amber,
                 ),
                 child: const Text('Add'),
               ),
@@ -88,7 +93,7 @@ class _HomeBodyState extends State<HomeBody> {
             child: GridView.count(
               crossAxisCount: 1, // 1 column
               padding: const EdgeInsets.all(10.0),
-              crossAxisSpacing: 5,
+              crossAxisSpacing: 10,
               mainAxisSpacing: 5,
               childAspectRatio: 6, // Adjust to make the items wide rectangles
               children: [
@@ -104,7 +109,18 @@ class _HomeBodyState extends State<HomeBody> {
                   },
                 ),
                 ServiceCard(
-                  label: 'Trincomalee',
+                  label: 'Gampaha',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Kalutara',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -126,6 +142,61 @@ class _HomeBodyState extends State<HomeBody> {
                   },
                 ),
                 ServiceCard(
+                  label: 'Matale',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Nuwara Eliya',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Galle',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Matara',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Hambantota',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
                   label: 'Jaffna',
                   onTap: () {
                     Navigator.push(
@@ -137,7 +208,7 @@ class _HomeBodyState extends State<HomeBody> {
                   },
                 ),
                 ServiceCard(
-                  label: 'Gardener',
+                  label: 'Kilinochchi',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -148,7 +219,7 @@ class _HomeBodyState extends State<HomeBody> {
                   },
                 ),
                 ServiceCard(
-                  label: 'Fridge Repair',
+                  label: 'Mannar',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -159,7 +230,7 @@ class _HomeBodyState extends State<HomeBody> {
                   },
                 ),
                 ServiceCard(
-                  label: 'Beauty Professional',
+                  label: 'Vavuniya',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -170,7 +241,7 @@ class _HomeBodyState extends State<HomeBody> {
                   },
                 ),
                 ServiceCard(
-                  label: 'Phone Repair',
+                  label: 'Mullaitivu',
                   onTap: () {
                     Navigator.push(
                       context,
@@ -181,7 +252,117 @@ class _HomeBodyState extends State<HomeBody> {
                   },
                 ),
                 ServiceCard(
-                  label: 'Other',
+                  label: 'Batticaloa',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Ampara',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Trincomalee',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Kurunegala',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Puttalam',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Anuradhapura',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Polonnaruwa',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Badulla',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Monaragala',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Ratnapura',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NearbyServiceProvidersPage(),
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Kegalle',
                   onTap: () {
                     Navigator.push(
                       context,

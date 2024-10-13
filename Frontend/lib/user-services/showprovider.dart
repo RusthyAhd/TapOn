@@ -1,6 +1,6 @@
 //showprovider.dart
 import 'package:flutter/material.dart';
-import 'package:tap_on/Providers/service%20details.dart';
+import 'package:tap_on/user-services/service%20details.dart';
 import 'package:tap_on/user-services/location.dart';
 
 class NearbyServiceProvidersPage extends StatelessWidget {

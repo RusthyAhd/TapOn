@@ -1,143 +1,435 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/user-renttools/Nearby_Tool_Shops.dart';
+import 'package:tap_on/user-services/showprovider.dart'; // Ensure this import is correct
 
-class TLocationPage extends StatefulWidget {
+class TLocationPage extends StatelessWidget {
+  const TLocationPage({super.key});
+
   @override
-  _LocationPageState createState() => _LocationPageState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('TapOn'),
+        backgroundColor: Colors.amber[700],
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+            );
+          },
+        ),
+      ),
+      body: HomeBody(),
+    );
+  }
 }
 
-class _LocationPageState extends State<TLocationPage> {
-  List<String> genderOptions = [
-    "Colombo",
-    "Trincomalee",
-    "Batticaloa",
-    "Kandy",
-    "Jaffna",
-    'Galle',
-    'Ampara',
-    'Anuradhapura',
-    'Badulla',
-    'Gampaha',
-    'Hambantota',
-  ];
-  String selectedGender = "";
-  late GoogleMapController mapController;
-  bool isLoading = true; // Track if map is loading
+class HomeBody extends StatefulWidget {
+  @override
+  _HomeBodyState createState() => _HomeBodyState();
+}
 
-  final LatLng _center = const LatLng(8.569, 81.234); // Default to Kinniya
+class _HomeBodyState extends State<HomeBody> {
+  final TextEditingController locationController = TextEditingController();
+  final List<String> locations = ['Colombo', 'Trincomalee', 'Kandy', 'Jaffna'];
 
-  void _onMapCreated(GoogleMapController controller) {
-    setState(() {
-      mapController = controller;
-      isLoading = false; // Map is loaded
-    });
+  void _addLocation() {
+    if (locationController.text.isNotEmpty) {
+      setState(() {
+        locations.add(locationController.text);
+        locationController.clear();
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final padding = EdgeInsets.all(16.0);
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Location',
-          style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        backgroundColor: Colors.amber[700],
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomePage()));
-          },
-        ),
-      ),
-      body: Padding(
-        padding: padding,
-        child: Column(
-          children: <Widget>[
-            // Location Input Field with Icon
-
-            DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                prefixIcon: Icon(
-                  Icons.location_on,
-                  color: Colors.amber,
-                ),
-                labelText: "Select Your Location",
-                labelStyle: TextStyle(color: Colors.amber),
-              ),
-              value: selectedGender.isNotEmpty ? selectedGender : null,
-              items: genderOptions
-                  .map((gender) => DropdownMenuItem<String>(
-                        value: gender,
-                        child: Text(gender),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedGender = value!;
-                });
-              },
-            ),
-
-            // Search Button with Animation
-
-            SizedBox(height: 10),
-
-            // Map Display with Loader
-            Expanded(
-              child: Stack(
-                children: [
-                  GoogleMap(
-                    onMapCreated: _onMapCreated,
-                    initialCameraPosition: CameraPosition(
-                      target: _center,
-                      zoom: 14.0,
-                    ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: locationController,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.location_on,
+                    color: Colors.amber,
                   ),
-                  if (isLoading)
-                    Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter Your Location Details',
+                ),
+              ),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: _addLocation,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                ),
+                child: const Text('Add'),
+              ),
+            ],
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.0),
+          child: Text(
+            'Choose Your Location',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Expanded(
+          child: Container(
+            color: const Color.fromARGB(255, 233, 231, 207),
+            child: GridView.count(
+              crossAxisCount: 1, // 1 column
+              padding: const EdgeInsets.all(10.0),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 5,
+              childAspectRatio: 6, // Adjust to make the items wide rectangles
+              children: [
+                ServiceCard(
+                  label: 'Colombo',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
                       ),
-                    ),
-                ],
-              ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Gampaha',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Kalutara',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Kandy',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Matale',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Nuwara Eliya',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Galle',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Matara',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Hambantota',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Jaffna',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Kilinochchi',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Mannar',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Vavuniya',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Mullaitivu',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Batticaloa',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Ampara',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Trincomalee',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Kurunegala',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Puttalam',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Anuradhapura',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Polonnaruwa',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Badulla',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Monaragala',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Ratnapura',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+                ServiceCard(
+                  label: 'Kegalle',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NearbyToolRentPage(), // Changed here
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
-            SizedBox(height: 10),
+          ),
+        ),
+      ],
+    );
+  }
+}
 
-            // Continue Button with Responsive Width
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NearbyToolRantPage()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.white,
-                elevation: 5,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-              ),
-              child: Container(
-                width: size.width * 0.3, // 90% of screen width
-                child: const Text(
-                  'Continue',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-            ),
-          ],
+class ServiceCard extends StatelessWidget {
+  final String label;
+  final VoidCallback onTap;
+
+  const ServiceCard({
+    super.key,
+    required this.label,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        color: const Color.fromARGB(255, 250, 184, 78),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 16),
+          ),
         ),
       ),
     );
