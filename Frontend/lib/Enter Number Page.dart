@@ -36,32 +36,32 @@ class _EnternumberState extends State<Enternumber> {
 
     return Scaffold(
       backgroundColor: Colors.orange,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Image.asset(
-                'assets/images/image02.jpeg',
-                height: height * 0.50,
-                width: width,
-                fit: BoxFit.cover,
-              ),
-              Container(
-                height: height * 0.50,
-                width: width,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.transparent, Colors.white],
+      body: SingleChildScrollView( // SingleChildScrollView wrapped correctly
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Image.asset(
+                  'assets/images/image02.jpeg',
+                  height: height * 0.50,
+                  width: width,
+                  fit: BoxFit.cover,
+                ),
+                Container(
+                  height: height * 0.50,
+                  width: width,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.transparent, Colors.white],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: Center(
+              ],
+            ),
+            Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -124,8 +124,8 @@ class _EnternumberState extends State<Enternumber> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

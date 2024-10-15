@@ -5,9 +5,9 @@ import 'package:tap_on/Toollogin.dart';
 import 'package:tap_on/Users/Notification.dart';
 import 'package:tap_on/Users/edit%20profile.dart'; // Ensure ProfilePage exists here
 import 'package:tap_on/Servicelogin.dart';
+import 'package:tap_on/user-renttools/Nearby_Tool_Shops.dart';
 import 'package:tap_on/user-renttools/Tool%20location.dart';
 
-import 'package:tap_on/user-services/location.dart';
 import 'package:tap_on/Users/Chatbot.dart';
 
 class HomePage extends StatelessWidget {
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
+                            builder: (context) =>LocationPickerScreen()),
                       );
                     },
                   ),
@@ -101,7 +101,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -123,7 +123,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -134,7 +134,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -145,7 +145,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -156,7 +156,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -167,7 +167,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -178,7 +178,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationScreen()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -211,7 +211,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TLocationPage()),
+                            builder: (context) =>LocationPickerScreen()),
                       );
                     },
                   ),
@@ -222,7 +222,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TLocationPage()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -233,7 +233,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TLocationPage()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -244,7 +244,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TLocationPage()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -255,7 +255,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TLocationPage()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -266,7 +266,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TLocationPage()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -277,7 +277,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TLocationPage()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -288,7 +288,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TLocationPage()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),
@@ -299,7 +299,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => TLocationPage()),
+                            builder: (context) => LocationPickerScreen()),
                       );
                     },
                   ),

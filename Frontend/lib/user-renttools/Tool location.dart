@@ -1,436 +1,216 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/user-renttools/Nearby_Tool_Shops.dart';
-import 'package:tap_on/user-services/showprovider.dart'; // Ensure this import is correct
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart' as loc;
 
-class TLocationPage extends StatelessWidget {
-  const TLocationPage({super.key});
-
+class LocationPickerScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('TapOn'),
-        backgroundColor: Colors.amber[700],
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(),
-              ),
-            );
-          },
-        ),
-      ),
-      body: HomeBody(),
-    );
+  _LocationPickerScreenState createState() => _LocationPickerScreenState();
+}
+
+class _LocationPickerScreenState extends State<LocationPickerScreen> {
+  TextEditingController _locationController = TextEditingController();
+  bool _isLoadingLocation = false;
+  String _currentAddress = "";
+  LatLng? currentPosition;
+  double? _latitude;
+  double? _longitude;
+  GoogleMapController? _mapController;
+  Set<Marker> _markers = {}; // Set to hold all the markers
+
+  // Function to check location permissions and get the current location
+Future<void> _getCurrentLocation() async {
+  setState(() {
+    _isLoadingLocation = true;
+  });
+
+  bool serviceEnabled;
+  LocationPermission permission;
+
+  // Check if location services are enabled
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    setState(() {
+      _currentAddress = 'Location services are disabled.';
+      _isLoadingLocation = false;
+    });
+    return;
   }
-}
 
-class HomeBody extends StatefulWidget {
-  @override
-  _HomeBodyState createState() => _HomeBodyState();
-}
-
-class _HomeBodyState extends State<HomeBody> {
-  final TextEditingController locationController = TextEditingController();
-  final List<String> locations = ['Colombo', 'Trincomalee', 'Kandy', 'Jaffna'];
-
-  void _addLocation() {
-    if (locationController.text.isNotEmpty) {
+  // Check location permissions
+  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {
       setState(() {
-        locations.add(locationController.text);
-        locationController.clear();
+        _currentAddress = 'Location permissions are denied';
+        _isLoadingLocation = false;
       });
+      return;
+    }
+  }
+
+  if (permission == LocationPermission.deniedForever) {
+    setState(() {
+      _currentAddress = 'Location permissions are permanently denied';
+      _isLoadingLocation = false;
+    });
+    return;
+  }
+
+  // Get the current position
+  Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high);
+
+  // Reverse geocoding to get address from latitude and longitude
+  List<Placemark> placemarks = await placemarkFromCoordinates(
+    position.latitude,
+    position.longitude,
+  );
+
+  Placemark place = placemarks[0];
+
+  setState(() {
+    _latitude = position.latitude;
+    _longitude = position.longitude;
+    _currentAddress =
+        "${place.locality}, ${place.postalCode}, ${place.country}";
+    _isLoadingLocation = false;
+
+    // Add a marker for the current location
+    _addMarker(LatLng(_latitude!, _longitude!), 'My Current Location');
+
+    // Move the map to the current location
+    if (_mapController != null) {
+      _mapController!.animateCamera(
+        CameraUpdate.newLatLngZoom(
+          LatLng(_latitude!, _longitude!),  // Position the camera on the new location
+          15,  // Zoom level, 15 is a good zoom for street-level view
+        ),
+      );
+    }
+  });
+}
+
+
+  // Method to add a marker at a specific location
+  void _addMarker(LatLng position, String markerId) {
+    final marker = Marker(
+      markerId: MarkerId(markerId),
+      position: position,
+      infoWindow: InfoWindow(
+          title: markerId,
+          snippet: "Lat: ${position.latitude}, Lng: ${position.longitude}"),
+      icon: BitmapDescriptor.defaultMarkerWithHue(
+          BitmapDescriptor.hueBlue), // Marker color
+    );
+
+    setState(() {
+      _markers.add(marker); // Add the marker to the set
+    });
+  }
+
+  void _goToCurrentLocation() async {
+    final loc.Location location = loc.Location();
+    final currentLocation = await location.getLocation();
+    if (currentLocation.latitude != null && currentLocation.longitude != null) {
+      setState(() {
+        currentPosition = LatLng(
+          currentLocation.latitude ?? 0.0,
+          currentLocation.longitude ?? 0.0,
+        );
+      });
+      if (_mapController != null) {
+        _mapController!.animateCamera(
+          CameraUpdate.newCameraPosition(
+            CameraPosition(target: currentPosition!, zoom: 14),
+          ),
+        );
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              TextField(
-                controller: locationController,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.location_on,
-                    color: Colors.amber,
-                  ),
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter Your Location Details',
-                ),
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: _addLocation,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber,
-                ),
-                child: const Text('Add'),
-              ),
-            ],
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
-          child: Text(
-            'Choose Your Location',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        const SizedBox(height: 10),
-        Expanded(
-          child: Container(
-            color: const Color.fromARGB(255, 233, 231, 207),
-            child: GridView.count(
-              crossAxisCount: 1, // 1 column
-              padding: const EdgeInsets.all(10.0),
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 5,
-              childAspectRatio: 6, // Adjust to make the items wide rectangles
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Set Delivery Location'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ServiceCard(
-                  label: 'Colombo',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
+                // Input field for location search
+                TextField(
+                  controller: _locationController,
+                  decoration: InputDecoration(
+                    labelText: 'Enter a location',
+                    suffixIcon: Icon(Icons.save),
+                  ),
                 ),
-                ServiceCard(
-                  label: 'Gampaha',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
+                SizedBox(height: 16.0),
+
+                // Button to use current location
+                ElevatedButton.icon(
+                  onPressed: _getCurrentLocation,
+                  icon: Icon(Icons.my_location),
+                  label: Text('Use My Current Location'),
                 ),
-                ServiceCard(
-                  label: 'Kalutara',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
+
+                SizedBox(height: 16.0),
+
+                // Show loading spinner or the current address with coordinates
+                _isLoadingLocation
+                    ? Center(child: CircularProgressIndicator())
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (_currentAddress.isNotEmpty)
+                            Text(
+                              'Current Address: $_currentAddress',
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                          if (_latitude != null && _longitude != null)
+                            Text(
+                              'Latitude: $_latitude, Longitude: $_longitude',
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                          if (_latitude == null && _longitude == null)
+                            Text('No location selected'),
+                        ],
                       ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Kandy',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Matale',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Nuwara Eliya',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Galle',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Matara',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Hambantota',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Jaffna',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Kilinochchi',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Mannar',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Vavuniya',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Mullaitivu',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Batticaloa',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Ampara',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Trincomalee',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Kurunegala',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Puttalam',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Anuradhapura',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Polonnaruwa',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Badulla',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Monaragala',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Ratnapura',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
-                ServiceCard(
-                  label: 'Kegalle',
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NearbyToolRentPage(), // Changed here
-                      ),
-                    );
-                  },
-                ),
               ],
             ),
           ),
-        ),
-      ],
-    );
-  }
-}
+          SizedBox(height: 16.0),
 
-class ServiceCard extends StatelessWidget {
-  final String label;
-  final VoidCallback onTap;
-
-  const ServiceCard({
-    super.key,
-    required this.label,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Card(
-        color: const Color.fromARGB(255, 250, 184, 78),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 16),
+          // Google Maps widget to show the map with markers
+          Expanded(
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(48.8566, 2.3522), // Default to Paris if no location
+                zoom: 12,
+              ),
+              onMapCreated: (GoogleMapController controller) {
+                _mapController = controller;
+              },
+              markers: _markers, // Markers set to display on the map
+            ),
           ),
-        ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add a new marker when the button is pressed
+          _goToCurrentLocation();
+        },
+        child: Icon(Icons.add_location_alt),
       ),
     );
   }

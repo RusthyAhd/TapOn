@@ -1,7 +1,8 @@
 //showprovider.dart
 import 'package:flutter/material.dart';
+import 'package:tap_on/user-renttools/Tool%20location.dart';
 import 'package:tap_on/user-services/service%20details.dart';
-import 'package:tap_on/user-services/location.dart';
+
 
 class NearbyServiceProvidersPage extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
@@ -39,7 +40,7 @@ class NearbyServiceProvidersPage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => LocationScreen()),
+              MaterialPageRoute(builder: (context) => LocationPickerScreen()),
             );
             // Action when the button is pressed
           },
