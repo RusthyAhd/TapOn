@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/User_Home/LaunchPage.dart';
 import 'package:tap_on/constants.dart';
-import 'package:tap_on/Launch%20app.dart';
+
 
 //
 
@@ -20,7 +21,7 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
 
     return const MaterialApp(
-      home: TapOnApp(),
+      home: LaunchPage(),
       title: appName,
       debugShowCheckedModeBanner: false,
     );

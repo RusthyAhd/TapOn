@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-
-import 'package:tap_on/Enter%20Number%20Page.dart';
-import 'package:tap_on/Toollogin.dart';
-import 'package:tap_on/Users/Notification.dart';
-import 'package:tap_on/Users/edit%20profile.dart'; // Ensure ProfilePage exists here
-import 'package:tap_on/Servicelogin.dart';
-import 'package:tap_on/user-renttools/Nearby_Tool_Shops.dart';
-import 'package:tap_on/user-renttools/Tool%20location.dart';
-
-import 'package:tap_on/Users/Chatbot.dart';
+import 'package:tap_on/Service_Provider/SP_Login.dart';
+import 'package:tap_on/Tool_Provider/TP_Login.dart';
+import 'package:tap_on/User_Home/Chatbot.dart';
+import 'package:tap_on/User_Home/EnterNumber.dart';
+import 'package:tap_on/User_Home/UH_Notification.dart';
+import 'package:tap_on/User_Home/UH_Profile.dart';
+import 'package:tap_on/User_Service/US_Location.dart';
+import 'package:tap_on/User_Tools/UT_Location.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,7 +21,7 @@ class HomePage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Enternumber()));
+                MaterialPageRoute(builder: (context) => const EnterNumber()));
           },
         ),
         actions: [
@@ -33,7 +31,7 @@ class HomePage extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const NotificationPage()));
+                      builder: (context) => const UH_Notification()));
             },
           ),
         ],
@@ -49,7 +47,7 @@ class HomePage extends StatelessWidget {
             title: TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()));
+                    MaterialPageRoute(builder: (context) => UH_Profile()));
               },
               child: const Text("Profile"), // Add text to the button
             ),
@@ -58,7 +56,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChatPage()),
+                  MaterialPageRoute(builder: (context) => Chatbot()),
                 );
               },
             ),
@@ -90,7 +88,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>LocationPickerScreen()),
+                            builder: (context) => US_Location()),
                       );
                     },
                   ),
@@ -101,7 +99,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => US_Location()),
                       );
                     },
                   ),
@@ -112,7 +110,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => US_Location()),
                       );
                     },
                   ),
@@ -123,7 +121,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => US_Location()),
                       );
                     },
                   ),
@@ -134,7 +132,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => US_Location()),
                       );
                     },
                   ),
@@ -145,7 +143,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => US_Location()),
                       );
                     },
                   ),
@@ -156,7 +154,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => US_Location()),
                       );
                     },
                   ),
@@ -167,7 +165,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => US_Location()),
                       );
                     },
                   ),
@@ -178,7 +176,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => US_Location()),
                       );
                     },
                   ),
@@ -211,7 +209,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>LocationPickerScreen()),
+                            builder: (context) => UT_Location()),
                       );
                     },
                   ),
@@ -222,7 +220,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => UT_Location()),
                       );
                     },
                   ),
@@ -233,7 +231,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => UT_Location()),
                       );
                     },
                   ),
@@ -244,7 +242,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => UT_Location()),
                       );
                     },
                   ),
@@ -255,7 +253,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => UT_Location()),
                       );
                     },
                   ),
@@ -266,7 +264,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => UT_Location()),
                       );
                     },
                   ),
@@ -277,7 +275,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => UT_Location()),
                       );
                     },
                   ),
@@ -288,7 +286,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => UT_Location()),
                       );
                     },
                   ),
@@ -299,7 +297,7 @@ class HomePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LocationPickerScreen()),
+                            builder: (context) => UT_Location()),
                       );
                     },
                   ),
@@ -328,7 +326,7 @@ class HomePage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TLoginPage()));
+                    MaterialPageRoute(builder: (context) => TP_Login()));
                 // Handle Shop Owner button press
               },
               child: const Row(
@@ -342,7 +340,7 @@ class HomePage extends StatelessWidget {
             TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PLoginPage()));
+                    MaterialPageRoute(builder: (context) => SP_Login()));
                 // Handle Shop Owner button press
               },
 
