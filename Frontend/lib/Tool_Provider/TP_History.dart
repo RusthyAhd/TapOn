@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TP_History extends StatelessWidget {
+  const TP_History({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

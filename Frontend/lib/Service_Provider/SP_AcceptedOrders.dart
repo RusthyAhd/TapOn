@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SP_AcceptedOrder extends StatelessWidget {
+  const SP_AcceptedOrder({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +19,7 @@ class SP_AcceptedOrder extends StatelessWidget {
             // Booking Information
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Text('Booking ID', style: TextStyle(color: Colors.grey)),
                 Text('162267901', style: TextStyle(color: Colors.blue)),
               ],
@@ -27,7 +29,7 @@ class SP_AcceptedOrder extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             SizedBox(height: 8),
             Row(
-              children: [
+              children: const [
                 Text('Date:', style: TextStyle(color: Colors.grey)),
                 SizedBox(width: 8),
                 Text('September 15, 2024'),
@@ -35,7 +37,7 @@ class SP_AcceptedOrder extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Row(
-              children: [
+              children: const [
                 Text('Time:', style: TextStyle(color: Colors.grey)),
                 SizedBox(width: 8),
                 Text('12:00 PM'),
@@ -71,7 +73,7 @@ class SP_AcceptedOrder extends StatelessWidget {
               title: Text('Rishaf'),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Text('david1@gmail.com'),
                   Text('mok', style: TextStyle(color: Colors.grey)),
                 ],

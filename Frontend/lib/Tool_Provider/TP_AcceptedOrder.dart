@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 
 class TP_AcceptedOrder extends StatelessWidget {
+  const TP_AcceptedOrder({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,15 +11,15 @@ class TP_AcceptedOrder extends StatelessWidget {
         backgroundColor: Colors.yellow[700],
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
+          children: const [
+            Text(
               'TapOn ShopOwner',
               style: TextStyle(
                 fontSize: 20, // You can adjust the size
                 fontWeight: FontWeight.bold, // Optional: Makes the text bold
               ),
             ),
-            const Text(
+            Text(
               'Accepted Orders',
               style: TextStyle(
                 fontSize: 16, // You can adjust the size
@@ -127,7 +129,6 @@ class TP_AcceptedOrder extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Reject'),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.red,
@@ -135,6 +136,7 @@ class TP_AcceptedOrder extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
+                  child: const Text('Reject'),
                 ),
               ],
             ),

@@ -4,6 +4,8 @@ import 'package:tap_on/Service_Provider/SP_Register.dart';
 
 
 class SP_Login extends StatelessWidget {
+  const SP_Login({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,12 +58,12 @@ class SP_Login extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => SP_Dashboard()));
                 },
-                child: Text('Log in'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber[700],
                   padding: EdgeInsets.symmetric(vertical: 15),
                   textStyle: TextStyle(fontSize: 18),
                 ),
+                child: Text('Log in'),
               ),
               SizedBox(height: 10),
 
@@ -91,12 +93,12 @@ class SP_Login extends StatelessWidget {
                           builder: (context) =>
                               SP_Register()));
                 },
-                child: Text('Register as Service Provider'),
                 style: OutlinedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 15),
                   textStyle: TextStyle(fontSize: 18),
                   side: BorderSide(color: Colors.amber),
                 ),
+                child: Text('Register as Service Provider'),
               ),
             ],
           ),

@@ -29,6 +29,8 @@ class UT_NearbyShops extends StatelessWidget {
     },
   ];
 
+  UT_NearbyShops({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

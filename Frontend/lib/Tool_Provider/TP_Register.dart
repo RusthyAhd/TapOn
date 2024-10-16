@@ -276,7 +276,6 @@ class _TP_RegisterState extends State<TP_Register> {
                 Center(
                   child: ElevatedButton(
                     onPressed: isAgreed ? registerOwner : null,
-                    child: const Text('Continue'),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.black,
                       backgroundColor: Colors.yellow[700],
@@ -285,6 +284,7 @@ class _TP_RegisterState extends State<TP_Register> {
                       textStyle: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold),
                     ).copyWith(elevation: ButtonStyleButton.allOrNull(5)),
+                    child: const Text('Continue'),
                   ),
                 ),
               ],

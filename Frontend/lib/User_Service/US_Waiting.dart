@@ -4,6 +4,8 @@ import 'package:tap_on/User_Service/US_NearbyService.dart';
 
 
 class US_Waiting extends StatefulWidget {
+  const US_Waiting({super.key});
+
   @override
   _US_WaitingState createState() => _US_WaitingState();
 }
@@ -53,12 +55,12 @@ class _US_WaitingState extends State<US_Waiting> {
                   onPressed: () {
                     // Handle pickup button press
                   },
-                  child: Text("Pickup"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue, // Button background color
                     shape: CircleBorder(), // Circular button shape
                     padding: EdgeInsets.all(24), // Button padding
                   ),
+                  child: Text("Pickup"),
                 ),
               ],
             ),

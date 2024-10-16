@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Chatbot extends StatelessWidget {
+  const Chatbot({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +48,8 @@ class Chatbot extends StatelessWidget {
 }
 
 class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -91,8 +95,8 @@ class _ChatScreenState extends State<ChatScreen> {
               onPressed: () {
                 // Add speaking button functionality here
               },
-              child: Icon(Icons.mic, size: 28),
               backgroundColor: Colors.amber[700],
+              child: Icon(Icons.mic, size: 28),
             ),
           ),
         ),

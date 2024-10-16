@@ -4,6 +4,8 @@ import 'package:tap_on/Tool_Provider/TP_Register.dart';
 
 
 class TP_Login extends StatelessWidget {
+  const TP_Login({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,12 +58,12 @@ class TP_Login extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => TP_Dashboard()));
                 },
-                child: Text('Log in'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber[700],
                   padding: EdgeInsets.symmetric(vertical: 15),
                   textStyle: TextStyle(fontSize: 18),
                 ),
+                child: Text('Log in'),
               ),
               SizedBox(height: 10),
 
@@ -90,7 +92,6 @@ class TP_Login extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => TP_Register()));
                 },
-                child: Text('Register as Shop Owner'),
                 style: OutlinedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 15),
                   textStyle: TextStyle(
@@ -98,6 +99,7 @@ class TP_Login extends StatelessWidget {
                   ),
                   side: BorderSide(color: Colors.amber),
                 ),
+                child: Text('Register as Shop Owner'),
               ),
             ],
           ),

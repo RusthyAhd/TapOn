@@ -9,7 +9,7 @@ class UT_ToolDetails extends StatelessWidget {
   final String description; // Add a description field
 
   // Constructor to pass the product details
-  UT_ToolDetails({
+  const UT_ToolDetails({super.key, 
     required this.title,
     required this.price,
     required this.image,
@@ -68,7 +68,7 @@ class UT_ToolDetails extends StatelessWidget {
                       ),
                       SizedBox(height: 8),
                       Text(
-                        '$price',
+                        price,
                         style: const TextStyle(
                           fontSize: 22,
                           color: Colors.green,
@@ -100,7 +100,6 @@ class UT_ToolDetails extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => UT_Waiting()),
                       );
                     },
-                    child: Text('Request'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
@@ -108,6 +107,7 @@ class UT_ToolDetails extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       textStyle: TextStyle(fontSize: 16, color: Colors.white),
                     ),
+                    child: Text('Request'),
                   ),
                   SizedBox(height: 20),
                   Row(

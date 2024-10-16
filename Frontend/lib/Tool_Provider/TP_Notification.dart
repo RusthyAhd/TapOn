@@ -23,7 +23,7 @@ class TP_Notfication extends StatelessWidget {
         ),
         body: ListView(
           padding: const EdgeInsets.all(16.0),
-          children: [
+          children: const [
             NotificationTile(
               title: "Meeting reminder",
               subtitle: "TYou have prebooking order today at 2:00 PM",

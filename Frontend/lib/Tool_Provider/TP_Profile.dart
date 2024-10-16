@@ -3,6 +3,8 @@ import 'package:tap_on/Tool_Provider/TP_Dashboard.dart';
 
 
 class TP_Profile extends StatefulWidget {
+  const TP_Profile({super.key});
+
   @override
   _TP_ProfileState createState() => _TP_ProfileState();
 }
@@ -182,16 +184,16 @@ class _TP_ProfileState extends State<TP_Profile> {
                     ),
                   );
                 },
-                child: Text(
-                  'Save Changes',
-                  style: TextStyle(fontSize: 18),
-                ),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
                   backgroundColor: Colors.amber[700],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
+                ),
+                child: Text(
+                  'Save Changes',
+                  style: TextStyle(fontSize: 18),
                 ),
               ),
             ],

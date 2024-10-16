@@ -22,8 +22,8 @@ class _SP_AddserviceState extends State<SP_Addservice> {
   File? _image;
   double _totalAmount = 0.0; // Store total amount, initially 0
   double _discount = 0.0; // To store the discount value
-  TextEditingController _priceController = TextEditingController();
-  TextEditingController _discountController = TextEditingController();
+  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _discountController = TextEditingController();
   // Function to update total amount based on the price entered
   void _updateTotalAmount() {
     setState(() {
@@ -349,7 +349,7 @@ class _SP_AddserviceState extends State<SP_Addservice> {
                 SizedBox(height: 16),
                   // Display the total amount
             Text(
-              "Total Price: \Rs.${_totalAmount.toStringAsFixed(2)}",
+              "Total Price: Rs.${_totalAmount.toStringAsFixed(2)}",
               style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
@@ -438,11 +438,11 @@ class _SP_AddserviceState extends State<SP_Addservice> {
                             builder: (context) => SP_Dashboard()),
                       );
                     },
-                    child: Text('Add Service'),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: (Colors.yellow[700]),
                         foregroundColor: Colors.black // Full width button
                         ),
+                    child: Text('Add Service'),
                   ),
                 ),
               ],

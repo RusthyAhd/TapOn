@@ -298,12 +298,12 @@ class _SP_RegisterState
                 child: ElevatedButton(
                   onPressed: isAgreed
                       ? registerServiceProvider
-                      : null, // Disable if not agreed
-                  child: const Text('Continue'),
+                      : null,
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,
                     backgroundColor: Colors.yellow[700], // Button color
-                  ),
+                  ), // Disable if not agreed
+                  child: const Text('Continue'),
                 ),
               ),
             ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SP_History extends StatefulWidget {
+  const SP_History({super.key});
+
   @override
   _SP_HistoryState createState() => _SP_HistoryState();
 }

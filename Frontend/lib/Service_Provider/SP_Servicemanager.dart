@@ -3,6 +3,8 @@ import 'package:tap_on/Service_Provider/SP_Addservice.dart';
 
 
 class SP_Servicemanager extends StatefulWidget {
+  const SP_Servicemanager({super.key});
+
   @override
   _SP_ServicemanagerState createState() => _SP_ServicemanagerState();
 }
@@ -58,10 +60,10 @@ class _SP_ServicemanagerState extends State<SP_Servicemanager> {
                       );
                       // Add Item action
                     },
-                    child: Text('+ Item'),
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,
                         backgroundColor: Colors.yellow),
+                    child: Text('+ Item'),
                   ),
                 ],
               ),

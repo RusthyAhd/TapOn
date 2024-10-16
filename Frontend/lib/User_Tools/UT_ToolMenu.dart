@@ -6,7 +6,7 @@ class UT_ToolMenu extends StatelessWidget {
   final String shopName; // Shop name to display relevant tools
   final List<Map<String, String>> products; // List of products in the shop
 
-  UT_ToolMenu({required this.shopName, required this.products});
+  const UT_ToolMenu({super.key, required this.shopName, required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class UT_ToolMenu extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          '$price',
+          price,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,

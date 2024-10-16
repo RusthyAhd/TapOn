@@ -341,10 +341,10 @@ class _TP_AddToolState extends State<TP_AddTool> {
                           builder: (context) => TP_Dashboard()),
                     );
                   },
-                  child: Text('Add'),
                   style: ElevatedButton.styleFrom(
                       minimumSize: Size(double.infinity, 50),
                       backgroundColor: (Colors.yellow[700])),
+                  child: Text('Add'),
                 ),
               ),
             ],

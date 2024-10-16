@@ -6,6 +6,8 @@ import 'dart:io';
 import 'package:tap_on/Service_Provider/SP_Dashboard.dart';
 
 class SP_Profile extends StatefulWidget {
+  const SP_Profile({super.key});
+
   @override
   _SP_ProfileState createState() => _SP_ProfileState();
 }
@@ -176,13 +178,13 @@ final _formKey = GlobalKey<FormState>();
                       );
                     }
                     },
-                    child: Text('Save'),
                     style: ElevatedButton.styleFrom(
                         
                         backgroundColor: (Colors.black),
                         foregroundColor: Colors.yellow
                         // Full width button
                         ),
+                    child: Text('Save'),
                   ),
                 ),
               ],
