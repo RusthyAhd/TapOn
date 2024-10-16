@@ -100,23 +100,6 @@ class _US_PreBookingState extends State<US_PreBooking> {
                 ),
               ),
               SizedBox(height: 20),
-
-              // Address Field
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Your Address',
-                  prefixIcon: Icon(Icons.location_on),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              Row(
-                children: [
-                  TextButton(onPressed: () {}, child: Text('Choose From Map')),
-                  TextButton(
-                      onPressed: () {}, child: Text('Use Current Location')),
-                ],
-              ),
-
               // Description Field
               TextField(
                 decoration: InputDecoration(

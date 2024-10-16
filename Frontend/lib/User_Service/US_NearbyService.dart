@@ -7,23 +7,32 @@ class US_NearbyService extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
     {
       'name': 'Mohammed Rishaf',
-      'address': '4140 Parker Rd, Allentown, New Mexico 31134',
+      'district': 'Trincomalee',
+      'distance': '1.5km',
       'rating': 4.9,
       'service': 'General',
+      'consultant fee': "Rs.300.00",
+      'amount per day': 'Rs.1000.00',
       'image': 'assets/mohammed.jpg',
     },
     {
-      'name': 'Annette Black',
-      'address': 'Electrical Services',
+      'name': 'Hamthy',
+      'district': 'Nuwara Eliya',
+      'distance': '1.7km',
       'rating': 4.9,
       'service': 'Electrical',
+      'consultant fee': "free",
+      'amount per day': 'Rs.1000.00',
       'image': 'assets/annette.jpg',
     },
     {
-      'name': 'Guy Hawkins',
-      'address': 'Plumbing Services',
+      'name': 'Riyas',
+      'district': 'Nuwara Eliya',
+      'distance': '2.3km',
       'rating': 4.5,
       'service': 'Plumbing',
+      'consultant fee': "Rs.300.00",
+      'amount per day': 'Rs.700.00',
       'image': 'assets/guy.jpg',
     },
   ];
@@ -81,8 +90,31 @@ class US_NearbyService extends StatelessWidget {
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(provider['address']),
-                        Text('Rating: ${provider['rating'].toString()}'),
+                        RichText(
+                          text: TextSpan(
+                            text: 'District: ',style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal,color: Colors.black,),
+                            children: [TextSpan(text: provider['district'],style: TextStyle( fontSize: 16,fontWeight: FontWeight.normal,color: const Color.fromARGB(255, 3, 112, 207),),),],
+                          ),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            text: 'Distance: ',style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal,color: Colors.black,),
+                            children: [TextSpan(text: provider['distance'],style: TextStyle( fontSize: 16,fontWeight: FontWeight.normal,color: const Color.fromARGB(255, 3, 112, 207),),),],
+                          ),
+                        ),
+                         RichText(
+                          text: TextSpan(
+                            text: 'Consultant Fee: ',style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal,color: Colors.black,),
+                            children: [TextSpan(text: provider['consultant fee'],style: TextStyle( fontSize: 16,fontWeight: FontWeight.normal,color: const Color.fromARGB(255, 3, 112, 207),),),],
+                          ),
+                        ),
+                         RichText(
+                          text: TextSpan(
+                            text: 'Amount Per Day: ',style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal,color: Colors.black,),
+                            children: [TextSpan(text: provider['amount per day'],style: TextStyle( fontSize: 16,fontWeight: FontWeight.normal,color:const Color.fromARGB(255, 3, 112, 207),),),],
+                          ),
+                        ),
+                        Text('Rating: ${provider['rating'].toString()}',style: TextStyle(fontWeight: FontWeight.bold)),
                       ],
                     ),
                     trailing: ElevatedButton(
