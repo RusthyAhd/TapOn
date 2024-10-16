@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tap_on/Service_Provider/SP_Dashboard.dart';
 import 'package:tap_on/Service_Provider/SP_Location.dart';
 import 'package:tap_on/Service_Provider/SP_Login.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SP_Register extends StatefulWidget {
   const SP_Register({super.key});
@@ -12,6 +14,28 @@ class SP_Register extends StatefulWidget {
 }
 
 class _SP_RegisterState extends State<SP_Register> {
+  //add image
+    XFile? _image; // To store the picked image
+  Future<void> pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    try {
+      // Pick an image
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        _image = image; // Save the picked image
+      });
+    } catch (e) {
+      print('Error picking image: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Error occurred while picking image')),
+      );
+    }
+  }
+  // Add this method to get the image path for the API call later
+  String? get imagePath => _image?.path;
+
+
+
   final _formKey = GlobalKey<FormState>();
 
   // Controllers for form fields
@@ -121,6 +145,7 @@ class _SP_RegisterState extends State<SP_Register> {
       }
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -300,6 +325,34 @@ class _SP_RegisterState extends State<SP_Register> {
                   return null;
                 },
               ),
+               // Add Image Field
+            SizedBox(height: 16.0),
+            Text(
+              'Upload Image',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8.0),
+            InkWell(
+              onTap: pickImage, // Call the pickImage method
+              child: Card(
+                elevation: 4,
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                child: Container(
+                  height: 150,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: _image == null
+                      ? Center(child: Text('Tap to upload image'))
+                      : Image.file(
+                          File(_image!.path),
+                          fit: BoxFit.cover,
+                        ),
+                ),
+              ),
+            ),
               const SizedBox(height: 16.0),
               const Text('Terms and Conditions',
                   style: TextStyle(fontWeight: FontWeight.bold)),
