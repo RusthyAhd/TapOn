@@ -4,17 +4,17 @@ import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart' as loc;
 import 'package:tap_on/Home%20page.dart';
+import 'package:tap_on/Tool_Provider/TP_Register.dart';
 import 'package:tap_on/User_Service/US_NearbyService.dart';
 
-
-class US_Location extends StatefulWidget {
-  const US_Location({super.key});
+class TP_Location extends StatefulWidget {
+  const TP_Location({super.key});
 
   @override
-  _US_LocationState createState() => _US_LocationState();
+  _TP_LocationState createState() => _TP_LocationState();
 }
 
-class _US_LocationState extends State<US_Location> {
+class _TP_LocationState extends State<TP_Location> {
   final TextEditingController _locationController = TextEditingController();
   bool _isLoadingLocation = false;
   String _currentAddress = "";
@@ -98,8 +98,7 @@ class _US_LocationState extends State<US_Location> {
       infoWindow: InfoWindow(
           title: markerId,
           snippet: "Lat: ${position.latitude}, Lng: ${position.longitude}"),
-      icon: BitmapDescriptor.defaultMarkerWithHue(
-          BitmapDescriptor.hueBlue),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
     );
 
     setState(() {
@@ -136,7 +135,7 @@ class _US_LocationState extends State<US_Location> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => TP_Register()),
             );
             // Action when the button is pressed
           },
@@ -231,16 +230,13 @@ class _US_LocationState extends State<US_Location> {
             ),
             SizedBox(height: 30.0),
             Center(
-            
               child: ElevatedButton.icon(
-                onPressed:   () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => US_NearbyService()));
-                      },
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TP_Register()));
+                },
                 icon: Icon(Icons.search),
-                label: Text('Find Service'),
+                label: Text('Save'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                   backgroundColor: Colors.amber,
@@ -253,7 +249,6 @@ class _US_LocationState extends State<US_Location> {
           ],
         ),
       ),
-      
     );
   }
 }
