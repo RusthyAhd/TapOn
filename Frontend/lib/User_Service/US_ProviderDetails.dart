@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/User_Service/US_PreBooking.dart';
-
-
+import 'package:tap_on/User_Service/US_Waiting.dart';
 
 class US_ProviderDetails extends StatelessWidget {
-  const US_ProviderDetails({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,85 +17,151 @@ class US_ProviderDetails extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Service provider info
             Row(
-              children: const [
+              children: [
                 CircleAvatar(
-                  radius: 22,
+                  radius: 30,
                   backgroundImage: AssetImage('assets/rishaf.jpg'),
                 ),
-                SizedBox(width: 10),
-                Text('Rishaf', style: TextStyle(fontSize: 18)),
-              ],
-            ),
-            SizedBox(height: 15),
-
-            // Service name and description
-            Text('Plumbing',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            SizedBox(height: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset('assets/images/service_image.png',
-                    height: 50, width: 50),
-                SizedBox(height: 10),
-                Text(
-                  'Plumber with years of experience. Handles leaks and renovations efficiently.',
-                  style: TextStyle(fontSize: 14),
+                SizedBox(width: 15),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Mohammed Rishaf',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 4),
+                    Text('Plumbing Specialist',
+                        style:
+                            TextStyle(fontSize: 16, color: Colors.grey[600])),
+                    SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.star, color: Colors.amber, size: 16),
+                        SizedBox(width: 5),
+                        Text('4.9', style: TextStyle(fontSize: 14)),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
+            SizedBox(height: 20),
+
+            // Certification Details
+            Divider(thickness: 1),
+            Text('Certification Details',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Center(
+              child: Text(
+                  'Certified Plumbing Technician from ABC Institute. License No: 123456789',
+                  style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            ),
             SizedBox(height: 15),
 
+            // Address
+            Divider(thickness: 1),
+            Text('District',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 4),
+            Text('Kandy',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 15),
+
+            Divider(thickness: 1),
+            Text('Distance',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 4),
+            Text('5.3 Km',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 15),
+
+            // Experience
+            Divider(thickness: 1),
+            Text('Experience',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Text(
+                'Over 10 years of experience in handling all types of plumbing issues, including leak repairs, pipe installations, and bathroom renovations.',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 15),
+
+            // Amount per hour
+            Divider(thickness: 1),
+            Text('Consultant Fee',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Text('\Rs.150.00',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 10),
+            Text('Amount per Day',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Text('\Rs.350 per day',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 20),
+
             // Reviews
+            Divider(thickness: 1),
             Text('Reviews',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(height: 8),
             Column(
               children: [
                 ReviewCard(),
-                SizedBox(height: 8),
+                SizedBox(height: 10),
                 ReviewCard(),
               ],
             ),
-            Spacer(),
+
+            SizedBox(height: 20),
 
             // Action buttons
             Center(
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => US_Waiting()),
+                      );
+                    },
+                    child: Text('Book Service'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
-                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                      textStyle: TextStyle(fontSize: 16, color: Colors.white),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 45, vertical: 15),
+                      textStyle: TextStyle(fontSize: 16),
                     ),
-                    child: Text('Booking Request'),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => US_PreBooking()),
+                        MaterialPageRoute(
+                            builder: (context) => US_PreBooking()),
                       );
                     },
+                    child: Text('Pre Booking'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
-                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                      textStyle: TextStyle(fontSize: 16, color: Colors.white),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                      textStyle: TextStyle(fontSize: 16),
                     ),
-                    child: Text('Pre Booking'),
                   ),
+                  SizedBox(height: 8),
                 ],
               ),
             ),
@@ -110,23 +173,28 @@ class US_ProviderDetails extends StatelessWidget {
 }
 
 class ReviewCard extends StatelessWidget {
-  const ReviewCard({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      elevation: 2,
       child: ListTile(
         leading: CircleAvatar(
-          radius: 16,
+          radius: 20,
           backgroundImage: AssetImage('assets/guy_hawkins.jpg'),
         ),
-        title: Text('Guy Hawkins', style: TextStyle(fontSize: 14)),
-        subtitle: Text('Great service!'),
+        title: Text('Guy Hawkins',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        subtitle: Text('Great service! Very professional and on time.',
+            style: TextStyle(fontSize: 14)),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
-          children: const [
-            Icon(Icons.star, color: Colors.amber, size: 14),
-            Text('4.9', style: TextStyle(fontSize: 12)),
+          children: [
+            Icon(Icons.star, color: Colors.amber, size: 16),
+            SizedBox(width: 4),
+            Text('4.9', style: TextStyle(fontSize: 14)),
           ],
         ),
       ),
