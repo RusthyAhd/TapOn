@@ -3,7 +3,6 @@ import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/Service_Provider/SP_Dashboard.dart';
 import 'package:tap_on/Service_Provider/SP_Register.dart';
 
-
 class SP_Login extends StatelessWidget {
   const SP_Login({super.key});
 
@@ -13,19 +12,22 @@ class SP_Login extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('TapOn'),
-          backgroundColor: Colors.amber[700],
-          elevation: 0,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
+
               // Add back button functionality here
               Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => HomePage()),
             );
+
+
             },
           ),
+          title: const Text('TapOn'),
+          backgroundColor: Colors.amber[700],
+          elevation: 0,
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -57,10 +59,8 @@ class SP_Login extends StatelessWidget {
               // Log in button
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SP_Dashboard()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SP_Dashboard()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber[700],
@@ -91,11 +91,8 @@ class SP_Login extends StatelessWidget {
               // Create new account button
               OutlinedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              SP_Register()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SP_Register()));
                 },
                 style: OutlinedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 15),
