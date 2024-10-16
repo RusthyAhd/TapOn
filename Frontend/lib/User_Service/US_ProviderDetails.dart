@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/User_Service/US_PreBooking.dart';
 
-
-
-
 class US_ProviderDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Sample data for the service provider
     String providerName = 'Rishaf';
-    
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -31,7 +27,6 @@ class US_ProviderDetails extends StatelessWidget {
             // Service provider info
             Row(
               children: [
-
                 CircleAvatar(
                   radius: 30,
                   backgroundImage: AssetImage('assets/rishaf.jpg'),
@@ -70,11 +65,8 @@ class US_ProviderDetails extends StatelessWidget {
               child: Text(
                   'Certified Plumbing Technician from ABC Institute. License No: 123456789',
                   style: TextStyle(fontSize: 14, color: Colors.grey[700])),
-
             ),
             const SizedBox(height: 15),
-
-            
 
             // Address
             Divider(thickness: 1),
@@ -134,47 +126,38 @@ class US_ProviderDetails extends StatelessWidget {
 
             SizedBox(height: 20),
 
-
-
             // Action buttons
             Center(
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                    },
-                    child: Text('Book Service'),
+                    onPressed: () {},
+                    child: Text('Service Request'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
-
                       padding:
-                          EdgeInsets.symmetric(horizontal: 45, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 35, vertical: 15),
                       textStyle: TextStyle(fontSize: 16),
                     ),
                   ),
                   SizedBox(height: 20),
-
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-
                         MaterialPageRoute(
                             builder: (context) => US_PreBooking()),
-
                       );
                     },
-                    child: Text('Pre Booking'),
+                    child: Text('Pre Booking Request'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
-
                       padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       textStyle: TextStyle(fontSize: 16),
                     ),
-
                   ),
                   SizedBox(height: 8),
                 ],
@@ -196,7 +179,6 @@ class ReviewCard extends StatelessWidget {
       ),
       elevation: 2,
       child: ListTile(
-
         leading: CircleAvatar(
           radius: 20,
           backgroundImage: AssetImage('assets/guy_hawkins.jpg'),
@@ -205,7 +187,6 @@ class ReviewCard extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         subtitle: Text('Great service! Very professional and on time.',
             style: TextStyle(fontSize: 14)),
-
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
