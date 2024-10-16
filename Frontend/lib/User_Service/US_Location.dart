@@ -240,7 +240,7 @@ class _US_LocationState extends State<US_Location> {
                                 builder: (context) => US_NearbyService()));
                       },
                 icon: Icon(Icons.search),
-                label: Text('Find Tool'),
+                label: Text('Find Service'),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                   backgroundColor: Colors.amber,

@@ -333,7 +333,7 @@ class HomePage extends StatelessWidget {
                 children: [
                   Icon(Icons.store),
                   SizedBox(width: 8),
-                  Text('Shop Owner'),
+                  Text('Tool Provider'),
                 ],
               ),
             ),
