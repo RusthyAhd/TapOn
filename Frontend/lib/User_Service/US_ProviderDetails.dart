@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/User_Service/US_PreBooking.dart';
 
-import 'package:tap_on/User_Service/US_Waiting.dart';
+
 
 
 class US_ProviderDetails extends StatelessWidget {
@@ -9,10 +9,7 @@ class US_ProviderDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     // Sample data for the service provider
     String providerName = 'Rishaf';
-    String district = 'Downtown';
-    double distance = 5.2; // in kilometers
-    double consultantFee = 50.0; // fee in dollars
-    double amountPerDay = 200.0; // amount in dollars
+    
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -77,16 +74,7 @@ class US_ProviderDetails extends StatelessWidget {
             ),
             const SizedBox(height: 15),
 
-            // Additional Provider Details
-            Text('District: $district',
-                style: const TextStyle(fontSize: 14)),
-            Text('Distance: ${distance.toStringAsFixed(1)} km',
-                style: const TextStyle(fontSize: 14)),
-            Text('Consultant Fee: \$${consultantFee.toStringAsFixed(2)}',
-                style: const TextStyle(fontSize: 14)),
-            Text('Amount per Day: \$${amountPerDay.toStringAsFixed(2)}',
-                style: const TextStyle(fontSize: 14)),
-            const SizedBox(height: 15),
+            
 
             // Address
             Divider(thickness: 1),
@@ -154,10 +142,6 @@ class US_ProviderDetails extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => US_Waiting()),
-                      );
                     },
                     child: Text('Book Service'),
                     style: ElevatedButton.styleFrom(
