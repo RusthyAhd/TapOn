@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/User_Tools/UT_PreBooking.dart';
 import 'package:tap_on/User_Tools/UT_Waiting.dart';
 
 
@@ -91,56 +92,38 @@ class UT_ToolDetails extends StatelessWidget {
               SizedBox(height: 16),
 
               //call button process
-              Column(
+             Center(
+              child: Column(
                 children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.yellow,
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      textStyle: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                    child: Text('Booking Request'),
+                  ),
+                  SizedBox(height: 8),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => UT_Waiting()),
+                        MaterialPageRoute(builder: (context) => UT_PreBooking()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       textStyle: TextStyle(fontSize: 16, color: Colors.white),
                     ),
-                    child: Text('Request'),
-                  ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(Icons.phone, color: Colors.black),
-                          label: Text('Call',
-                              style: TextStyle(color: Colors.black)),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.amber,
-                            side: BorderSide(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 2),
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(Icons.message, color: Colors.black),
-                          label: Text('Message',
-                              style: TextStyle(color: Colors.black)),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.amber,
-                            side: BorderSide(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                    ],
+                    child: Text('Pre Booking'),
                   ),
                 ],
               ),
+            ),
             ],
           ),
         ),
