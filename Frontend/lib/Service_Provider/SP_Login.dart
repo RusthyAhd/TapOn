@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/Service_Provider/SP_Dashboard.dart';
 import 'package:tap_on/Service_Provider/SP_Register.dart';
 
@@ -19,7 +20,10 @@ class SP_Login extends StatelessWidget {
             icon: Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
               // Add back button functionality here
-              Navigator.pop(context);
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
             },
           ),
         ),
