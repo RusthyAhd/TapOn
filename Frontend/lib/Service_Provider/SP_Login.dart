@@ -5,7 +5,6 @@ import 'package:tap_on/Service_Provider/SP_ForgotPassword.dart';
 
 import 'package:tap_on/Service_Provider/SP_Register.dart';
 
-
 class SP_Login extends StatelessWidget {
   const SP_Login({super.key});
 
@@ -15,6 +14,7 @@ class SP_Login extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
+
           title: const Text('TapOn'),
           backgroundColor: Colors.amber[700],
           elevation: 0,
@@ -28,6 +28,7 @@ class SP_Login extends StatelessWidget {
             // Action when the button is pressed
           },
         ),
+
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -59,10 +60,8 @@ class SP_Login extends StatelessWidget {
               // Log in button
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SP_Dashboard()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SP_Dashboard()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber[700],
@@ -96,11 +95,8 @@ class SP_Login extends StatelessWidget {
               // Create new account button
               OutlinedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              SP_Register()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SP_Register()));
                 },
                 style: OutlinedButton.styleFrom(
                   padding: EdgeInsets.symmetric(vertical: 15),
