@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:tap_on/Home%20page.dart';
+import 'package:tap_on/Service_Provider/SP_AcceptedHistory.dart';
 import 'package:tap_on/Service_Provider/SP_AcceptedOrders.dart';
 import 'package:tap_on/Service_Provider/SP_Addservice.dart';
 import 'package:tap_on/Service_Provider/SP_Feedback.dart';
@@ -222,7 +223,7 @@ class SP_Dashboard extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    SP_AcceptedOrder()), // Navigate to accepted orders page
+                    SP_AcceptedHistory()), // Navigate to accepted orders page
           );
         },
         backgroundColor:
