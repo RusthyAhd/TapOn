@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/User_Service/US_PreBooking.dart';
-import 'package:tap_on/User_Service/US_Waiting.dart';
+
 
 
 class US_ProviderDetails extends StatelessWidget {
@@ -70,70 +70,37 @@ class US_ProviderDetails extends StatelessWidget {
             Spacer(),
 
             // Action buttons
-            Column(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => US_Waiting()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.yellow,
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                    textStyle: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                  child: Text('Book Service'),
-                ),
-                SizedBox(height: 8),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => US_PreBooking()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.yellow,
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                    textStyle: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                  child: Text('Pre Booking'),
-                ),
-                SizedBox(height: 8),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.phone, color: Colors.black),
-                        label:
-                            Text('Call', style: TextStyle(color: Colors.black)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber,
-                          side: BorderSide(color: Colors.black),
-                        ),
-                      ),
+            Center(
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.yellow,
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      textStyle: TextStyle(fontSize: 16, color: Colors.white),
                     ),
-                    SizedBox(width: 8),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.message, color: Colors.black),
-                        label: Text('Message',
-                            style: TextStyle(color: Colors.black)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber,
-                          side: BorderSide(color: Colors.black),
-                        ),
-                      ),
+                    child: Text('Booking Request'),
+                  ),
+                  SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => US_PreBooking()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.yellow,
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      textStyle: TextStyle(fontSize: 16, color: Colors.white),
                     ),
-                  ],
-                ),
-              ],
+                    child: Text('Pre Booking'),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
