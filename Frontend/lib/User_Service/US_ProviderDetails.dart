@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/User_Service/US_PreBooking.dart';
 
-class US_ProviderDetails extends StatelessWidget {
-  const US_ProviderDetails({super.key});
+import 'package:tap_on/User_Service/US_Waiting.dart';
 
+
+class US_ProviderDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Sample data for the service provider
@@ -25,7 +26,7 @@ class US_ProviderDetails extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,31 +34,46 @@ class US_ProviderDetails extends StatelessWidget {
             // Service provider info
             Row(
               children: [
-                const CircleAvatar(
-                  radius: 22,
+
+                CircleAvatar(
+                  radius: 30,
                   backgroundImage: AssetImage('assets/rishaf.jpg'),
                 ),
-                const SizedBox(width: 10),
-                Text(providerName, style: const TextStyle(fontSize: 18)),
-              ],
-            ),
-            const SizedBox(height: 15),
-
-            // Service name and description
-            const Text('Plumbing',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset('assets/images/service_image.png',
-                    height: 50, width: 50),
-                const SizedBox(height: 10),
-                const Text(
-                  'Plumber with years of experience. Handles leaks and renovations efficiently.',
-                  style: TextStyle(fontSize: 14),
+                SizedBox(width: 15),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Mohammed Rishaf',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 4),
+                    Text('Plumbing Specialist',
+                        style:
+                            TextStyle(fontSize: 16, color: Colors.grey[600])),
+                    SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Icon(Icons.star, color: Colors.amber, size: 16),
+                        SizedBox(width: 5),
+                        Text('4.9', style: TextStyle(fontSize: 14)),
+                      ],
+                    ),
+                  ],
                 ),
               ],
+            ),
+            SizedBox(height: 20),
+
+            // Certification Details
+            Divider(thickness: 1),
+            Text('Certification Details',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Center(
+              child: Text(
+                  'Certified Plumbing Technician from ABC Institute. License No: 123456789',
+                  style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+
             ),
             const SizedBox(height: 15),
 
@@ -72,49 +88,111 @@ class US_ProviderDetails extends StatelessWidget {
                 style: const TextStyle(fontSize: 14)),
             const SizedBox(height: 15),
 
+            // Address
+            Divider(thickness: 1),
+            Text('District',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 4),
+            Text('Kandy',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 15),
+
+            Divider(thickness: 1),
+            Text('Distance',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 4),
+            Text('5.3 Km',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 15),
+
+            // Experience
+            Divider(thickness: 1),
+            Text('Experience',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Text(
+                'Over 10 years of experience in handling all types of plumbing issues, including leak repairs, pipe installations, and bathroom renovations.',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 15),
+
+            // Amount per hour
+            Divider(thickness: 1),
+            Text('Consultant Fee',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Text('\Rs.150.00',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 10),
+            Text('Amount per Day',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            Text('\Rs.350 per day',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700])),
+            SizedBox(height: 20),
+
             // Reviews
-            const Text('Reviews',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
+
+            Divider(thickness: 1),
+            Text('Reviews',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
             Column(
               children: [
-                const ReviewCard(),
-                const SizedBox(height: 8),
-                const ReviewCard(),
+                ReviewCard(),
+                SizedBox(height: 10),
+                ReviewCard(),
               ],
             ),
-            const Spacer(),
+
+            SizedBox(height: 20),
+
+
 
             // Action buttons
             Center(
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => US_Waiting()),
+                      );
+                    },
+                    child: Text('Book Service'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                      textStyle: const TextStyle(fontSize: 16, color: Colors.white),
+
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 45, vertical: 15),
+                      textStyle: TextStyle(fontSize: 16),
                     ),
-                    child: const Text('Booking Request'),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 20),
+
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const US_PreBooking()),
+
+                        MaterialPageRoute(
+                            builder: (context) => US_PreBooking()),
+
                       );
                     },
+                    child: Text('Pre Booking'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
-                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                      textStyle: const TextStyle(fontSize: 16, color: Colors.white),
+
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                      textStyle: TextStyle(fontSize: 16),
                     ),
-                    child: const Text('Pre Booking'),
+
                   ),
+                  SizedBox(height: 8),
                 ],
               ),
             ),
@@ -126,23 +204,30 @@ class US_ProviderDetails extends StatelessWidget {
 }
 
 class ReviewCard extends StatelessWidget {
-  const ReviewCard({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      elevation: 2,
       child: ListTile(
-        leading: const CircleAvatar(
-          radius: 16,
+
+        leading: CircleAvatar(
+          radius: 20,
           backgroundImage: AssetImage('assets/guy_hawkins.jpg'),
         ),
-        title: const Text('Guy Hawkins', style: TextStyle(fontSize: 14)),
-        subtitle: const Text('Great service!'),
+        title: Text('Guy Hawkins',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        subtitle: Text('Great service! Very professional and on time.',
+            style: TextStyle(fontSize: 14)),
+
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
-          children: const [
-            Icon(Icons.star, color: Colors.amber, size: 14),
-            Text('4.9', style: TextStyle(fontSize: 12)),
+          children: [
+            Icon(Icons.star, color: Colors.amber, size: 16),
+            SizedBox(width: 4),
+            Text('4.9', style: TextStyle(fontSize: 14)),
           ],
         ),
       ),
