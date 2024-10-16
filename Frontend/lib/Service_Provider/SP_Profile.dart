@@ -13,7 +13,7 @@ class SP_Profile extends StatefulWidget {
 }
 
 class _SP_ProfileState extends State<SP_Profile> {
-final _formKey = GlobalKey<FormState>(); 
+  final _formKey = GlobalKey<FormState>();
 
   // TextEditingControllers for each field
   TextEditingController emailController =
@@ -26,10 +26,10 @@ final _formKey = GlobalKey<FormState>();
   TextEditingController AddressController =
       TextEditingController(text: 'No-02,Kinniya');
   TextEditingController LocationController =
-      TextEditingController(text: 'city,postal code');
+      TextEditingController(text: 'use my current location');
   TextEditingController DescriptionController =
       TextEditingController(text: 'More Details in occupation(achievement) ');
- File? _image;
+  File? _image;
   // Boolean flags to toggle the editability of each field
   bool isEmailEditable = false;
   bool isPhoneEditable = false;
@@ -39,8 +39,7 @@ final _formKey = GlobalKey<FormState>();
   bool isLocationEditable = false;
   bool isDescriptionEditable = false;
 
-
-    // Function to pick an image from the gallery or take a new picture
+  // Function to pick an image from the gallery or take a new picture
   Future<void> _pickImage() async {
     final picker = ImagePicker();
     // Show dialog to choose between camera and gallery
@@ -52,13 +51,15 @@ final _formKey = GlobalKey<FormState>();
           actions: [
             TextButton(
               onPressed: () async {
-                Navigator.of(context).pop(await picker.pickImage(source: ImageSource.camera));
+                Navigator.of(context)
+                    .pop(await picker.pickImage(source: ImageSource.camera));
               },
               child: Text('Camera'),
             ),
             TextButton(
               onPressed: () async {
-                Navigator.of(context).pop(await picker.pickImage(source: ImageSource.gallery));
+                Navigator.of(context)
+                    .pop(await picker.pickImage(source: ImageSource.gallery));
               },
               child: Text('Gallery'),
             ),
@@ -66,14 +67,14 @@ final _formKey = GlobalKey<FormState>();
         );
       },
     );
-   
+
     // Set the image if one was selected
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
       });
     }
-  } 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,22 +98,22 @@ final _formKey = GlobalKey<FormState>();
             child: Column(
               children: [
                 _image == null
-                  ? Text('No image selected.')
-                  : ClipOval(
-                    child: Image.file(
-                      _image!,
-                      height: 200,
-                      width: 200,
-                      fit: BoxFit.cover,
-                    ),
-                    ),
-              SizedBox(height: 20),
-              // Button to pick a new image
-              ElevatedButton(
-                onPressed: _pickImage,
-                child: Text('Change Profile'),
-              ),
-            
+                    ? Text('No image selected.')
+                    : ClipOval(
+                        child: Image.file(
+                          _image!,
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                SizedBox(height: 20),
+                // Button to pick a new image
+                ElevatedButton(
+                  onPressed: _pickImage,
+                  child: Text('Change Profile'),
+                ),
+
                 SizedBox(height: 10),
                 Text(
                   'Rishaf',
@@ -126,7 +127,8 @@ final _formKey = GlobalKey<FormState>();
                 ),
                 SizedBox(height: 20),
                 buildInfoSection('Account'),
-                buildEditableTile('Email', emailController, isEmailEditable, () {
+                buildEditableTile('Email', emailController, isEmailEditable,
+                    () {
                   setState(() {
                     isEmailEditable = !isEmailEditable;
                   });
@@ -155,7 +157,8 @@ final _formKey = GlobalKey<FormState>();
                   });
                 }),
                 buildEditableTile(
-                    'Shop Location', LocationController, isLocationEditable, () {
+                    'Shop Location', LocationController, isLocationEditable,
+                    () {
                   setState(() {
                     isLocationEditable = !isLocationEditable;
                   });
@@ -171,15 +174,14 @@ final _formKey = GlobalKey<FormState>();
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SP_Dashboard()),
-                      );
-                    }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SP_Dashboard()),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
-                        
                         backgroundColor: (Colors.black),
                         foregroundColor: Colors.yellow
                         // Full width button
@@ -217,22 +219,23 @@ final _formKey = GlobalKey<FormState>();
                 labelText: label,
                 border: OutlineInputBorder(),
               ),
-             validator: (value) {
-              if (label == 'Email') {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your email';
-                } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$').hasMatch(value)) {
-                  return 'Enter a valid email address';
+              validator: (value) {
+                if (label == 'Email') {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$')
+                      .hasMatch(value)) {
+                    return 'Enter a valid email address';
+                  }
+                } else if (label == 'Phone Number') {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your phone number';
+                  } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+                    return 'Enter a valid 10-digit phone number';
+                  }
                 }
-              } else if (label == 'Phone Number') {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter your phone number';
-                } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
-                  return 'Enter a valid 10-digit phone number';
-                }
-              }
-              return null;
-            }, 
+                return null;
+              },
             )
           : Text(
               controller.text,
