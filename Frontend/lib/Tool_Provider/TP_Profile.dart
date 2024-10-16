@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Tool_Provider/TP_Dashboard.dart';
-
+import 'package:tap_on/Tool_Provider/TP_Location.dart';
 
 class TP_Profile extends StatefulWidget {
   const TP_Profile({super.key});
@@ -64,6 +64,8 @@ class _TP_ProfileState extends State<TP_Profile> {
   bool isShopNameEditable = false;
   bool isShopAddressEditable = false;
   bool isShopDescriptionEditable = false;
+
+  var selectedLocation;
 
   @override
   Widget build(BuildContext context) {
@@ -162,6 +164,31 @@ class _TP_ProfileState extends State<TP_Profile> {
                       selectedDistrict = value!;
                     });
                   },
+                ),
+              ),
+
+              // Add Location Button styled like an input field
+              InkWell(
+                onTap: () {}, // Handle the location selection here
+                child: Card(
+                  elevation: 4,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: InputDecorator(
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.add_location,
+                          color: Colors.orange), // Updated color to grey
+                      labelText: 'Add Location',
+                      border: OutlineInputBorder(),
+                    ),
+                    child: Text(
+                      selectedLocation ?? 'Select your location',
+                      style: TextStyle(
+                        color: selectedLocation != null
+                            ? Colors.black
+                            : Colors.black,
+                      ),
+                    ),
+                  ),
                 ),
               ),
 

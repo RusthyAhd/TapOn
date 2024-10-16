@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/User_Tools/UT_PreBooking.dart';
-import 'package:tap_on/User_Tools/UT_Waiting.dart';
+
 
 
 class UT_ToolDetails extends StatelessWidget {

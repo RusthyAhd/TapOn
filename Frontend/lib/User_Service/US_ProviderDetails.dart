@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/User_Service/US_PreBooking.dart';
 
-import 'package:tap_on/User_Service/US_Waiting.dart';
-
-
 class US_ProviderDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Sample data for the service provider
     String providerName = 'Rishaf';
-    String district = 'Downtown';
-    double distance = 5.2; // in kilometers
-    double consultantFee = 50.0; // fee in dollars
-    double amountPerDay = 200.0; // amount in dollars
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -34,7 +27,6 @@ class US_ProviderDetails extends StatelessWidget {
             // Service provider info
             Row(
               children: [
-
                 CircleAvatar(
                   radius: 30,
                   backgroundImage: AssetImage('assets/rishaf.jpg'),
@@ -73,19 +65,7 @@ class US_ProviderDetails extends StatelessWidget {
               child: Text(
                   'Certified Plumbing Technician from ABC Institute. License No: 123456789',
                   style: TextStyle(fontSize: 14, color: Colors.grey[700])),
-
             ),
-            const SizedBox(height: 15),
-
-            // Additional Provider Details
-            Text('District: $district',
-                style: const TextStyle(fontSize: 14)),
-            Text('Distance: ${distance.toStringAsFixed(1)} km',
-                style: const TextStyle(fontSize: 14)),
-            Text('Consultant Fee: \$${consultantFee.toStringAsFixed(2)}',
-                style: const TextStyle(fontSize: 14)),
-            Text('Amount per Day: \$${amountPerDay.toStringAsFixed(2)}',
-                style: const TextStyle(fontSize: 14)),
             const SizedBox(height: 15),
 
             // Address
@@ -146,51 +126,38 @@ class US_ProviderDetails extends StatelessWidget {
 
             SizedBox(height: 20),
 
-
-
             // Action buttons
             Center(
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => US_Waiting()),
-                      );
-                    },
-                    child: Text('Book Service'),
+                    onPressed: () {},
+                    child: Text('Service Request'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
-
                       padding:
-                          EdgeInsets.symmetric(horizontal: 45, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 35, vertical: 15),
                       textStyle: TextStyle(fontSize: 16),
                     ),
                   ),
                   SizedBox(height: 20),
-
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-
                         MaterialPageRoute(
                             builder: (context) => US_PreBooking()),
-
                       );
                     },
-                    child: Text('Pre Booking'),
+                    child: Text('Pre Booking Request'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
-
                       padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                       textStyle: TextStyle(fontSize: 16),
                     ),
-
                   ),
                   SizedBox(height: 8),
                 ],
@@ -212,7 +179,6 @@ class ReviewCard extends StatelessWidget {
       ),
       elevation: 2,
       child: ListTile(
-
         leading: CircleAvatar(
           radius: 20,
           backgroundImage: AssetImage('assets/guy_hawkins.jpg'),
@@ -221,7 +187,6 @@ class ReviewCard extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         subtitle: Text('Great service! Very professional and on time.',
             style: TextStyle(fontSize: 14)),
-
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
