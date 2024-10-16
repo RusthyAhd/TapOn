@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/Tool_Provider/TP_Dashboard.dart';
+import 'package:tap_on/Tool_Provider/TP_ForgotPassword.dart';
 import 'package:tap_on/Tool_Provider/TP_Register.dart';
 
 class TP_Login extends StatelessWidget {
@@ -72,7 +73,8 @@ class TP_Login extends StatelessWidget {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    // Add forgot password logic here
+                   Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => TP_ForgotPassword())); // Add forgot password logic here
                   },
                   child: Text(
                     'Forgot password?',

@@ -7,25 +7,34 @@ import 'package:tap_on/User_Tools/UT_ToolMenu.dart';
 class UT_NearbyShops extends StatelessWidget {
   final List<Map<String, dynamic>> serviceProviders = [
     {
-      'name': 'Icom hardware',
-      'address': 'ViharaMahathevi Park Road,Town Hall , Colombo',
-      'rating': 4.5,
-      'Shipping': 'Free Shipping ',
-      'image': 'assets/images/muhammed.jpeg',
+       'name': 'Iorn Hardware',
+      'district': 'Trincomalee',
+      'distance': '1.5km',
+      'rating': 4.9,
+      'service': 'General',
+      'delivery fee': "Rs.300.00",
+      'amount per hour': 'Rs.1000.00',
+      'image': 'assets/mohammed.jpg',
     },
     {
-      'name': 'Salman Store',
-      'address': 'No.19,Old Boc Lane Kinniya-04',
-      'rating': 2.9,
-      'Shipping': 'Free Shipping ',
-      'image': 'assets/images/salman.jpeg',
+       'name': 'Iorn Hardware',
+      'district': 'Trincomalee',
+      'distance': '1.5km',
+      'rating': 4.9,
+      'service': 'General',
+      'delivery fee': "free",
+      'amount per hour': 'Rs.1000.00',
+      'image': 'assets/mohammed.jpg',
     },
     {
-      'name': 'Guy Hawkins',
-      'address': 'Diyagama,Homagama,colombo-5.',
-      'rating': 4.0,
-      'Shipping': 'Free Shipping ',
-      'image': 'assets/images/sarukan.jpeg',
+       'name': 'Hamthy Hardware',
+      'district': 'Trincomalee',
+      'distance': '1.5km',
+      'rating': 4.9,
+      'service': 'General',
+      'delivery fee': "Rs.300.00",
+      'amount per hour': 'Rs.1000.00',
+      'image': 'assets/mohammed.jpg',
     },
   ];
 
@@ -146,56 +155,43 @@ class UT_NearbyShops extends StatelessWidget {
                             ),
                             SizedBox(width: 16),
                             // Provider Info
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    provider['name'],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    provider['address'],
-                                    style: TextStyle(color: Colors.grey[700]),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    'Shipping: ${provider['Shipping']}',
-                                    style: TextStyle(color: Colors.grey[800]),
-                                  ),
-                                  SizedBox(height: 8),
-                                  // Rating Bar with Star Design
-                                  Row(
-                                    children: [
-                                      RatingBar.builder(
-                                        initialRating: provider['rating'],
-                                        minRating: 1,
-                                        direction: Axis.horizontal,
-                                        allowHalfRating: true,
-                                        itemCount: 5,
-                                        itemSize: 20,
-                                        itemPadding:
-                                            EdgeInsets.symmetric(horizontal: 2),
-                                        itemBuilder: (context, _) => Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
-                                        ),
-                                        onRatingUpdate: (rating) {},
-                                      ),
-                                      SizedBox(width: 10),
-                                      Text(
-                                        provider['rating'].toString(),
-                                        style: TextStyle(fontSize: 16),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                         
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                           Text(provider['name'],
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        RichText(
+                          text: TextSpan(
+                            text: 'District: ',style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal,color: Colors.black,),
+                            children: [TextSpan(text: provider['district'],style: TextStyle( fontSize: 16,fontWeight: FontWeight.normal,color: const Color.fromARGB(255, 3, 112, 207),),),],
+                          ),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            text: 'Distance: ',style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal,color: Colors.black,),
+                            children: [TextSpan(text: provider['distance'],style: TextStyle( fontSize: 16,fontWeight: FontWeight.normal,color: const Color.fromARGB(255, 3, 112, 207),),),],
+                          ),
+                        ),
+                         RichText(
+                          text: TextSpan(
+                            text: 'Delivery Fee: ',style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal,color: Colors.black,),
+                            children: [TextSpan(text: provider['delivery fee'],style: TextStyle( fontSize: 16,fontWeight: FontWeight.normal,color: const Color.fromARGB(255, 3, 112, 207),),),],
+                          ),
+                        ),
+                         RichText(
+                          text: TextSpan(
+                            text: 'Amount Per Hour: ',style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal,color: Colors.black,),
+                            children: [TextSpan(text: provider['amount per hour'],style: TextStyle( fontSize: 16,fontWeight: FontWeight.normal,color:const Color.fromARGB(255, 3, 112, 207),),),],
+                          ),
+                        ),
+                        Text('Rating: ${provider['rating'].toString()}',style: TextStyle(fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+
+
+
+
                             // "Choose" Button with Ripple Effect
                             ElevatedButton(
                               onPressed: () {

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/Service_Provider/SP_Dashboard.dart';
+import 'package:tap_on/Service_Provider/SP_ForgotPassword.dart';
+
 import 'package:tap_on/Service_Provider/SP_Register.dart';
 
 
@@ -15,13 +18,16 @@ class SP_Login extends StatelessWidget {
           title: const Text('TapOn'),
           backgroundColor: Colors.amber[700],
           elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () {
-              // Add back button functionality here
-              Navigator.pop(context);
-            },
-          ),
+            leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+            // Action when the button is pressed
+          },
+        ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -70,9 +76,12 @@ class SP_Login extends StatelessWidget {
               // Forgot password text
               Center(
                 child: TextButton(
-                  onPressed: () {
-                    // Add forgot password logic here
-                  },
+                   onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SP_ForgotPassword()));
+                },
                   child: Text(
                     'Forgot password?',
                     style: TextStyle(
