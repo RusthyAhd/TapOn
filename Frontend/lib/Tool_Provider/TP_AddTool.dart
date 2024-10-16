@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Tool_Provider/TP_Dashboard.dart';
 
-
 class TP_AddTool extends StatefulWidget {
   const TP_AddTool({super.key});
 
@@ -250,16 +249,24 @@ class _TP_AddToolState extends State<TP_AddTool> {
                 keyboardType: TextInputType.number,
               ),
               SizedBox(height: 16),
-              Text("Item Price"),
+              Text("Renting Price Per Hour"),
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Price',
+                  labelText: 'Add price for one hour',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
               ),
               SizedBox(height: 16),
-
+              Text("Delivery Fee"),
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Delivery Fee',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 16),
               SizedBox(height: 16),
               Text("Availability"),
               Column(
@@ -337,8 +344,7 @@ class _TP_AddToolState extends State<TP_AddTool> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => TP_Dashboard()),
+                      MaterialPageRoute(builder: (context) => TP_Dashboard()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
