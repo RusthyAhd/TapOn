@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 
 
 class UT_WriteFeedback extends StatefulWidget {
+  const UT_WriteFeedback({super.key});
+
   @override
   _UT_WriteFeedbackState createState() => _UT_WriteFeedbackState();
 }
@@ -16,8 +18,8 @@ class _UT_WriteFeedbackState extends State<UT_WriteFeedback> {
   XFile? _image;
 
   Future<void> _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedImage = await picker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       _image = pickedImage;
@@ -91,7 +93,7 @@ class _UT_WriteFeedbackState extends State<UT_WriteFeedback> {
                 child: _image == null
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Icon(Icons.cloud_upload, size: 50, color: Colors.grey),
                           SizedBox(height: 8),
                           Text('Click here to upload'),

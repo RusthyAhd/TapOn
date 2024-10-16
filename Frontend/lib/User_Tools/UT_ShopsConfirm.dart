@@ -3,6 +3,8 @@ import 'package:tap_on/User_Tools/UT_NearbyShops.dart';
 
 
 class UT_ShopsConfirm extends StatelessWidget {
+  const UT_ShopsConfirm({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

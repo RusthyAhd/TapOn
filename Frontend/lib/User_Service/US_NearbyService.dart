@@ -28,6 +28,8 @@ class US_NearbyService extends StatelessWidget {
     },
   ];
 
+  US_NearbyService({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,11 +94,11 @@ class US_NearbyService extends StatelessWidget {
                         );
                         // Action when the button is pressed
                       },
-                      child: Text('Choose'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         foregroundColor: Colors.yellow,
                       ),
+                      child: Text('Choose'),
                     ),
                   ),
                 );

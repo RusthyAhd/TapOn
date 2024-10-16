@@ -23,7 +23,7 @@ class SP_Notification extends StatelessWidget {
         ),
         body: ListView(
           padding: const EdgeInsets.all(16.0),
-          children: [
+          children: const [
             NotificationTile(
               title: "New booking recieved",
               subtitle: "Newbooking 123456 - Rishaf has booked  fiter replacement",

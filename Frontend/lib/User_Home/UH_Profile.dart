@@ -5,6 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 class UH_Profile extends StatefulWidget {
+  const UH_Profile({super.key});
+
   @override
   _UH_ProfileState createState() => _UH_ProfileState();
 }
@@ -60,8 +62,8 @@ class _UH_ProfileState extends State<UH_Profile> {
   }
 
   Future<void> pickImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
       setState(() {
@@ -234,16 +236,16 @@ class _UH_ProfileState extends State<UH_Profile> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: createOrUpdateProfile,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 60),
-                  child: Text('Save Profile', style: TextStyle(fontSize: 18)),
-                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber[700],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                   elevation: 5,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 60),
+                  child: Text('Save Profile', style: TextStyle(fontSize: 18)),
                 ),
               ),
             ],

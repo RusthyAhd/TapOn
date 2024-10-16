@@ -4,6 +4,8 @@ import 'package:tap_on/User_Service/US_Waiting.dart';
 
 
 class US_ProviderDetails extends StatelessWidget {
+  const US_ProviderDetails({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +27,7 @@ class US_ProviderDetails extends StatelessWidget {
           children: [
             // Service provider info
             Row(
-              children: [
+              children: const [
                 CircleAvatar(
                   radius: 22,
                   backgroundImage: AssetImage('assets/rishaf.jpg'),
@@ -77,13 +79,13 @@ class US_ProviderDetails extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => US_Waiting()),
                     );
                   },
-                  child: Text('Book Service'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     foregroundColor: Colors.yellow,
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     textStyle: TextStyle(fontSize: 16, color: Colors.white),
                   ),
+                  child: Text('Book Service'),
                 ),
                 SizedBox(height: 8),
                 ElevatedButton(
@@ -93,13 +95,13 @@ class US_ProviderDetails extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => US_PreBooking()),
                     );
                   },
-                  child: Text('Pre Booking'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     foregroundColor: Colors.yellow,
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     textStyle: TextStyle(fontSize: 16, color: Colors.white),
                   ),
+                  child: Text('Pre Booking'),
                 ),
                 SizedBox(height: 8),
                 Row(
@@ -141,6 +143,8 @@ class US_ProviderDetails extends StatelessWidget {
 }
 
 class ReviewCard extends StatelessWidget {
+  const ReviewCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -153,7 +157,7 @@ class ReviewCard extends StatelessWidget {
         subtitle: Text('Great service!'),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
+          children: const [
             Icon(Icons.star, color: Colors.amber, size: 14),
             Text('4.9', style: TextStyle(fontSize: 12)),
           ],

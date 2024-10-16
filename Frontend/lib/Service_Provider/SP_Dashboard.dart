@@ -12,6 +12,8 @@ import 'package:tap_on/Service_Provider/SP_Servicemanager.dart';
 
 
 class SP_Dashboard extends StatelessWidget {
+  const SP_Dashboard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,15 +21,15 @@ class SP_Dashboard extends StatelessWidget {
         backgroundColor: Colors.yellow[700],
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
+          children: const [
+            Text(
               'TapOn Provider',
               style: TextStyle(
                 fontSize: 20, // You can adjust the size
                 fontWeight: FontWeight.bold, // Optional: Makes the text bold
               ),
             ),
-            const Text(
+            Text(
               'Incoming Orders',
               style: TextStyle(
                 fontSize: 16, // You can adjust the size
@@ -57,15 +59,15 @@ class SP_Dashboard extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   CircleAvatar(
                     backgroundColor: Colors.black,
                     radius: 40,
                     backgroundImage:
                         AssetImage('profile.png'), // Add your image here
                   ),
-                  const SizedBox(height: 16),
-                  const Text(
+                  SizedBox(height: 16),
+                  Text(
                     'Rishaf',
                     style: TextStyle(
                       color: Colors.black,
@@ -292,22 +294,22 @@ class SP_Dashboard extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const Text('Accept'),
                       style: ElevatedButton.styleFrom(
                           backgroundColor:
                               const Color.fromARGB(255, 255, 197, 39),
                           foregroundColor: Colors.black // Button color
                           ),
+                      child: const Text('Accept'),
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(
-                      onPressed: () {},// Handle the "Reject" button press
-
-                      child: const Text('Reject'),
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: Colors.black // Button color
-                          ),
+                          ),// Handle the "Reject" button press
+
+                      child: const Text('Reject'),
                     ),
                   ],
                 ),

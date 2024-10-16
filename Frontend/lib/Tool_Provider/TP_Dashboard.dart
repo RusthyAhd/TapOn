@@ -10,6 +10,8 @@ import 'package:tap_on/Tool_Provider/TP_ToolManager.dart';
 
 
 class TP_Dashboard extends StatelessWidget {
+  const TP_Dashboard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,15 +19,15 @@ class TP_Dashboard extends StatelessWidget {
         backgroundColor: Colors.yellow[700],
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
+          children: const [
+            Text(
               'TapOn ShopOwner',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Text(
+            Text(
               'Incoming Orders',
               style: TextStyle(
                 fontSize: 16,
@@ -55,15 +57,15 @@ class TP_Dashboard extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   CircleAvatar(
                     backgroundColor: Colors.black,
                     radius: 40,
                     backgroundImage:
                         AssetImage('profile.png'), // Add your image here
                   ),
-                  const SizedBox(height: 16),
-                  const Text(
+                  SizedBox(height: 16),
+                  Text(
                     'Rishaf',
                     style: TextStyle(
                       color: Colors.black,
@@ -245,20 +247,20 @@ class TP_Dashboard extends StatelessWidget {
                       onPressed: () {
                         // Handle the "Accept" button press
                       },
-                      child: const Text('Accept'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green, // Button color
                       ),
+                      child: const Text('Accept'),
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(
                       onPressed: () {
                         // Handle the "Reject" button press
                       },
-                      child: const Text('Reject'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red, // Button color
                       ),
+                      child: const Text('Reject'),
                     ),
                   ],
                 ),

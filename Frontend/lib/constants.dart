@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 const String appName = "TapOn";
 const String slogan = "Enter your mobile number;Set send you verification code";

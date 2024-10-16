@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 
 class TP_Feedback extends StatelessWidget {
+  const TP_Feedback({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +19,7 @@ class TP_Feedback extends StatelessWidget {
             // Overall rating
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Text(
                   '4.0',
                   style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
@@ -133,7 +135,7 @@ class TP_Feedback extends StatelessWidget {
 class StarDisplay extends StatelessWidget {
   final int value;
 
-  const StarDisplay({Key? key, required this.value}) : super(key: key);
+  const StarDisplay({super.key, required this.value});
 
   @override
   Widget build(BuildContext context) {

@@ -3,6 +3,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:tap_on/User_Tools/UT_NearbyShops.dart';
 
 class UT_Waiting extends StatefulWidget {
+  const UT_Waiting({super.key});
+
   @override
   _UT_WaitingState createState() => _UT_WaitingState();
 }
@@ -52,12 +54,12 @@ class _UT_WaitingState extends State<UT_Waiting> {
                   onPressed: () {
                     // Handle pickup button press
                   },
-                  child: Text("Pickup"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue, // Button background color
                     shape: CircleBorder(), // Circular button shape
                     padding: EdgeInsets.all(24), // Button padding
                   ),
+                  child: Text("Pickup"),
                 ),
               ],
             ),

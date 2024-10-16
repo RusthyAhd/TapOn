@@ -22,7 +22,7 @@ class UH_Notification extends StatelessWidget {
         ),
         body: ListView(
           padding: const EdgeInsets.all(16.0),
-          children: [
+          children: const [
             NotificationTile(
               title: "Meeting reminder",
               subtitle: "Today at 2:00 PM",

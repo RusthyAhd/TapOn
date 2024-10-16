@@ -8,19 +8,21 @@ import 'package:tap_on/User_Tools/UT_NearbyShops.dart';
 
 
 class  UT_Location extends StatefulWidget {
+  const UT_Location({super.key});
+
   @override
   _UT_LocationState createState() => _UT_LocationState();
 }
 
 class _UT_LocationState extends State<UT_Location> {
-  TextEditingController _locationController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
   bool _isLoadingLocation = false;
   String _currentAddress = "";
   LatLng? currentPosition;
   double? _latitude;
   double? _longitude;
   GoogleMapController? _mapController;
-  Set<Marker> _markers = {};
+  final Set<Marker> _markers = {};
 
   Future<void> _getCurrentLocation() async {
     setState(() {
@@ -220,8 +222,8 @@ class _UT_LocationState extends State<UT_Location> {
                     right: 10,
                     child: FloatingActionButton(
                       onPressed: _goToCurrentLocation,
-                      child: Icon(Icons.add_location_alt),
                       backgroundColor: Colors.grey,
+                      child: Icon(Icons.add_location_alt),
                     ),
                   ),
                 ],

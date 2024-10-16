@@ -4,6 +4,8 @@ import 'package:tap_on/Tool_Provider/TP_AddTool.dart';
 
 
 class TP_ToolManager extends StatefulWidget {
+  const TP_ToolManager({super.key});
+
   @override
   _TP_ToolManagerState createState() => _TP_ToolManagerState();
 }
@@ -61,10 +63,10 @@ class _TP_ToolManagerState extends State<TP_ToolManager> {
                       );
                       // Add Item action
                     },
-                    child: Text('+ Item'),
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,
                         backgroundColor: Colors.yellow),
+                    child: Text('+ Item'),
                   ),
                 ],
               ),
