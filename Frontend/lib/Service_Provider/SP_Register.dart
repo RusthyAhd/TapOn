@@ -2,17 +2,16 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:tap_on/Service_Provider/SP_Dashboard.dart';
-
+import 'package:tap_on/Service_Provider/SP_Location.dart';
+import 'package:tap_on/Service_Provider/SP_Login.dart';
 
 class SP_Register extends StatefulWidget {
   const SP_Register({super.key});
   @override
-  _SP_RegisterState createState() =>
-      _SP_RegisterState();
+  _SP_RegisterState createState() => _SP_RegisterState();
 }
 
-class _SP_RegisterState
-    extends State<SP_Register> {
+class _SP_RegisterState extends State<SP_Register> {
   final _formKey = GlobalKey<FormState>();
 
   // Controllers for form fields
@@ -127,6 +126,16 @@ class _SP_RegisterState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SP_Login()),
+            );
+            // Action when the button is pressed
+          },
+        ),
         backgroundColor: Colors.yellow[700],
         title: Text('Service Provider Registration'),
       ),
@@ -172,6 +181,34 @@ class _SP_RegisterState
                 labelText: 'Address',
                 hintText: 'Enter your address',
                 icon: Icons.home,
+              ),
+
+              // Add Location Button styled like an input field
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SP_Location()));
+                }, // Handle the location selection here
+                child: Card(
+                  elevation: 4,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: InputDecorator(
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.add_location,
+                          color: Colors.black), // Updated color to grey
+                      labelText: 'Add Location',
+                      border: OutlineInputBorder(),
+                    ),
+                    child: Text(
+                      selectedLocation ?? 'Select your location',
+                      style: TextStyle(
+                        color: selectedLocation != null
+                            ? Colors.black
+                            : Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(height: 16.0),
               // Location Input Field with Icon
@@ -296,9 +333,7 @@ class _SP_RegisterState
               const SizedBox(height: 15),
               Center(
                 child: ElevatedButton(
-                  onPressed: isAgreed
-                      ? registerServiceProvider
-                      : null,
+                  onPressed: isAgreed ? registerServiceProvider : null,
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,
                     backgroundColor: Colors.yellow[700], // Button color

@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:tap_on/Tool_Provider/TP_Dashboard.dart';
+import 'package:tap_on/Tool_Provider/TP_Location.dart';
+import 'package:tap_on/Tool_Provider/TP_Login.dart';
 
 class TP_Register extends StatefulWidget {
   const TP_Register({super.key});
@@ -69,6 +71,8 @@ class _TP_RegisterState extends State<TP_Register> {
     'Other',
   ];
 
+  get selectedLocation => null;
+
   // Function to handle the submission of form data
   Future<void> registerOwner() async {
     if (_formKey.currentState!.validate() && isAgreed) {
@@ -129,6 +133,16 @@ class _TP_RegisterState extends State<TP_Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TP_Login()),
+            );
+            // Action when the button is pressed
+          },
+        ),
         backgroundColor: Colors.yellow[700],
         title: const Text(
           'Shop Owner Registration',
@@ -176,6 +190,34 @@ class _TP_RegisterState extends State<TP_Register> {
                   hintText: 'Enter your address',
                   icon: Icons.home,
                 ),
+                // Add Location Button styled like an input field
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => TP_Location()));
+                  }, // Handle the location selection here
+                  child: Card(
+                    elevation: 4,
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    child: InputDecorator(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.add_location,
+                            color: Colors.blue), // Updated color to grey
+                        labelText: 'Add Location',
+                        border: OutlineInputBorder(),
+                      ),
+                      child: Text(
+                        selectedLocation ?? 'Select your location',
+                        style: TextStyle(
+                          color: selectedLocation != null
+                              ? Colors.black
+                              : Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
                 _buildDropdownField(
                   labelText: 'Select Your District',
                   hintText: 'Select your district',
