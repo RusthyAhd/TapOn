@@ -1,79 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/Service_Provider/SP_AcceptedOrders.dart';
-import 'package:tap_on/User_Home/UH_AcceptedOrder.dart';
+import 'package:tap_on/Tool_Provider/TP_AcceptOrder.dart';
+import 'package:tap_on/Tool_Provider/TP_Dashboard.dart';
 
-class UH_Notification extends StatelessWidget {
-  const UH_Notification({super.key});
-
+class TP_AcceptedHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.yellow[700],
-          title: const Text("Notification Page"),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
-            },
-          ),
-          actions: [
-            IconButton(
-                onPressed: () {}, icon: const Icon(Icons.cleaning_services))
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TP_Dashboard()),
+            );
+          },
         ),
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.all(16.0),
-                children: const [
-                  NotificationTile(
-                    title: "Meeting reminder",
-                    subtitle: "Today at 2:00 PM",
-                  ),
-                  NotificationTile(
-                    title: "Your Service Accepted",
-                    subtitle: "Track order status",
-                  ),
-                  NotificationTile(
-                    title: "Your item confirmed",
-                    subtitle: "Track order status",
-                  ),
-                  NotificationTile(
-                    title: "Up to 50% off",
-                    subtitle: "Track order status",
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: BookingList(), // Add the BookingList here
-            ),
-          ],
-        ),
+        title: Text('Accepted Bookings'),
+        backgroundColor: Colors.amber,
       ),
-    );
-  }
-}
-
-class NotificationTile extends StatelessWidget {
-  final String title;
-  final String subtitle;
-
-  const NotificationTile(
-      {super.key, required this.title, required this.subtitle});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: const Icon(Icons.notifications, color: Colors.black),
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: Text(subtitle),
+      body: BookingList(),
     );
   }
 }
@@ -83,16 +29,16 @@ class BookingList extends StatelessWidget {
     {
       "id": "#4",
       "status": "Pending",
-      "CustomerName": "Rishaf",
-      "Sevice": "plumbing",
+      "CustomerName": "Rishaf Hardware",
+      "Tools": "Hammer",
       "price": 19.75,
-      "color": Colors.blue[50]
+      "color": Colors.orange[50]
     },
     {
       "id": "#3",
       "status": "Pending",
-      "CustomerName": "Rusthy",
-      "Sevice": "painting",
+      "CustomerName": "Rusthy Store",
+      "Tools": "Painting Box",
       "price": 19.75,
       "color": Colors.blue[50]
     }
@@ -108,7 +54,7 @@ class BookingList extends StatelessWidget {
           id: bookings[index]['id'],
           status: bookings[index]['status'],
           CustomerName: bookings[index]['CustomerName'],
-          Sevice: bookings[index]['Sevice'],
+          Tools: bookings[index]['Tools'],
           price: bookings[index]['price'],
           backgroundColor: bookings[index]['color'],
         );
@@ -121,7 +67,7 @@ class BookingCard extends StatelessWidget {
   final String id;
   final String status;
   final String CustomerName;
-  final String Sevice;
+  final String Tools;
   final double price;
   final Color? backgroundColor;
 
@@ -129,7 +75,7 @@ class BookingCard extends StatelessWidget {
     required this.id,
     required this.status,
     required this.CustomerName,
-    required this.Sevice,
+    required this.Tools,
     required this.price,
     required this.backgroundColor,
   });
@@ -141,7 +87,7 @@ class BookingCard extends StatelessWidget {
         // Define the action when the card is tapped
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => UH_AcceptedOrder()),
+          MaterialPageRoute(builder: (context) => TP_AcceptedOrder()),
         );
       },
       child: Card(
@@ -165,13 +111,13 @@ class BookingCard extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.amber,
+                      color: Colors.red[100],
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       status,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.red[800],
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -186,7 +132,7 @@ class BookingCard extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    Sevice,
+                    Tools,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

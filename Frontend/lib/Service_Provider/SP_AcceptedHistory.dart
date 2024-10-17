@@ -16,10 +16,11 @@ class SP_AcceptedHistory extends StatelessWidget {
             );
           },
         ),
-        title: Text('Upcoming Bookings'),
+        title: Text('Accepted Bookings'),
         backgroundColor: Colors.amber,
       ),
       body: BookingList(),
+      
     );
   }
 }
@@ -29,14 +30,16 @@ class BookingList extends StatelessWidget {
     {
       "id": "#4",
       "status": "Pending",
-      "description": "Filter Replacement",
+      "CustomerName": "Rishaf",
+      "Sevice": "plumbing",
       "price": 19.75,
-      "color": Colors.orange[50]
+      "color": Colors.blue[50]
     },
     {
       "id": "#3",
       "status": "Pending",
-      "description": "Filter Replacement",
+      "CustomerName": "Rusthy",
+      "Sevice": "painting",
       "price": 19.75,
       "color": Colors.blue[50]
     }
@@ -51,7 +54,8 @@ class BookingList extends StatelessWidget {
         return BookingCard(
           id: bookings[index]['id'],
           status: bookings[index]['status'],
-          description: bookings[index]['description'],
+          CustomerName: bookings[index]['CustomerName'],
+          Sevice: bookings[index]['Sevice'],
           price: bookings[index]['price'],
           backgroundColor: bookings[index]['color'],
         );
@@ -63,14 +67,16 @@ class BookingList extends StatelessWidget {
 class BookingCard extends StatelessWidget {
   final String id;
   final String status;
-  final String description;
+  final String  CustomerName;
+   final String Sevice;
   final double price;
   final Color? backgroundColor;
 
   BookingCard({
     required this.id,
     required this.status,
-    required this.description,
+    required this.CustomerName,
+    required this.Sevice,
     required this.price,
     required this.backgroundColor,
   });
@@ -106,20 +112,28 @@ class BookingCard extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.red[100],
+                      color: Colors.amber,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
                       status,
                       style: TextStyle(
-                        color: Colors.red[800],
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   SizedBox(height: 8),
                   Text(
-                    description,
+                    CustomerName,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                   SizedBox(height: 8),
+                  Text(
+                    Sevice,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
