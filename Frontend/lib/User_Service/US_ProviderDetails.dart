@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/User_Service/US_PreBooking.dart';
+import 'package:tap_on/User_Service/US_RequestSending.dart';
 
 class US_ProviderDetails extends StatelessWidget {
   @override
@@ -131,7 +132,13 @@ class US_ProviderDetails extends StatelessWidget {
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => US_RequestSending()),
+                      );
+                    },
                     child: Text('Service Request'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -150,7 +157,7 @@ class US_ProviderDetails extends StatelessWidget {
                             builder: (context) => US_PreBooking()),
                       );
                     },
-                    child: Text('Pre Booking Request'),
+                    child: Text('Pre Booking'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow,
