@@ -9,6 +9,21 @@ class US_PreBooking extends StatefulWidget {
 }
 
 class _US_PreBookingState extends State<US_PreBooking> {
+
+    final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _PhonenoController = TextEditingController();
+  final TextEditingController _emailController= TextEditingController();
+final TextEditingController _LocationController= TextEditingController();
+  @override
+  void dispose() {
+    // Dispose of the controllers when the widget is disposed
+    _nameController.dispose();
+    _PhonenoController.dispose();
+    _emailController.dispose();
+    _LocationController.dispose();
+    super.dispose();
+  }
+
   DateTime _selectedDate = DateTime.now();
   String _formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
   TimeOfDay _selectedTime = TimeOfDay.now();
@@ -108,7 +123,73 @@ class _US_PreBookingState extends State<US_PreBooking> {
                 ),
               ),
               SizedBox(height: 20),
-
+const Text(
+              "About Customer",
+              style: TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Form(
+    
+                child: Column(
+                  children: [
+                    // Customer Name
+                    TextFormField(
+                      controller: _nameController,
+                      decoration: const InputDecoration(
+                        labelText: 'Customer Name',
+                        hintText: 'Enter customer name',
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a name';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    // Customer Email
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        labelText: 'Email',
+                        hintText: 'Enter customer email',
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter an email';
+                        } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                          return 'Please enter a valid email';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    // Additional Information
+                    TextFormField(
+                      controller: _PhonenoController,
+                      decoration: const InputDecoration(
+                        labelText: 'Phone No',
+                        hintText: 'Enter Phone Number',
+                      ),
+                    ),
+                                        TextFormField(
+                      controller: _LocationController,
+                      decoration: const InputDecoration(
+                        labelText: 'Location ',
+                        hintText: 'Enter LOcation',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
               // Booking Date & Slot Selector
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -171,7 +252,7 @@ SizedBox(height: 10,),
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.yellow),
-                  child: Text('PreBook Requast'),
+                  child: Text('Confirm'),
                 ),
               ),
             ],
