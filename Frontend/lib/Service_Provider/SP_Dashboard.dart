@@ -8,6 +8,7 @@ import 'package:tap_on/Service_Provider/SP_Feedback.dart';
 import 'package:tap_on/Service_Provider/SP_History.dart';
 import 'package:tap_on/Service_Provider/SP_Notification.dart';
 import 'package:tap_on/Service_Provider/SP_Profile.dart';
+import 'package:tap_on/Service_Provider/SP_Reject.dart';
 import 'package:tap_on/Service_Provider/SP_Servicemanager.dart';
 
 
@@ -304,7 +305,14 @@ class SP_Dashboard extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SP_Reject(),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: Colors.black // Button color

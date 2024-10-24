@@ -13,7 +13,6 @@ class _US_RequestSendingState extends State<US_RequestSending> {
   // Controllers for text fields
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _PhonenoController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _LocationController = TextEditingController();
 
   @override
@@ -21,7 +20,6 @@ class _US_RequestSendingState extends State<US_RequestSending> {
     // Dispose of the controllers when the widget is disposed
     _nameController.dispose();
     _PhonenoController.dispose();
-    _emailController.dispose();
     _LocationController.dispose();
     super.dispose();
   }
@@ -96,24 +94,7 @@ class _US_RequestSendingState extends State<US_RequestSending> {
                         },
                       ),
                       const SizedBox(height: 10),
-                      // Customer Email
-                      TextFormField(
-                        controller: _emailController,
-                        decoration: const InputDecoration(
-                          labelText: 'Email',
-                          hintText: 'Enter customer email',
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter an email';
-                          } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                              .hasMatch(value)) {
-                            return 'Please enter a valid email';
-                          }
-                          return null;
-                        },
-                      ),
+             
                       const SizedBox(height: 10),
                       // Customer Phone Number
                       TextFormField(
@@ -167,7 +148,6 @@ class _US_RequestSendingState extends State<US_RequestSending> {
                       // If form is valid, print the details
                       print('Name: ${_nameController.text}');
                       print('Phone no: ${_PhonenoController.text}');
-                      print('Email: ${_emailController.text}');
                       print('Location: ${_LocationController.text}');
                       // Perform additional actions like sending data to the server
                     }
