@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Home%20page.dart';
 import 'package:tap_on/Service_Provider/SP_AcceptedOrders.dart';
-import 'package:tap_on/User_Home/UH_AcceptedOrder.dart';
+
+import 'package:tap_on/User_Home/UH_AcceptedOder.dart';
+
+
 
 class UH_Notification extends StatelessWidget {
   const UH_Notification({super.key});
@@ -29,6 +32,11 @@ class UH_Notification extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
+
+              child: BookingList(), // Add the BookingList here
+            ),
+            Expanded(
+
               child: ListView(
                 padding: const EdgeInsets.all(16.0),
                 children: const [
@@ -50,10 +58,13 @@ class UH_Notification extends StatelessWidget {
                   ),
                 ],
               ),
+
             ),
             Expanded(
               child: BookingList(), // Add the BookingList here
+
             ),
+            
           ],
         ),
       ),
@@ -217,4 +228,6 @@ class BookingCard extends StatelessWidget {
       ),
     );
   }
+
 }
+
