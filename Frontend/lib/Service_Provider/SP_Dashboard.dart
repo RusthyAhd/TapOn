@@ -11,8 +11,6 @@ import 'package:tap_on/Service_Provider/SP_Profile.dart';
 import 'package:tap_on/Service_Provider/SP_Reject.dart';
 import 'package:tap_on/Service_Provider/SP_Servicemanager.dart';
 
-
-
 class SP_Dashboard extends StatelessWidget {
   const SP_Dashboard({super.key});
 
@@ -85,10 +83,8 @@ class SP_Dashboard extends StatelessWidget {
               leading: Icon(Icons.list_alt),
               title: Text('Order History'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SP_History()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SP_History()));
                 // Handle Orders button press
               },
             ),
@@ -111,8 +107,10 @@ class SP_Dashboard extends StatelessWidget {
               leading: Icon(Icons.edit),
               title: Text('Service Manager'),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SP_Servicemanager()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SP_Servicemanager()));
                 // Handle Performance button press
               },
             ),
@@ -122,10 +120,8 @@ class SP_Dashboard extends StatelessWidget {
               leading: Icon(Icons.notifications),
               title: Text('Notifications'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SP_Notification()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SP_Notification()));
 
                 // Handle Notifications button press
               },
@@ -136,10 +132,8 @@ class SP_Dashboard extends StatelessWidget {
               leading: Icon(Icons.store),
               title: Text('Provider Profile'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SP_Profile()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SP_Profile()));
                 // Handle Shop Profile button press
               },
             ),
@@ -147,10 +141,8 @@ class SP_Dashboard extends StatelessWidget {
               leading: Icon(Icons.feedback),
               title: Text('Feedback'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SP_Feedback()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SP_Feedback()));
                 // Handle Shop Profile button press
               },
             ),
@@ -230,8 +222,8 @@ class SP_Dashboard extends StatelessWidget {
         backgroundColor:
             const Color.fromARGB(255, 255, 214, 7), // Color of the button
         child: const Text(
-          'Accept',
-          style: TextStyle(color: Colors.white),
+          'Accepted',
+          style: TextStyle(color: Colors.black, fontSize: 12),
         ),
       ),
     );
@@ -288,14 +280,7 @@ class SP_Dashboard extends StatelessWidget {
                 Row(
                   children: [
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SP_AcceptedOrder(),
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                           backgroundColor:
                               const Color.fromARGB(255, 255, 197, 39),
@@ -316,7 +301,7 @@ class SP_Dashboard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           foregroundColor: Colors.black // Button color
-                          ),// Handle the "Reject" button press
+                          ), // Handle the "Reject" button press
 
                       child: const Text('Reject'),
                     ),

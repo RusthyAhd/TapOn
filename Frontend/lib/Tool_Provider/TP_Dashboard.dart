@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tap_on/Home%20page.dart';
-import 'package:tap_on/Tool_Provider/TP_AcceptedOrder.dart';
+import 'package:tap_on/Tool_Provider/TP_AcceptedOrderHistory.dart';
 import 'package:tap_on/Tool_Provider/TP_AddTool.dart';
 import 'package:tap_on/Tool_Provider/TP_Feedback.dart';
 import 'package:tap_on/Tool_Provider/TP_History.dart';
 import 'package:tap_on/Tool_Provider/TP_Notification.dart';
 import 'package:tap_on/Tool_Provider/TP_Profile.dart';
 import 'package:tap_on/Tool_Provider/TP_ToolManager.dart';
-
 
 class TP_Dashboard extends StatelessWidget {
   const TP_Dashboard({super.key});
@@ -81,10 +80,8 @@ class TP_Dashboard extends StatelessWidget {
               leading: Icon(Icons.list_alt),
               title: Text('Order History'),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TP_History()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TP_History()));
                 // Handle Orders button press
               },
             ),
@@ -196,14 +193,14 @@ class TP_Dashboard extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    TP_AcceptedOrder()), // Navigate to accepted orders page
+                    TP_AcceptedHistory()), // Navigate to accepted orders page
           );
         },
         backgroundColor:
             const Color.fromARGB(255, 255, 214, 7), // Color of the button
         child: const Text(
-          'Accept',
-          style: TextStyle(color: Colors.white),
+          'Accepted',
+          style: TextStyle(color: Colors.black, fontSize: 12),
         ),
       ),
     );

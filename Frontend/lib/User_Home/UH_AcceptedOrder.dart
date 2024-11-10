@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:tap_on/Service_Provider/SP_Dashboard.dart';
+import 'package:tap_on/Home%20page.dart';
 
-class SP_AcceptedOrder extends StatelessWidget {
-  const SP_AcceptedOrder({super.key});
+class UH_AcceptedOrder extends StatelessWidget {
+  const UH_AcceptedOrder({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
-        title: Text('Accepted'),
+        title: Text('History'),
       ),
-      body:
-       SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +47,7 @@ class SP_AcceptedOrder extends StatelessWidget {
 
             // Customer Details
             Text(
-              "About Customer",
+              "About Provider",
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(
@@ -58,13 +57,13 @@ class SP_AcceptedOrder extends StatelessWidget {
               padding:
                   EdgeInsets.all(10), // Optional padding around the Container
               decoration: BoxDecoration(
-                color:  Colors.blue[50], // Background color of the container
+                color: Colors.blue[50], // Background color of the container
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
                 children: [
                   ListTile(
-                    title: Text('Customer Details'),
+                    title: Text('Provider Details'),
                     trailing: TextButton(
                       onPressed: () {
                         // Implement navigation to map or directions page
@@ -131,29 +130,12 @@ class SP_AcceptedOrder extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SP_Dashboard()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: (Colors.yellow[700]),
-                    foregroundColor: Colors.black // Full width button
-                    ),
-                child: Text('Complete'),
-              ),
-            ),
- SizedBox(height: 16),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SP_Dashboard()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
